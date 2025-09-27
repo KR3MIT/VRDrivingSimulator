@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
+      propertyPath: traversalSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8829948291086187028, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
       value: 4
@@ -559,8 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
-  m_Target: {fileID: 1162015507}
-  m_PlayOnAwake: 1
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 0
   m_LoopMode: 0
   m_Method: 1
   m_Duration: 3.96
@@ -658,7 +662,7 @@ Transform:
   m_GameObject: {fileID: 1241213349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.12022, y: 3, z: 0.3896}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1137,6 +1141,10 @@ PrefabInstance:
     - target: {fileID: 3010934606185582725, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
+      propertyPath: traversalSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8829948291086187028, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
