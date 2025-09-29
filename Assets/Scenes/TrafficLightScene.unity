@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91936046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91936047}
+  - component: {fileID: 91936048}
+  m_Layer: 0
+  m_Name: Waypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91936047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91936046}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5465043, z: -0, w: 0.8374563}
+  m_LocalPosition: {x: 2.662, y: 0, z: 7.651}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 676398138}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91936048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91936046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3fdbd8e7e9d9fb46be9fd3665a1b9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Waypoint
+  previousWaypoint: {fileID: 999426023}
+  nextWaypoint: {fileID: 0}
+  width: 1
 --- !u!1 &661742020
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +246,7 @@ Transform:
   - {fileID: 1379563025}
   - {fileID: 2055369099}
   - {fileID: 999426022}
+  - {fileID: 91936047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999426021
@@ -245,8 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fdbd8e7e9d9fb46be9fd3665a1b9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Waypoint
-  nextWaypoint: {fileID: 0}
   previousWaypoint: {fileID: 2055369098}
+  nextWaypoint: {fileID: 91936048}
   width: 1
 --- !u!1 &1068439307
 GameObject:
@@ -402,8 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fdbd8e7e9d9fb46be9fd3665a1b9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Waypoint
-  nextWaypoint: {fileID: 2055369098}
   previousWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 2055369098}
   width: 1
 --- !u!4 &1379563025
 Transform:
@@ -546,8 +594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fdbd8e7e9d9fb46be9fd3665a1b9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Waypoint
-  nextWaypoint: {fileID: 999426023}
   previousWaypoint: {fileID: 1379563024}
+  nextWaypoint: {fileID: 999426023}
   width: 1
 --- !u!4 &2055369099
 Transform:
@@ -558,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 2055369097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.95}
+  m_LocalPosition: {x: 0, y: 0, z: 4.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

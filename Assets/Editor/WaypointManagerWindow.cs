@@ -38,15 +38,15 @@ public class WaypointManagerWindow : EditorWindow
         {
             if (GUILayout.Button("Add Waypoint Before Selected"))
             {
-
+                AddWaypointBeforeSelected();
             }
             if (GUILayout.Button("Add Waypoint After Selected"))
             {
-
+                AddWaypointAfterSelected();
             }
             if (GUILayout.Button("Remove Selected Waypoint"))
             {
-
+                RemoveSelectedWaypoint();
             }
         }
         /*if (GUILayout.Button("Clear Waypoints"))
