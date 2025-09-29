@@ -13,9 +13,8 @@ public class WaypointManagerWindow : EditorWindow
 
     private void OnGUI()
     {
-        SerializedObject obj = new SerializedObject(this);
         GUILayout.Label("Waypoint Manager", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(obj.FindProperty("waypointRoot"));
+        waypointRoot = (Transform)EditorGUILayout.ObjectField("Waypoint Root", waypointRoot, typeof(Transform), true);
 
         if (waypointRoot == null)
         {
@@ -26,10 +25,6 @@ public class WaypointManagerWindow : EditorWindow
             EditorGUILayout.BeginVertical("box");
             DrawButtons();
             EditorGUILayout.EndVertical();
-            
-
-          
-            obj.ApplyModifiedProperties();
         }
     }
         void DrawButtons()
@@ -54,7 +49,7 @@ public class WaypointManagerWindow : EditorWindow
             waypoint.previousWaypoint = waypointRoot.GetChild(waypointRoot.childCount - 2).GetComponent<Waypoint>();
             waypoint.previousWaypoint.nextWaypoint = waypoint;
             // Place the new waypoint 2 units in front of the previous one
-            waypoint.transform.position = waypoint.previousWaypoint.transform.position + Vector3.forward * 2;
+            waypoint.transform.position = waypoint.previousWaypoint.transform.position;
             waypoint.transform.forward = waypoint.previousWaypoint.transform.forward;
             
         }
