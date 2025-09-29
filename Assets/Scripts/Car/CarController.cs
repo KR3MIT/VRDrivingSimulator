@@ -17,9 +17,9 @@ public class CarController : MonoBehaviour
     public WheelColliders colliders;
     public WheelMeshes wheelMeshes;
     public WheelParticles wheelParticles;
-    private float gasInput;
-    private float brakeInput;
-    private float steeringInput;
+    public float gasInput;
+    public float brakeInput;
+    public float steeringInput;
     public GameObject smokePrefab;
     public float motorPower;
     public float brakePower;
@@ -33,6 +33,7 @@ public class CarController : MonoBehaviour
     private InputAction gasPedal;
     private InputAction brakePedal;
     private InputAction steer;
+    private InputAction clutchPedal;
     //public InputAction leftButton;
     //public InputAction rightButton;
     public int isEngineRunning;
@@ -49,11 +50,11 @@ public class CarController : MonoBehaviour
 
     public float[] gearRatios;
     public float differentialRatio;
-    private float currentTorque;
+    public float currentTorque;
     private float clutch;
     private float wheelRPM;
     public AnimationCurve hpToRPMCurve;
-    private GearState gearState;
+    public GearState gearState;
     public float increaseGearRPM;
     public float decreaseGearRPM;
     public float changeGearTime = 0.5f;
@@ -69,13 +70,19 @@ public class CarController : MonoBehaviour
         playerRB = gameObject.GetComponent<Rigidbody>();
         input = gameObject.GetComponent<PlayerInput>();
 
+        gasPedal = input.actions["GasPedal"];
+        brakePedal = input.actions["BrakePedal"];
+        steer = input.actions["Steer"];
+        clutchPedal = input.actions["Clutch"];
+
         gasPedal.Enable();
         brakePedal.Enable();
         steer.Enable();
+        clutchPedal.Enable();
         //leftButton.Enable();
         //rightButton.Enable();
 
-        InitiateParticles();
+        //InitiateParticles();
     }
 
     void InitiateParticles()
@@ -107,17 +114,17 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        rpmNeedle.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(minNeedleRotation, maxNeedleRotation, RPM / (redLine * 1.1f)));
-        rpmText.text = RPM.ToString("0,000") + "rpm";
-        gearText.text = (gearState == GearState.Neutral) ? "N" : (currentGear + 1).ToString();
+        //rpmNeedle.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(minNeedleRotation, maxNeedleRotation, RPM / (redLine * 1.1f)));
+        //rpmText.text = RPM.ToString("0,000") + "rpm";
+        //gearText.text = (gearState == GearState.Neutral) ? "N" : (currentGear + 1).ToString();
         speed = colliders.RRWheel.rpm * colliders.RRWheel.radius * 2f * Mathf.PI / 10f;
         speedClamped = Mathf.Lerp(speedClamped, speed, Time.deltaTime);
         CheckInput();
         ApplyMotor();
         ApplySteering();
         ApplyBrake();
-        CheckParticles();
-        ApplyWheelPositions();
+        //CheckParticles();
+        //ApplyWheelPositions();
     }
 
     void CheckInput()
@@ -133,7 +140,7 @@ public class CarController : MonoBehaviour
         }
         if (Mathf.Abs(gasInput) > 0 && isEngineRunning == 0)
         {
-            //StartCoroutine(GetComponent<EngineAudio>().StartEngine());
+            StartCoroutine(StartEngine());
             gearState = GearState.Running;
         }
         //steeringInput = Input.GetAxis("Horizontal");
@@ -154,7 +161,7 @@ public class CarController : MonoBehaviour
             }
             else
             {
-                clutch = Input.GetKey(KeyCode.LeftShift) ? 0 : Mathf.Lerp(clutch, 1, Time.deltaTime);
+                clutch = clutchPedal.ReadValue<float>() > .95 ? 0 : Mathf.Lerp(clutch, 1, Time.deltaTime);
             }
         }
         else
@@ -195,6 +202,14 @@ public class CarController : MonoBehaviour
         }*/
 
     }
+
+    public IEnumerator StartEngine()
+    {
+        isEngineRunning = 1;
+        yield return new WaitForSeconds(1);
+        isEngineRunning = 2;
+    }
+
     void ApplyBrake()
     {
         colliders.FRWheel.brakeTorque = brakeInput * brakePower * 0.7f;
@@ -224,6 +239,7 @@ public class CarController : MonoBehaviour
         currentTorque = CalculateTorque();
         colliders.RRWheel.motorTorque = currentTorque * gasInput;
         colliders.RLWheel.motorTorque = currentTorque * gasInput;
+
 
     }
 
