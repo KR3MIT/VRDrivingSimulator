@@ -34,9 +34,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Clutch",
+                    "name": "ShiftUp",
                     "type": "Button",
-                    "id": "6631b8a0-3dc4-4c9e-a332-2852de279b86",
+                    "id": "c55ab995-e83e-44ac-a937-61140a7fad32",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShiftDown",
+                    "type": "Button",
+                    "id": "65ec22d9-604d-4739-a354-ee934112bb27",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -101,12 +110,23 @@
                 },
                 {
                     "name": "",
-                    "id": "afcd4283-68fb-4496-9cc4-69cf130f87f2",
-                    "path": "<Keyboard>/shift",
+                    "id": "5e807caa-1af7-4358-8fee-7b975a50bea6",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Clutch",
+                    "action": "ShiftUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86429d45-91e4-41dd-a0f8-0a552c7d6cb2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShiftDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
