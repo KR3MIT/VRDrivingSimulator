@@ -32,13 +32,26 @@ public class CarMover : MonoBehaviour
         Drive,
     }
 
+    [Serializable]
+    public struct Gear
+    {
+        public float ratio;
+        public float upshiftSpeed;
+        public float downshiftSpeed;
+    }
+
     [Header("Gear/Transmission")]
     public TransmissionType transmissionState = TransmissionType.Park;
+    public bool useGears = true;
+    public List<Gear> gears;
+    public int currentGear = 0;
 
     [Header("Speeds")]
     public float maxAcceleration = 30.0f;
     public float reverseAcceleration = 20.0f;
     public float brakeAcceleration = 50.0f;
+    public float creepTorque = 5.0f;
+    public float maxCreepSpeed = 5.0f;
 
     [Header("Steering")]
     public float turnSensitivity = 1.0f;
@@ -46,14 +59,24 @@ public class CarMover : MonoBehaviour
 
     [Header("Rigidbody")]
     public Vector3 _centerOfMass;
+    public bool freezeYPosition = true;
 
     [Header("Wheels")]
     public List<Wheel> wheels;
 
-    [Header("Input values for debug")]
+    [Header("Engine")]
+    public AnimationCurve engineTorqueCurve = AnimationCurve.Linear(0, 0, 1, 1);
+    public float maxEngineRPM = 6000f;
+    public float minEngineRPM = 800f;
+    public float driveRatio = 4f;
+    public float currentEngineRPM = 0f;
+
+    [Header("values for debug")]
     public float acceleratorInput;
     public float brakeInput;
     public float steerInput;
+
+    public float magnitude;
 
     //inputs
     private PlayerInput input;
@@ -94,7 +117,8 @@ public class CarMover : MonoBehaviour
             wheel.wheelCollider.ConfigureVehicleSubsteps(5f, 12, 15);
         }
 
-        Invoke(nameof(FreezePositionY), 3f);
+        if (freezeYPosition)//make it impossible to flip, messes a bit with speed value ie slows down everything
+            Invoke(nameof(FreezePositionY), 3f);
     }
 
     void FreezePositionY()
@@ -106,12 +130,10 @@ public class CarMover : MonoBehaviour
     {
         GetInputs();
         HandleTransmission();
+        HandleAutomaticGears();
         AnimateWheels();
 
-        if (shiftUp.triggered || shiftDown.triggered)
-        {
-            Debug.Log("Transmission: " + transmissionState);
-        }
+        magnitude = carRb.linearVelocity.magnitude;
     }
 
     void FixedUpdate()
@@ -132,22 +154,58 @@ public class CarMover : MonoBehaviour
     void Move()
     {
         float torque = 0f;
+        float speed = carRb.linearVelocity.magnitude;
+
+        float wheelRPM = 0f;
+
+        if(transmissionState == TransmissionType.Drive && useGears)
+        {
+            foreach (var wheel in wheels)
+            {
+                wheelRPM += wheel.wheelCollider.rpm;
+            }
+            wheelRPM /= wheels.Count;//get average RPM of all wheels
+        }
 
         if (transmissionState == TransmissionType.Drive)
         {
-            torque = acceleratorInput * maxAcceleration;
+            float gearRatio = useGears ? gears[currentGear].ratio : 1f;
+
+            //find rpm of engine based on wheel rpm and gear ratio
+            currentEngineRPM = currentEngineRPM = Mathf.Abs(wheelRPM * gearRatio * driveRatio);
+            currentEngineRPM = Mathf.Clamp(currentEngineRPM, minEngineRPM, maxEngineRPM);
+
+            //get torque multiplier from engine torque curve
+            float normalizedRPM = (currentEngineRPM - minEngineRPM) / (maxEngineRPM - minEngineRPM);
+            float torqueMultiplier = engineTorqueCurve.Evaluate(normalizedRPM);
+
+            if (acceleratorInput > .01f)
+            {
+                torque = acceleratorInput * maxAcceleration * gearRatio * torqueMultiplier;
+            }else if (brakeInput < 0.01f && speed < maxCreepSpeed)//no gas or brake
+            {
+                torque = creepTorque * gearRatio;
+            }
         }
         else if (transmissionState == TransmissionType.Reverse)
         {
-            torque = -acceleratorInput * reverseAcceleration;
+            if (acceleratorInput > .01f)
+            {
+                torque = -acceleratorInput * reverseAcceleration;
+            }
+            else if (brakeInput < 0.01f && speed < maxCreepSpeed)//no gas or brake
+            {
+                torque = -creepTorque;
+            }
         }//neutral and park = 0 torque
+
+
+
 
         foreach (var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque = torque;
         }
-
-        Debug.Log("Motor Torque: " + torque);
     }
 
     void Brake()
@@ -168,8 +226,6 @@ public class CarMover : MonoBehaviour
         {
             wheel.wheelCollider.brakeTorque = brakeForce;
         }
-
-        Debug.Log("Brake Force: " + brakeForce);
     }
 
     void Steer()
@@ -208,6 +264,29 @@ public class CarMover : MonoBehaviour
                 else if (transmissionState == TransmissionType.Reverse)
                     transmissionState = TransmissionType.Park;
             }
+        }
+    }
+
+    void HandleAutomaticGears()
+    {
+        if(!useGears) return;
+
+        if (transmissionState != TransmissionType.Drive)
+        {
+            currentGear = 0;
+            return;
+        }
+
+        float speed = carRb.linearVelocity.magnitude;
+
+        //upshift
+        if (currentGear < gears.Count - 1 && speed > gears[currentGear].upshiftSpeed)
+        {
+            currentGear++;
+        }//downsift
+        else if (currentGear > 0 && speed < gears[currentGear].downshiftSpeed)
+        {
+            currentGear--;
         }
     }
 

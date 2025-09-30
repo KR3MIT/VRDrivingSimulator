@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
+
 [InitializeOnLoad]
 public class WaypointEditor
 {
@@ -36,6 +38,19 @@ public class WaypointEditor
             Vector3 nextRight = waypoint.nextWaypoint.transform.position + waypoint.nextWaypoint.transform.right * (waypoint.nextWaypoint.width / 2f);
             Gizmos.color = Color.green;
             Gizmos.DrawLine(rightPoint, nextRight);
+        }
+
+        if (waypoint.branches != null)
+        {
+            // Draw blue lines to branch waypoints (from center)
+            foreach (Waypoint branch in waypoint.branches)
+            {
+                if (branch != null)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(waypoint.transform.position, branch.transform.position);
+                }
+            }
         }
     }
 }
