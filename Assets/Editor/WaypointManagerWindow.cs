@@ -2,6 +2,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+// based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
+
 public class WaypointManagerWindow : EditorWindow
 {
     [MenuItem("Window/Waypoint Manager")]

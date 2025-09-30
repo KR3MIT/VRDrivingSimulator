@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
 public class WaypointNavigation : MonoBehaviour
 {
 
