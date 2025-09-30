@@ -301,22 +301,4 @@ public class CarMover : MonoBehaviour
             wheel.wheelModel.transform.rotation = rot;
         }
     }
-
-    //void Brake()
-    //{
-    //    if (driftPedal.ReadValue<float>() > .95f || moveInput == 0)
-    //    {
-    //        foreach (var wheel in wheels)
-    //        {
-    //            wheel.wheelCollider.brakeTorque = brakeAcceleration;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        foreach (var wheel in wheels)
-    //        {
-    //            wheel.wheelCollider.brakeTorque = 0;
-    //        }
-    //    }
-    //}
 }
