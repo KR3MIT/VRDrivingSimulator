@@ -5,6 +5,7 @@ public class NPCController : MonoBehaviour
     public bool reachedDestination;
     public float moveSpeed = 2f;
     public float stoppingDistance = 0.1f;
+    public float turnSpeed = 360f; // Degrees per second
 
     [SerializeField]
     private Vector3? destination;
@@ -26,8 +27,17 @@ public class NPCController : MonoBehaviour
                     move = direction; // Don't overshoot
 
                 transform.position += move;
+
+                // Smoothly rotate towards movement direction
                 if (move != Vector3.zero)
-                    transform.forward = move.normalized;
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(move.normalized, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(
+                        transform.rotation,
+                        targetRotation,
+                        turnSpeed * Time.deltaTime
+                    );
+                }
             }
             else
             {

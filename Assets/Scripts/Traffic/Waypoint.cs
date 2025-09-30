@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class Waypoint : MonoBehaviour
 {
@@ -6,7 +9,12 @@ public class Waypoint : MonoBehaviour
    public Waypoint nextWaypoint;
 
     [Range (0f, 5f)]
-    public float width = 0f;
+    public float width = 1f;
+
+    public List<Waypoint> branches = new List<Waypoint>();
+
+    [Range (0f, 1f)]
+    public float branchProbability = 0.5f;
 
     public Vector3 GetPosition()
     {
@@ -15,5 +23,6 @@ public class Waypoint : MonoBehaviour
 
         return Vector3.Lerp(minBound,maxBound,Random.Range(0f,1f));
     }
+
 
 }
