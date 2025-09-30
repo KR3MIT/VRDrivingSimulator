@@ -37,5 +37,18 @@ public class WaypointEditor
             Gizmos.color = Color.green;
             Gizmos.DrawLine(rightPoint, nextRight);
         }
+
+        if (waypoint.branches != null)
+        {
+            // Draw blue lines to branch waypoints (from center)
+            foreach (Waypoint branch in waypoint.branches)
+            {
+                if (branch != null)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(waypoint.transform.position, branch.transform.position);
+                }
+            }
+        }
     }
 }
