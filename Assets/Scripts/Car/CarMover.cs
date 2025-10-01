@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CarMover : MonoBehaviour
 {
-    //todo: automatic transmission, braking behaviour, engine power curve, 
+    private LogitechInput logitechInput;
 
     public enum Axel
     {
@@ -40,6 +40,10 @@ public class CarMover : MonoBehaviour
         public float downshiftSpeed;
     }
 
+    [Header("Keyboard or wheel")]
+    public bool useWheelInput = true;
+
+
     [Header("Gear/Transmission")]
     public TransmissionType transmissionState = TransmissionType.Park;
     public bool useGears = true;
@@ -52,6 +56,10 @@ public class CarMover : MonoBehaviour
     public float brakeAcceleration = 50.0f;
     public float creepTorque = 5.0f;
     public float maxCreepSpeed = 5.0f;
+    public float minCreepSpeed = 0.5f;
+
+    [Header("Brake")]
+    public float brakeShiftThreshold = 0.25f;
 
     [Header("Steering")]
     public float turnSensitivity = 1.0f;
@@ -78,6 +86,9 @@ public class CarMover : MonoBehaviour
 
     public float magnitude;
 
+    private bool isCreeping = false;
+
+
     //inputs
     private PlayerInput input;
     private InputAction acceleratorPedal;
@@ -91,6 +102,8 @@ public class CarMover : MonoBehaviour
 
     void Start()
     {
+        logitechInput = GetComponent<LogitechInput>();
+
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
 
@@ -145,10 +158,32 @@ public class CarMover : MonoBehaviour
 
     void GetInputs()
     {
-        acceleratorInput = acceleratorPedal.ReadValue<float>();
-        steerInput = steer.ReadValue<float>();
-        brakeInput = brakePedal.ReadValue<float>();
+        if (useWheelInput)
+        {
+            float steering = (float)logitechInput.steeringWheelValue;
+            steering = steering / 32768f;
+            if(steering < .05 && steering > -.05) { steering = 0f;}
+            steerInput = steering;
 
+            float speeder = (float)logitechInput.speederValue;
+            speeder = (speeder + 32768f) / 2 / 32768f;
+            speeder = 1 - speeder;
+            if(speeder < 0.05f) speeder = 0f;
+            acceleratorInput = speeder;
+
+            float brake = (float)logitechInput.brakeValue;
+            brake = (brake + 32768f) / 2 / 32768f;
+            brake = 1 - brake;
+            if (brake < 0.05f) brake = 0f;
+            brakeInput = brake;
+            
+        }
+        else
+        {
+            acceleratorInput = acceleratorPedal.ReadValue<float>();
+            steerInput = steer.ReadValue<float>();
+            brakeInput = brakePedal.ReadValue<float>();
+        }
     }
 
     void Move()
@@ -179,12 +214,28 @@ public class CarMover : MonoBehaviour
             float normalizedRPM = (currentEngineRPM - minEngineRPM) / (maxEngineRPM - minEngineRPM);
             float torqueMultiplier = engineTorqueCurve.Evaluate(normalizedRPM);
 
-            if (acceleratorInput > .01f)
+            if (acceleratorInput > .02f)
             {
+                isCreeping = false;
                 torque = acceleratorInput * maxAcceleration * gearRatio * torqueMultiplier;
-            }else if (brakeInput < 0.01f && speed < maxCreepSpeed)//no gas or brake
+            }else if (brakeInput < brakeShiftThreshold)//no gas
             {
-                torque = creepTorque * gearRatio;
+                isCreeping = true;
+
+                float creepValue = 1f - Mathf.Clamp01(brakeInput / brakeShiftThreshold);
+                Debug.Log("creep value: " + creepValue);
+
+                torque = creepTorque * gearRatio * creepValue;
+
+                var currentCreepSpeed = Mathf.Lerp(minCreepSpeed, maxCreepSpeed, creepValue);
+                if (speed > currentCreepSpeed)
+                {
+                    torque = 0f;
+                }
+
+            }else
+            {
+                isCreeping = false;
             }
         }
         else if (transmissionState == TransmissionType.Reverse)
@@ -217,7 +268,7 @@ public class CarMover : MonoBehaviour
         {
             brakeForce = 10000f;
         }
-        else
+        else if (!isCreeping)
         {
             brakeForce = brakeInput * brakeAcceleration;
         }
@@ -244,7 +295,7 @@ public class CarMover : MonoBehaviour
     {
         float speed = carRb.linearVelocity.magnitude;
 
-        if (brakeInput > .8f)
+        if (brakeInput > brakeShiftThreshold)
         {//only shift if brake is held
             if (shiftUp.triggered)
             {

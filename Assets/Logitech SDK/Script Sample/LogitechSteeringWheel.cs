@@ -41,7 +41,7 @@ namespace Logitech
 
         void OnApplicationQuit()
         {
-            Debug.Log("SteeringShutdown:" + LogitechGSDK.LogiSteeringShutdown());
+            //Debug.Log("SteeringShutdown:" + LogitechGSDK.LogiSteeringShutdown());
         }
 
         void OnGUI()
