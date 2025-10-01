@@ -3,20 +3,21 @@ using TMPro;
 using Unity.Tutorials.Core.Editor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class InstructionManager : MonoBehaviour
 {
     public TextMeshProUGUI[] hintTexts;
     public bool isFrozen = false;
-    public KeyCode continueKey = KeyCode.Space;
-    private TutorialControls controls;
+    private PlayerInput input;
+    private InputAction continueTime;
 
-    //void Awake()
-    //{
-    //    hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
-    //}
+  
     void Start()
     {
+        input = GetComponent<PlayerInput>();
+        continueTime = input.actions["Continue"];
+        continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         HideHints();
         ShowFreezehint();
@@ -24,7 +25,7 @@ public class InstructionManager : MonoBehaviour
 
     private void Update()
     {
-        if (isFrozen && Input.GetKeyDown(continueKey))
+        if (isFrozen && continueTime.triggered)
         {
             
             isFrozen = false;
@@ -34,11 +35,12 @@ public class InstructionManager : MonoBehaviour
     }
 
 
-    public void ShowHint(int index, bool show)
+    public void ShowHint(int index, bool show, string text)
     {
         if (index >= 0 && index < hintTexts.Length)
         {
             hintTexts[index].gameObject.SetActive(show);
+            hintTexts[index].text = text;
         }
         else
         {
@@ -49,9 +51,9 @@ public class InstructionManager : MonoBehaviour
    public void ShowFreezehint()
     {
         isFrozen = true;
-        ShowHint(0, true);
+        ShowHint(0, true, "meget vigtig tutorial");
+        ShowHint(1, true, "Tryk 'Mellemrum' for at fortsætte");
         Time.timeScale = 0;
-
     }
 
 
