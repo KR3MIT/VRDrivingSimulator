@@ -25,24 +25,48 @@ public class SplineFollower : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         splineAnimate = GetComponent<SplineAnimate>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (splineAnimate.IsPlaying == false && currentSpline != splines.Count - 1)
+        if (splineAnimate.IsPlaying == false)
         {
 
-            StartCoroutine(SwitchSpline());
-
+            //StartCoroutine(SwitchSpline());
+            SwitchSpline();
         }
         AdjustCarSpeed();
+        //Debug.Log(transform.position);
     }
 
+    void SwitchSpline()
+    {
+        if (onLastSpline) {
+            Destroy(gameObject);
+            return;
+        }
+        //splineAnimate.Pause();
+        currentSpline++;
+        splineAnimate.Container = splines[currentSpline];
+        currentSplineInfo = splines[currentSpline].GetComponent<SplineInfo>();
 
-    IEnumerator SwitchSpline()
+        if (currentSpline < splines.Count - 1)
+        {
+            nextSplineInfo = splines[currentSpline + 1].GetComponent<SplineInfo>();
+            nextSplineSpeed = nextSplineInfo.TraversalSpeed;
+            nextSplineStartPoint = nextSplineInfo.SplineStartPoint;
+        }
+        else
+        {
+            onLastSpline = true;
+        }
+        AdjustCarSpeed();
+        splineAnimate.Restart(true);
+    }
+
+    /*IEnumerator SwitchSpline()
     {
         if (onLastSpline) Destroy(gameObject);
 
@@ -66,23 +90,25 @@ public class SplineFollower : MonoBehaviour
         splineAnimate.Play();
         yield return new WaitForSeconds(0.01f);
         splineAnimate.Pause();
-        splineAnimate.Restart(true);
+        splineAnimate.Restart(false);
+        splineAnimate.Play();
 
-    }
+    }*/
 
     private void AdjustCarSpeed()
     {
         float distance = Vector3.Distance(transform.position, nextSplineStartPoint);
-
+        Debug.Log(nextSplineStartPoint);
+        //Debug.Log($"Distance to next spline start: {distance}");
+        //Debug.Log($"Current spline speed: {currentSplineInfo.TraversalSpeed}, Next spline speed: {nextSplineSpeed}");
 
         if (distance < 10f && !onLastSpline)
         {
-            Debug.Log(transform.position);
-            Debug.Log($"Distance to next spline start: {distance}");
+            float prevProgress = splineAnimate.NormalizedTime;
             float t = 1f - (distance / 10f);
-            Debug.Log($"Adjusting speed with t={t}");
-            float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, nextSplineSpeed, t);
+            float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, nextSplineSpeed, t);splineAnimate.MaxSpeed = adjustedSpeed;
             splineAnimate.MaxSpeed = adjustedSpeed;
+            splineAnimate.NormalizedTime = prevProgress;
         }
         else
         {
