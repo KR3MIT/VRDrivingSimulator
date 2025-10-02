@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.Tutorials.Core.Editor;
@@ -7,14 +8,13 @@ using UnityEngine.InputSystem;
 
 public class InstructionManager : MonoBehaviour
 {
-    public TextMeshProUGUI[] hintTexts;
-    public bool isFrozen = false;
+    private TextMeshProUGUI[] hintTexts;
+    private bool isFrozen = false;
     private PlayerInput input;
     private InputAction continueTime;
     float resumeDuration = 2f;
     float realTime = 1f;
-
-
+    public bool allowContinue = false;
     void Start()
     {
         input = GetComponent<PlayerInput>();
@@ -22,23 +22,25 @@ public class InstructionManager : MonoBehaviour
         continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         HideHints();
-        ShowFreezehint();
+        //ShowFreezeHint(0, true, "1");
+        //ShowHint(1, true, "2");
     }
 
-    private void Update()
+    public void CanContinue(bool yes)
+    {
+        allowContinue = yes;
+    }
+    void Update()
     {
 
-        Debug.Log(Time.timeScale);
-        if (isFrozen && continueTime.triggered)
+        //Debug.Log(Time.timeScale);
+        if (isFrozen && continueTime.triggered && allowContinue)
         {
-            
             isFrozen = false;
             StartCoroutine(SmoothResume());
             HideHints();
         }
     }
-
-
     public void ShowHint(int index, bool show, string text)
     {
         if (index >= 0 && index < hintTexts.Length)
@@ -51,17 +53,20 @@ public class InstructionManager : MonoBehaviour
             Debug.Log("The textobject doesnt exist mate");
         }
     }
-
-   public void ShowFreezehint()
+    public void ShowFreezeHint(int index, bool show, string text)
     {
         isFrozen = true;
-        ShowHint(0, true, "meget vigtig tutorial");
-        ShowHint(1, true, "Tryk 'Mellemrum' for at fortsætte");
-        Time.timeScale = 0;
+        if (index >= 0 && index < hintTexts.Length)
+        {
+            hintTexts[index].gameObject.SetActive(show);
+            hintTexts[index].text = text;
+        }
+        else
+        {
+            Debug.Log("The textobject doesnt exist mate");
+        }
+        StartCoroutine(SmoothStop());
     }
-
-
-
     public void HideHints()
     {
         foreach (var textobj in hintTexts)
@@ -71,16 +76,32 @@ public class InstructionManager : MonoBehaviour
     }
     private IEnumerator SmoothResume()
     {
-        
+
         Debug.Log("Resuming game");
-        
-        while (Time.timeScale < realTime)
+
+        while (Time.timeScale < realTime && allowContinue)
         {
             Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
             yield return null;
         }
-        Time.timeScale = realTime;
 
+        Time.timeScale = realTime;
+        allowContinue = false;
+
+    }
+    private IEnumerator SmoothStop()
+    {
+
+        Debug.Log("Freezing game");
+
+        while (Time.timeScale > 0.1f && !allowContinue)
+        {
+            Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
+            yield return null;
+        }
+
+        Time.timeScale = 0;
+        allowContinue = true;
 
     }
 
