@@ -11,8 +11,10 @@ public class InstructionManager : MonoBehaviour
     public bool isFrozen = false;
     private PlayerInput input;
     private InputAction continueTime;
+    float resumeDuration = 2f;
+    float realTime = 1f;
 
-  
+
     void Start()
     {
         input = GetComponent<PlayerInput>();
@@ -25,11 +27,13 @@ public class InstructionManager : MonoBehaviour
 
     private void Update()
     {
+
+        Debug.Log(Time.timeScale);
         if (isFrozen && continueTime.triggered)
         {
             
             isFrozen = false;
-            Time.timeScale = 1;
+            StartCoroutine(SmoothResume());
             HideHints();
         }
     }
@@ -65,7 +69,20 @@ public class InstructionManager : MonoBehaviour
             textobj.gameObject.SetActive(false);
         }
     }
-   
+    private IEnumerator SmoothResume()
+    {
+        
+        Debug.Log("Resuming game");
+        
+        while (Time.timeScale < realTime)
+        {
+            Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
+            yield return null;
+        }
+        Time.timeScale = realTime;
+
+
+    }
 
 }
 

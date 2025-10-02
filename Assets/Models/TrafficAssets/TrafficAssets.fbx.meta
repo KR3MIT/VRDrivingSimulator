@@ -3,7 +3,17 @@ guid: 76c489455b697d94596aa1e437bcb21c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SkiltMat
+    second: {fileID: 2100000, guid: 4abe9f6afea1989459ff3ccc2cc6b88a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrafficLightWhite
+    second: {fileID: 2100000, guid: 771af91fa7a11db4caeb5a6a697915be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
