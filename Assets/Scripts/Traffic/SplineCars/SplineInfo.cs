@@ -5,12 +5,14 @@ public class SplineInfo : MonoBehaviour
 {
 
     [SerializeField] private float traversalSpeed;
+    [SerializeField] private bool isATurn;
     private Vector3 splineStartPoint;
     private SplineContainer splineContainer;
 
 
     // Expose read-only properties for SplineFollower to access
     public float TraversalSpeed => traversalSpeed;
+    public bool IsATurn => isATurn;
     public Vector3 SplineStartPoint => splineStartPoint;
 
 
@@ -19,6 +21,8 @@ public class SplineInfo : MonoBehaviour
     {
 
         splineContainer = GetComponent<SplineContainer>();
+
+        traversalSpeed = traversalSpeed / 3.6f; // Convert from km/h to m/s
 
         splineStartPoint = splineContainer.Spline.EvaluatePosition(0f);
     }

@@ -172,8 +172,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
+      propertyPath: isATurn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: traversalSpeed
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8829948291086187028, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
@@ -978,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: traversalSpeed
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8829948291086187028, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
@@ -1303,7 +1307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: traversalSpeed
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8829948291086187028, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
