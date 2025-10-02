@@ -27,10 +27,4 @@ public class SplineInfo : MonoBehaviour
 
         splineStartPoint = splineContainer.Spline.EvaluatePosition(0f);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
