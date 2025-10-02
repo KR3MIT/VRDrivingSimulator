@@ -81,7 +81,7 @@ public class SplineFollower : MonoBehaviour
             float prevProgress = splineAnimate.NormalizedTime;
             float t = 1f - (distance / distanceThreshold);
             float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, nextSplineSpeed, t);
-            splineAnimate.MaxSpeed = adjustedSpeed;
+            currentSplineSpeed = adjustedSpeed;
             splineAnimate.NormalizedTime = prevProgress;
         }
         else if (nextSplineLocked)
@@ -89,13 +89,19 @@ public class SplineFollower : MonoBehaviour
             float prevProgress = splineAnimate.NormalizedTime;
             float t = 1f - (distance / distanceThreshold);
             float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, 0, t);
-            splineAnimate.MaxSpeed = adjustedSpeed;
+            currentSplineSpeed = adjustedSpeed;
             splineAnimate.NormalizedTime = prevProgress;
         }
         else
         {
-            splineAnimate.MaxSpeed = currentSplineInfo.TraversalSpeed;
+            currentSplineSpeed = currentSplineInfo.TraversalSpeed;
         }
+
+
+
+
+
+        splineAnimate.MaxSpeed = currentSplineSpeed;
     }
 
 }
