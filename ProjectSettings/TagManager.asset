@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - SplineCar
   layers:
   - Default
   - TransparentFX
