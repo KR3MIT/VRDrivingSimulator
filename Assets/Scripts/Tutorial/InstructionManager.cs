@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 
 public class InstructionManager : MonoBehaviour
 {
-    public TextMeshProUGUI[] hintTexts;
-    public bool isFrozen = false;
+    private TextMeshProUGUI[] hintTexts;
+    private bool isFrozen = false;
     private PlayerInput input;
     private InputAction continueTime;
     float resumeDuration = 2f;
@@ -22,16 +22,20 @@ public class InstructionManager : MonoBehaviour
         continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         HideHints();
-        ShowFreezeHint(0,true,"suck my ass");
-        ShowHint(1,true,"Press 'Space' to resume");
+        //ShowFreezeHint(0, true, "1");
+        //ShowHint(1, true, "2");
+    }
+
+    public void CanContinue(bool yes)
+    {
+        allowContinue = yes;
     }
     void Update()
     {
 
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
         if (isFrozen && continueTime.triggered && allowContinue)
         {
-            
             isFrozen = false;
             StartCoroutine(SmoothResume());
             HideHints();
@@ -72,15 +76,15 @@ public class InstructionManager : MonoBehaviour
     }
     private IEnumerator SmoothResume()
     {
-        
+
         Debug.Log("Resuming game");
-        
+
         while (Time.timeScale < realTime && allowContinue)
         {
             Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
             yield return null;
         }
-        
+
         Time.timeScale = realTime;
         allowContinue = false;
 
@@ -95,7 +99,7 @@ public class InstructionManager : MonoBehaviour
             Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
             yield return null;
         }
-      
+
         Time.timeScale = 0;
         allowContinue = true;
 
