@@ -7,7 +7,7 @@ public class NPCController : MonoBehaviour
     public bool reachedDestination;
     public float moveSpeed = 2f;
     public float stoppingDistance = 0.1f;
-    public float turnSpeed = 360f; // Degrees per second
+    public float turnSpeed = 180f; // Degrees per second
 
     [SerializeField]
     private Vector3? destination;
@@ -47,6 +47,21 @@ public class NPCController : MonoBehaviour
                 destination = null;
             }
         }
+    }
+
+    public void RotateTowards(Vector3 target)
+    {
+        Vector3 direction = target - transform.position;
+        direction.y = 0f;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            targetRotation,
+            turnSpeed * Time.deltaTime
+        );
+
+        Debug.Log("Rotating towards " + target);
     }
 
     public void SetDestination(Vector3 position)

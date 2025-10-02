@@ -6,8 +6,30 @@ using UnityEditor;
 // based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
 
 [InitializeOnLoad]
-public class WaypointEditor
+[CustomEditor(typeof(Waypoint))]
+public class WaypointEditor : Editor
 {
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+
+        // Draw default fields except branchProbability
+        DrawPropertiesExcluding(serializedObject, "branchProbability");
+
+        // Get branches property
+        SerializedProperty branchesProp = serializedObject.FindProperty("branches");
+
+        // Show branchProbability only if branches has at least one item
+        if (branchesProp != null && branchesProp.arraySize > 0)
+        {
+            SerializedProperty branchProbProp = serializedObject.FindProperty("branchProbability");
+            EditorGUILayout.PropertyField(branchProbProp);
+        }
+
+        serializedObject.ApplyModifiedProperties();
+    }
+
+
     [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected | GizmoType.Pickable)]
     public static void OnDrawSceneGizmos(Waypoint waypoint, GizmoType gizmoType)
     {
