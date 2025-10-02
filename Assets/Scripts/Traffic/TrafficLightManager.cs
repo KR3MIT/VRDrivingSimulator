@@ -51,7 +51,15 @@ public class TrafficLightManager : MonoBehaviour
             Debug.Log("Switching Traffic Lights" + currentState1 + " " + currentState2);
 
         }
-        
+   }
+    public TrafficLightState CheckLightState1()
+    {
+        return currentState1;
+    }
+
+    public TrafficLightState CheckLightState2()
+    {
+        return currentState2;
     }
 
 }

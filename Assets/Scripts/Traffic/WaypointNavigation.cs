@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 // based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
@@ -8,6 +9,10 @@ public class WaypointNavigation : MonoBehaviour
     public Waypoint currentWaypoint;
     [SerializeField]
     int direction = 1; // 1 for forward, -1 for backward
+
+    bool canBranch = true;
+    public int resetBranchTime = 10;
+
 
     private void Awake()
     {
@@ -37,8 +42,13 @@ public class WaypointNavigation : MonoBehaviour
     {
         if (controller.reachedDestination)
         {
+            if (currentWaypoint.trafficLightManager != null)
+            {
+                CheckCrossing();
+                return;
+            }
             bool shouldBranch = false;
-            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
+            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0 && canBranch)
             {
                 shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchProbability ? true : false;
             }
@@ -46,6 +56,7 @@ public class WaypointNavigation : MonoBehaviour
             {
                 int branchIndex = Random.Range(0, currentWaypoint.branches.Count);
                 currentWaypoint = currentWaypoint.branches[branchIndex];
+                
             }
             else
             {
@@ -80,4 +91,36 @@ public class WaypointNavigation : MonoBehaviour
             controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
+
+    void ResetBranch()
+    {
+        canBranch = true;
+    }
+
+    void CheckCrossing() 
+    {
+        if (currentWaypoint.trafficLightIndex == 1)
+        {
+            if(currentWaypoint.trafficLightManager.CheckLightState1() == TrafficLightManager.TrafficLightState.Green)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+                controller.SetDestination(currentWaypoint.GetPosition());
+                direction = Random.Range(0, 2) == 0 ? 1 : -1;
+            }
+            // else wait
+        }
+        else if (currentWaypoint.trafficLightIndex == 2)
+        {
+            if (currentWaypoint.trafficLightManager.CheckLightState2() == TrafficLightManager.TrafficLightState.Green)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+                controller.SetDestination(currentWaypoint.GetPosition());
+                direction = Random.Range(0, 2) == 0 ? 1 : -1;
+            }
+            // else wait
+        }
+
+
+    }
+
 }

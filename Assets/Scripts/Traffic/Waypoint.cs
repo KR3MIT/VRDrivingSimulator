@@ -14,6 +14,11 @@ public class Waypoint : MonoBehaviour
 
     public List<Waypoint> branches = new List<Waypoint>();
 
+    public TrafficLightManager trafficLightManager;
+    [Range(1,2)]
+    public int trafficLightIndex = 1;
+    
+
     [Range (0f, 1f)]
     public float branchProbability = 0.5f;
 
