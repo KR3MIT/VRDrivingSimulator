@@ -98,6 +98,8 @@ public class WaypointManagerWindow : EditorWindow
 
         waypoint.transform.position = branchedFrom.transform.position;
         waypoint.transform.forward = branchedFrom.transform.forward;
+        waypoint.branches.Add(branchedFrom);
+        
 
         Selection.activeGameObject = waypoint.gameObject;
     }
@@ -158,6 +160,14 @@ public class WaypointManagerWindow : EditorWindow
         {
             selectedWaypoint.nextWaypoint.previousWaypoint = selectedWaypoint.previousWaypoint;
         }
+        if (selectedWaypoint.branches.Count > 0)
+        {
+            foreach (Waypoint branch in selectedWaypoint.branches)
+            {
+                branch.branches.Remove(selectedWaypoint);
+            }
+        }
+
         DestroyImmediate(selectedWaypoint.gameObject);
     }
 

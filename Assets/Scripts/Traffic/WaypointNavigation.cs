@@ -10,8 +10,8 @@ public class WaypointNavigation : MonoBehaviour
     [SerializeField]
     int direction = 1; // 1 for forward, -1 for backward
 
-    bool canBranch = true;
-    public int resetBranchTime = 10;
+    public bool nextIsStop = false;
+    public int nextIsExit = 0;
 
 
     private void Awake()
@@ -19,9 +19,7 @@ public class WaypointNavigation : MonoBehaviour
         controller = GetComponent<NPCController>();
     }
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //random value of either 0 or 1
@@ -42,19 +40,34 @@ public class WaypointNavigation : MonoBehaviour
     {
         if (controller.reachedDestination)
         {
-            if (currentWaypoint.trafficLightManager != null)
+            if (currentWaypoint.trafficLightManager != null && nextIsStop == true)
             {
                 CheckCrossing();
                 return;
             }
             bool shouldBranch = false;
-            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0 && canBranch)
+            if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
             {
                 shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchProbability ? true : false;
+
+                if (nextIsExit > 0)
+                {
+                    nextIsExit--;
+                    if(nextIsExit == 0) 
+                    { 
+                        shouldBranch = false; 
+                    }
+                }
             }
             if (shouldBranch)
             {
                 int branchIndex = Random.Range(0, currentWaypoint.branches.Count);
+
+                if (currentWaypoint.branches[branchIndex].trafficLightManager != null && currentWaypoint.trafficLightManager == null)
+                {
+                    nextIsStop = true;
+                }
+
                 currentWaypoint = currentWaypoint.branches[branchIndex];
                 
             }
@@ -92,20 +105,13 @@ public class WaypointNavigation : MonoBehaviour
         }
     }
 
-    void ResetBranch()
-    {
-        canBranch = true;
-    }
-
-    void CheckCrossing() 
+        void CheckCrossing() 
     {
         if (currentWaypoint.trafficLightIndex == 1)
         {
             if(currentWaypoint.trafficLightManager.CheckLightState1() == TrafficLightManager.TrafficLightState.Green)
             {
-                currentWaypoint = currentWaypoint.nextWaypoint;
-                controller.SetDestination(currentWaypoint.GetPosition());
-                direction = Random.Range(0, 2) == 0 ? 1 : -1;
+                DoThings();
             }
             // else wait
         }
@@ -113,14 +119,23 @@ public class WaypointNavigation : MonoBehaviour
         {
             if (currentWaypoint.trafficLightManager.CheckLightState2() == TrafficLightManager.TrafficLightState.Green)
             {
-                currentWaypoint = currentWaypoint.nextWaypoint;
-                controller.SetDestination(currentWaypoint.GetPosition());
-                direction = Random.Range(0, 2) == 0 ? 1 : -1;
+                DoThings();
             }
             // else wait
         }
 
+        var nextWaypoint = currentWaypoint.nextWaypoint != null ? currentWaypoint.nextWaypoint : currentWaypoint.previousWaypoint;
+            controller.RotateTowards(nextWaypoint.transform.position);
 
+        void DoThings()
+        {
+            currentWaypoint = currentWaypoint.nextWaypoint != null ? currentWaypoint.nextWaypoint : currentWaypoint.previousWaypoint;
+            
+            controller.SetDestination(currentWaypoint.GetPosition());
+            direction = Random.Range(0, 2) == 0 ? 1 : -1;
+
+            nextIsStop = false;
+            nextIsExit = 2;
+        }
     }
-
 }
