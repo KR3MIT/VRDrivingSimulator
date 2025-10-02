@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.Tutorials.Core.Editor;
@@ -13,7 +14,7 @@ public class InstructionManager : MonoBehaviour
     private InputAction continueTime;
     float resumeDuration = 2f;
     float realTime = 1f;
-
+    public bool allowContinue = false;
 
     void Start()
     {
@@ -22,14 +23,14 @@ public class InstructionManager : MonoBehaviour
         continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         HideHints();
-        ShowFreezehint();
+        ShowFreezehint(0,true,"suck my ass");
+        ShowHint(1,true,"Press 'Space' to resume");
     }
-
     private void Update()
     {
 
         Debug.Log(Time.timeScale);
-        if (isFrozen && continueTime.triggered)
+        if (isFrozen && continueTime.triggered && allowContinue)
         {
             
             isFrozen = false;
@@ -37,8 +38,6 @@ public class InstructionManager : MonoBehaviour
             HideHints();
         }
     }
-
-
     public void ShowHint(int index, bool show, string text)
     {
         if (index >= 0 && index < hintTexts.Length)
@@ -51,17 +50,20 @@ public class InstructionManager : MonoBehaviour
             Debug.Log("The textobject doesnt exist mate");
         }
     }
-
-   public void ShowFreezehint()
+    public void ShowFreezehint(int index, bool show, string text)
     {
         isFrozen = true;
-        ShowHint(0, true, "meget vigtig tutorial");
-        ShowHint(1, true, "Tryk 'Mellemrum' for at fortsætte");
-        Time.timeScale = 0;
+        if (index >= 0 && index < hintTexts.Length)
+        {
+            hintTexts[index].gameObject.SetActive(show);
+            hintTexts[index].text = text;
+        }
+        else
+        {
+            Debug.Log("The textobject doesnt exist mate");
+        }
+        StartCoroutine(SmoothStop());
     }
-
-
-
     public void HideHints()
     {
         foreach (var textobj in hintTexts)
@@ -74,16 +76,31 @@ public class InstructionManager : MonoBehaviour
         
         Debug.Log("Resuming game");
         
-        while (Time.timeScale < realTime)
+        while (Time.timeScale < realTime && allowContinue)
         {
             Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
             yield return null;
         }
+        
         Time.timeScale = realTime;
-
+        allowContinue = false;
 
     }
+    private IEnumerator SmoothStop()
+    {
 
+        Debug.Log("Freezing game");
+
+        while (Time.timeScale > 0.1f && !allowContinue)
+        {
+            Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
+            yield return null;
+        }
+      
+        Time.timeScale = 0;
+        allowContinue = true;
+
+    }
 }
 
 
