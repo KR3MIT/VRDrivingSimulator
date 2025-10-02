@@ -15,7 +15,6 @@ public class InstructionManager : MonoBehaviour
     float resumeDuration = 2f;
     float realTime = 1f;
     public bool allowContinue = false;
-
     void Start()
     {
         input = GetComponent<PlayerInput>();
@@ -23,10 +22,10 @@ public class InstructionManager : MonoBehaviour
         continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
         HideHints();
-        ShowFreezehint(0,true,"suck my ass");
+        ShowFreezeHint(0,true,"suck my ass");
         ShowHint(1,true,"Press 'Space' to resume");
     }
-    private void Update()
+    void Update()
     {
 
         Debug.Log(Time.timeScale);
@@ -50,7 +49,7 @@ public class InstructionManager : MonoBehaviour
             Debug.Log("The textobject doesnt exist mate");
         }
     }
-    public void ShowFreezehint(int index, bool show, string text)
+    public void ShowFreezeHint(int index, bool show, string text)
     {
         isFrozen = true;
         if (index >= 0 && index < hintTexts.Length)
@@ -101,6 +100,7 @@ public class InstructionManager : MonoBehaviour
         allowContinue = true;
 
     }
+
 }
 
 
