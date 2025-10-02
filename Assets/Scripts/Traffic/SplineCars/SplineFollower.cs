@@ -16,7 +16,7 @@ public class SplineFollower : MonoBehaviour
     float nextSplineSpeed;
     Vector3 nextSplineStartPoint;
     bool onLastSpline = false;
-    bool nextSplineOpen;
+    bool nextSplineLocked;
 
     float speedBlendDisOnTurn = 10f; // Distance over which to blend speed when on a turn spline going to a straight spline
     float speedBlendDisOffTurn = 50f; // Distance over which to blend speed when on a straight spline going to a turn spline
@@ -33,14 +33,12 @@ public class SplineFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (splineAnimate.IsPlaying == false)
+        if (splineAnimate.IsPlaying == false && !nextSplineLocked)
         {
-
-            //StartCoroutine(SwitchSpline());
             SwitchSpline();
         }
+
         AdjustCarSpeed();
-        //Debug.Log(transform.position);
     }
 
     void SwitchSpline()
@@ -49,7 +47,6 @@ public class SplineFollower : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //splineAnimate.Pause();
         currentSpline++;
         splineAnimate.Container = splines[currentSpline];
         currentSplineInfo = splines[currentSpline].GetComponent<SplineInfo>();
@@ -60,6 +57,7 @@ public class SplineFollower : MonoBehaviour
             nextSplineInfo = splines[currentSpline + 1].GetComponent<SplineInfo>();
             nextSplineSpeed = nextSplineInfo.TraversalSpeed;
             nextSplineStartPoint = nextSplineInfo.SplineStartPoint;
+            nextSplineLocked = nextSplineInfo.isSplineLocked;
         }
         else
         {
@@ -69,47 +67,28 @@ public class SplineFollower : MonoBehaviour
         splineAnimate.Restart(true);
     }
 
-    /*IEnumerator SwitchSpline()
-    {
-        if (onLastSpline) Destroy(gameObject);
-
-        currentSpline++;
-        splineAnimate.Container = splines[currentSpline];
-        currentSplineInfo = splines[currentSpline].GetComponent<SplineInfo>();
-        
-        if (currentSpline < splines.Count - 1)
-        {
-            nextSplineInfo = splines[currentSpline + 1].GetComponent<SplineInfo>();
-            nextSplineSpeed = nextSplineInfo.TraversalSpeed;
-            nextSplineStartPoint = nextSplineInfo.SplineStartPoint;
-        }
-        else
-        {
-            onLastSpline = true;
-        }
-        AdjustCarSpeed();
-       
-
-        splineAnimate.Play();
-        yield return new WaitForSeconds(0.01f);
-        splineAnimate.Pause();
-        splineAnimate.Restart(false);
-        splineAnimate.Play();
-
-    }*/
-
     private void AdjustCarSpeed()
     {
         float distance = Vector3.Distance(transform.position, nextSplineStartPoint);
         Debug.Log(nextSplineStartPoint); 
+        
+        nextSplineLocked = nextSplineInfo.isSplineLocked;
 
         float distanceThreshold = currentSplineIsATurn ? speedBlendDisOnTurn : speedBlendDisOffTurn;
 
-        if (distance < distanceThreshold && !onLastSpline)
+        if (distance < distanceThreshold && !onLastSpline && !nextSplineLocked)
         {
             float prevProgress = splineAnimate.NormalizedTime;
             float t = 1f - (distance / distanceThreshold);
-            float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, nextSplineSpeed, t);splineAnimate.MaxSpeed = adjustedSpeed;
+            float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, nextSplineSpeed, t);
+            splineAnimate.MaxSpeed = adjustedSpeed;
+            splineAnimate.NormalizedTime = prevProgress;
+        }
+        else if (nextSplineLocked)
+        {
+            float prevProgress = splineAnimate.NormalizedTime;
+            float t = 1f - (distance / distanceThreshold);
+            float adjustedSpeed = Mathf.Lerp(currentSplineInfo.TraversalSpeed, 0, t);
             splineAnimate.MaxSpeed = adjustedSpeed;
             splineAnimate.NormalizedTime = prevProgress;
         }

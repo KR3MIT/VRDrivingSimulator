@@ -8,6 +8,7 @@ public class SplineInfo : MonoBehaviour
     [SerializeField] private bool isATurn;
     private Vector3 splineStartPoint;
     private SplineContainer splineContainer;
+    public bool isSplineLocked = false; // Public variable to indicate if the spline is locked
 
 
     // Expose read-only properties for SplineFollower to access

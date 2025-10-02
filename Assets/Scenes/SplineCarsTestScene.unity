@@ -176,6 +176,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
+      propertyPath: isSplineLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317282882227423567, guid: f2ae75193374fa342a86c28c07adb36e, type: 3}
       propertyPath: traversalSpeed
       value: 25
       objectReference: {fileID: 0}
