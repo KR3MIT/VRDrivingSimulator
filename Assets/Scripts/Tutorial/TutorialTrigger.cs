@@ -29,7 +29,7 @@ public class TutorialTrigger : MonoBehaviour
         bool OpsDirection = true;
         bool PedDirection = true;
         InstructionManager.ShowHint(1, true, "Kig efter modkørende biler");
-        Arrow = Instantiate(Arrow, new Vector3(5, 5, 10), Quaternion.Euler(0, 90, 0));
+        Arrow = Instantiate(Arrow, new Vector3(-5, 5, 10), Quaternion.Euler(0, 135, 0));
        
         while (OpsDirection)
         {
@@ -52,7 +52,8 @@ public class TutorialTrigger : MonoBehaviour
         }
 
         InstructionManager.ShowHint(1, true, "Kig efter forbipasserende mennesker og cykelister ved fodgængerovergang");
-        Arrow.transform.position = new Vector3(-5, 5, 10);
+        Arrow.transform.position = new Vector3(5, 5, 10);
+        Arrow.transform.rotation = Quaternion.Euler(0, 45, 0);
         while (PedDirection)
         {
             //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
