@@ -197,6 +197,8 @@ public class CarMover : MonoBehaviour
         float torque = 0f;
         float speed = carRb.linearVelocity.magnitude;
 
+        logitechInput.SetSpringForce(speed);
+
         float wheelRPM = 0f;
 
         if(transmissionState == TransmissionType.Drive && useGears)
