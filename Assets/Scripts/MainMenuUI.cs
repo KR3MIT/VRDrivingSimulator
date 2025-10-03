@@ -10,15 +10,24 @@ public class MainMenuUI : MonoBehaviour
     public GameObject controlsMenu;
 
     public Button[] menuButtons;
+    public Button[] startButtons;
+    public Button[] controlsButtons;
 
+
+    private Button[] currentButtons;
     private int selectedButtonIndex = 0;
     private LogitechInput logitechInput;
     private float inputDelay = 0.2f; // Delay between input reads
     private float lastInputTime;
 
+    private bool previousAButton = false;
+    private bool previousBButton = false;
+
     private void Start()
     {
         logitechInput = GetComponent<LogitechInput>();
+        currentButtons = menuButtons;
+        selectedButtonIndex = 0;
         SelectButton(selectedButtonIndex);
 
     }
@@ -26,6 +35,7 @@ public class MainMenuUI : MonoBehaviour
     void Update()
     {
         HandleSteeringWheelInput();
+        Debug.Log("current index: " + selectedButtonIndex);
     }
 
     void HandleSteeringWheelInput()
@@ -33,31 +43,41 @@ public class MainMenuUI : MonoBehaviour
        
         if (Time.time - lastInputTime > inputDelay)
         {
-            if (logitechInput.dpadValue == 0) // Up
+            if (logitechInput.dpadValue == 1) // Up
             {
-                selectedButtonIndex = (selectedButtonIndex - 1 + menuButtons.Length) % menuButtons.Length;
+                selectedButtonIndex = (selectedButtonIndex - 1 + currentButtons.Length) % currentButtons.Length;
                 SelectButton(selectedButtonIndex);
                 lastInputTime = Time.time;
             }
-            else if (logitechInput.dpadValue == 1) // Down
+            else if (logitechInput.dpadValue == -1) // Down
             {
-                selectedButtonIndex = (selectedButtonIndex + 1) % menuButtons.Length;
+                selectedButtonIndex = (selectedButtonIndex + 1) % currentButtons.Length;
                 SelectButton(selectedButtonIndex);
                 lastInputTime = Time.time;
             }
+
+            // A button edge detection
+            if (!previousAButton && logitechInput.SelectButtonA)
+            {
+                currentButtons[selectedButtonIndex].onClick.Invoke();
+            }
+            previousAButton = logitechInput.SelectButtonA;
+
+            // B button edge detection
+            if (!previousBButton && logitechInput.SelectButtonB)
+            {
+                BackButton();
+            }
+            previousBButton = logitechInput.SelectButtonB;
         }
 
-        // A button
-        if (logitechInput.SelectButtonA)
-        {
-            menuButtons[selectedButtonIndex].onClick.Invoke();
-        }
+       
     }
 
 
     void SelectButton(int index)
     {
-        EventSystem.current.SetSelectedGameObject(menuButtons[index].gameObject);
+        EventSystem.current.SetSelectedGameObject(currentButtons[index].gameObject);
     }
 
 
@@ -65,12 +85,18 @@ public class MainMenuUI : MonoBehaviour
     {
         mainMenu.SetActive(false);
         startMenu.SetActive(true);
+        currentButtons = startButtons;
+        selectedButtonIndex = 0;
+        SelectButton(selectedButtonIndex);
     }
 
     public void ControlsButton()
     {
         mainMenu.SetActive(false);
         controlsMenu.SetActive(true);
+        currentButtons = controlsButtons;
+        selectedButtonIndex = 0;
+        SelectButton(selectedButtonIndex);
     }
 
 
@@ -79,6 +105,9 @@ public class MainMenuUI : MonoBehaviour
         mainMenu.SetActive(true);
         startMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        currentButtons = menuButtons;
+        selectedButtonIndex = 0;
+        SelectButton(selectedButtonIndex);
     }
 
 

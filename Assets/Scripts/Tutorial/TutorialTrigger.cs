@@ -6,31 +6,39 @@ using UnityEngine.Events;
 
 public class TutorialTrigger : MonoBehaviour
 {
-
     public InstructionManager InstructionManager;
     public List<GameObject> TutorialColliders;
     public float CheckDelay = 1f;
     public GameObject Arrow;
     public Camera PlayerCamera;
-
+    public TutorialTextScriptableObject TutorialText;
+    public List<Transform> SpawnPoints;
     public void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject == TutorialColliders[0])
+        //Left Turn Task
+        if (collision.gameObject == TutorialColliders[0])
         {
-            Debug.Log("Hit Collider");
-            InstructionManager.ShowFreezeHint(0, true, "Opgave: Orienter dig rigtigt, før du udfører dit venstresving");
-           // InstructionManager.allowContinue = true;
+           // Debug.Log("Hit Tutorial1");
+            InstructionManager.ShowFreezeHint(0, true, TutorialText.LeftTurnTask);
             StartCoroutine(LeftOrientationCheck());
         }
+        //Left Blinker Task
+        if (collision.gameObject == TutorialColliders[1])
+        {
+            //Debug.Log("Hit Tutorial2");
+            InstructionManager.ShowFreezeHint(0, true, TutorialText.LeftBlinkerTask);
+            //StartCoroutine(LeftBlinkCheck());
+        }
     }
-
+   
     IEnumerator LeftOrientationCheck()
     {
         bool OpsDirection = true;
         bool PedDirection = true;
-        InstructionManager.ShowHint(1, true, "Kig efter modkørende biler");
-        Arrow = Instantiate(Arrow, new Vector3(-5, 5, 10), Quaternion.Euler(0, 135, 0));
-       
+        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnStep1);
+        Arrow = Instantiate(Arrow, SpawnPoints[0].position, SpawnPoints[0].rotation);
+        Arrow.SetActive(true);
+
         while (OpsDirection)
         {
             //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
@@ -39,7 +47,7 @@ public class TutorialTrigger : MonoBehaviour
                 if(hitInfo.collider.CompareTag("Arrow"))
                 {
                     Debug.Log("Hit1");
-                    //DestroyImmediate(Arrow, true);
+                  
                     OpsDirection = false;
                 }
                 else
@@ -51,9 +59,9 @@ public class TutorialTrigger : MonoBehaviour
                 yield return new WaitForSeconds(CheckDelay);
         }
 
-        InstructionManager.ShowHint(1, true, "Kig efter forbipasserende mennesker og cykelister ved fodgængerovergang");
-        Arrow.transform.position = new Vector3(5, 5, 10);
-        Arrow.transform.rotation = Quaternion.Euler(0, 45, 0);
+        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnStep2);
+        Arrow.transform.position = SpawnPoints[1].position;
+        Arrow.transform.rotation = SpawnPoints[1].rotation;
         while (PedDirection)
         {
             //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
@@ -62,7 +70,7 @@ public class TutorialTrigger : MonoBehaviour
                 if (hitInfo.collider.CompareTag("Arrow"))
                 {
                     Debug.Log("Hit2");
-                    DestroyImmediate(Arrow, true);
+                    Arrow.gameObject.SetActive(false);
                     PedDirection = false;
                 }
                 else
@@ -72,9 +80,28 @@ public class TutorialTrigger : MonoBehaviour
             }
             yield return new WaitForSeconds(CheckDelay);
         }
-        InstructionManager.ShowHint(1, true, "Godt klaret! Tryk på *INSERT BUTTON* for at fortsætte.");
+        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnDone);
         InstructionManager.allowContinue = true;
     }
 
-    // lav flere IEnumerator til de andre opgaver og giv dem en collider
+    //IEnumerator LeftBlinkCheck()
+    //{
+    //    bool Blinked = false;
+    //    while(!Blinked)
+    //    { 
+    //        if(Keypress, or blinker bool in car script becomes true,)
+    //        {
+    //            Blinked = true;
+    //        } 
+    //        yield return new WaitForSeconds(CheckDelay);
+    //        Blinked = true;
+    //    }
+    //    InstructionManager.allowContinue = true;
+    //}
+    
+
+    //IEnumerator RightOrientationCheck()
+    //{
+    //    //
+    //}
 }
