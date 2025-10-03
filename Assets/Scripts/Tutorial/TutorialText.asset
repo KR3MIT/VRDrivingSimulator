@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878d0d3e1ff73dd4e96f384822be61ed, type: 3}
+  m_Name: TutorialText
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialTextScriptableObject
+  LeftTurnTask: "Opgave: Orienter dig rigtigt, f\xF8r du udf\xF8rer dit venstresving"
+  LeftTurnStep1: "Kig efter modk\xF8rende biler"
+  LeftTurnStep2: "Kig efter forbipasserende mennesker og cykelister ved fodg\xE6ngerovergang"
+  LeftTurnDone: "Godt klaret! Tryk p\xE5 *INSERT BUTTON* for at forts\xE6tte."
+  LeftBlinkerTask: "Opgave: Forbered dig p\xE5 at dreje til venstre"
+  LeftBlinkerStep1: 
