@@ -329,6 +329,89 @@ Transform:
   - {fileID: 1052004556}
   m_Father: {fileID: 569673961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &290300237
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2098802102}
+    m_Modifications:
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.384
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062299784226971172, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+      propertyPath: m_Name
+      value: new steering wheel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+--- !u!1 &290300238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1062299784226971172, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+  m_PrefabInstance: {fileID: 290300237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &290300239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1059363424046062901, guid: 24951654e9b775b47bf63306894a96f4, type: 3}
+  m_PrefabInstance: {fileID: 290300237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &343775807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,6 +1725,7 @@ MonoBehaviour:
     wheelEffectObj: {fileID: 0}
     smokeParticle: {fileID: 0}
     axel: 1
+  steeringWheel: {fileID: 290300238}
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -1830,6 +1914,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 290300239}
   - {fileID: 1790600652}
   - {fileID: 2044041391}
   - {fileID: 806977130}

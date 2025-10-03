@@ -72,6 +72,9 @@ public class CarMover : MonoBehaviour
     [Header("Wheels")]
     public List<Wheel> wheels;
 
+    [Header("Steering Wheel")]
+    public GameObject steeringWheel;
+
     [Header("Engine")]
     public AnimationCurve engineTorqueCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float maxEngineRPM = 6000f;
@@ -88,6 +91,8 @@ public class CarMover : MonoBehaviour
 
     private bool isCreeping = false;
 
+    //priv value
+    private float rawSteerInput;
 
     //inputs
     private PlayerInput input;
@@ -145,6 +150,7 @@ public class CarMover : MonoBehaviour
         HandleTransmission();
         HandleAutomaticGears();
         AnimateWheels();
+        AnimateSteeringWheel();
 
         magnitude = carRb.linearVelocity.magnitude;
     }
@@ -160,8 +166,8 @@ public class CarMover : MonoBehaviour
     {
         if (useWheelInput)
         {
-            float steering = (float)logitechInput.steeringWheelValue;
-            steering = steering / 32768f;
+            rawSteerInput = (float)logitechInput.steeringWheelValue;
+            float steering = rawSteerInput / 32768f;
             if(steering < .05 && steering > -.05) { steering = 0f;}
             steerInput = steering;
 
@@ -223,7 +229,7 @@ public class CarMover : MonoBehaviour
                 isCreeping = true;
 
                 float creepValue = 1f - Mathf.Clamp01(brakeInput / brakeShiftThreshold);
-                Debug.Log("creep value: " + creepValue);
+                //Debug.Log("creep value: " + creepValue);
 
                 torque = creepTorque * gearRatio * creepValue;
 
@@ -351,5 +357,15 @@ public class CarMover : MonoBehaviour
             wheel.wheelModel.transform.position = pos;
             wheel.wheelModel.transform.rotation = rot;
         }
+    }
+
+    void AnimateSteeringWheel()
+    {
+        if (!steeringWheel) { return; }
+
+        float normalizedSteer = Mathf.Clamp(rawSteerInput / 32768f, -1f, 1f);
+        float wheelRotation = normalizedSteer * 450;
+        steeringWheel.transform.localRotation = Quaternion.Euler(-wheelRotation, -90f, 0);
+        //Debug.Log("wheelrot" + wheelRotation);
     }
 }

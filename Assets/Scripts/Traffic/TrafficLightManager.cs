@@ -11,6 +11,9 @@ public class TrafficLightManager : MonoBehaviour
     public List<GameObject> trafficLights1 = new List<GameObject>();
     public List<GameObject> trafficLights2 = new List<GameObject>();
 
+    List<Material> materialsLights1 = new List<Material>();
+    List<Material> materialsLights2 = new List<Material>();
+
     public float longWait = 20f;
     public float shortWait = 5f;
 
@@ -18,6 +21,8 @@ public class TrafficLightManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(LightStateSwitch());
+        GetMaterials();
+        UpdateMaterialState();
     }
 
     // Update is called once per frame
@@ -44,10 +49,8 @@ public class TrafficLightManager : MonoBehaviour
 
             yield return new WaitForSeconds(waitTime);
             
-            currentState1 += 1;
-            currentState2 += 1;
-            if ((int)currentState1 > 3) currentState1 = 0;
-            if ((int)currentState2 > 3) currentState2 = 0;
+            IncrementState();
+            UpdateMaterialState();
             Debug.Log("Switching Traffic Lights" + currentState1 + " " + currentState2);
 
         }
@@ -60,6 +63,52 @@ public class TrafficLightManager : MonoBehaviour
     public TrafficLightState CheckLightState2()
     {
         return currentState2;
+    }
+
+   void IncrementState()
+    {
+        currentState1 += 1;
+        currentState2 += 1;
+        if ((int)currentState1 > 3) currentState1 = 0;
+        if ((int)currentState2 > 3) currentState2 = 0;
+    }
+   void GetMaterials ()
+    {
+
+        foreach (var light in trafficLights1)
+        {
+            var renderer = light.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                materialsLights1.Add(renderer.material);
+            }
+        }
+        foreach (var light in trafficLights2)
+        {
+            var renderer = light.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                materialsLights2.Add(renderer.material);
+            }
+        }
+    }
+
+   void UpdateMaterialState()
+    {
+        foreach (var mat in materialsLights1)
+        {
+            if (mat != null)
+            {
+                mat.SetInt("_State", (int)currentState1);
+            }
+        }
+        foreach (var mat in materialsLights2)
+        {
+            if (mat != null)
+            {
+                mat.SetInt("_State", (int)currentState2);
+            }
+        }
     }
 
 }
