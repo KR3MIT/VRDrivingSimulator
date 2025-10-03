@@ -32,7 +32,7 @@ public class WaypointNavigation : MonoBehaviour
             direction = -1;
         }
 
-        controller.SetDestination(currentWaypoint.GetPosition());
+        controller.SetDestination(currentWaypoint.GetPosition(direction));
     }
 
     // Update is called once per frame
@@ -101,7 +101,7 @@ public class WaypointNavigation : MonoBehaviour
                     }
                 }
             }
-            controller.SetDestination(currentWaypoint.GetPosition());
+            controller.SetDestination(currentWaypoint.GetPosition(direction));
         }
     }
 
@@ -131,7 +131,7 @@ public class WaypointNavigation : MonoBehaviour
         {
             currentWaypoint = currentWaypoint.nextWaypoint != null ? currentWaypoint.nextWaypoint : currentWaypoint.previousWaypoint;
             
-            controller.SetDestination(currentWaypoint.GetPosition());
+            controller.SetDestination(currentWaypoint.GetPosition(direction));
             direction = Random.Range(0, 2) == 0 ? 1 : -1;
 
             nextIsStop = false;

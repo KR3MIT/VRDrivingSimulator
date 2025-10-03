@@ -6,11 +6,17 @@ public class NPCController : MonoBehaviour
 {
     public bool reachedDestination;
     public float moveSpeed = 2f;
+    public float speedVariance = 0.2f;
     public float stoppingDistance = 0.1f;
     public float turnSpeed = 180f; // Degrees per second
 
     [SerializeField]
     private Vector3? destination;
+
+    private void Start()
+    {
+        moveSpeed = Random.Range(moveSpeed - speedVariance, moveSpeed + speedVariance);
+    }
 
     void Update()
     {
