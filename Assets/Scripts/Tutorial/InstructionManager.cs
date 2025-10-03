@@ -101,7 +101,7 @@ public class InstructionManager : MonoBehaviour
         }
 
         Time.timeScale = 0;
-        allowContinue = true;
+       // allowContinue = true;
 
     }
 
