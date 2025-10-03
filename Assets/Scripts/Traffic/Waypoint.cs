@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 // based on youtube tutorial by Game Dev Guide: https://www.youtube.com/watch?v=MXCZ-n5VyJc&t=647s
 
@@ -51,13 +52,21 @@ public class Waypoint : MonoBehaviour
         Vector3 right = transform.right * (width / 2f);
         Vector3 leftPoint = transform.position - right;
         Vector3 rightPoint = transform.position + right;
-        if (index <= 0) index = 1;
-        if (index > maxPedestrians) index = maxPedestrians;
-        return Vector3.Lerp(leftPoint, rightPoint, (float)index / (maxPedestrians + 1));
+        return Vector3.Lerp(leftPoint, rightPoint, (float)index / (maxPedestrians - 1));
     }
 
-    public Vector3 GetPosition(int direction)
+    public int GetPedestrianIndex(GameObject pedestrian)
     {
+       return pedestriansOnWaypoint.IndexOf(pedestrian);
+    }
+
+    public Vector3 GetPosition(int direction, GameObject pedestrian)
+    {
+        if (pedestriansOnWaypoint.Any())
+        {
+            return GetWaitSpot(GetPedestrianIndex(pedestrian)); 
+        }
+
         Vector3 maxBound;
         Vector3 minBound;
         if (direction > 0)

@@ -67,7 +67,7 @@ public class NPCController : MonoBehaviour
             turnSpeed * Time.deltaTime
         );
 
-        Debug.Log("Rotating towards " + target);
+        //Debug.Log("Rotating towards " + target);
     }
 
     public void SetDestination(Vector3 position)

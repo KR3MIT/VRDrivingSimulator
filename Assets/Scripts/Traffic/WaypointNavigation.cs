@@ -32,7 +32,7 @@ public class WaypointNavigation : MonoBehaviour
             direction = -1;
         }
 
-        controller.SetDestination(currentWaypoint.GetPosition(direction));
+        controller.SetDestination(currentWaypoint.GetPosition(direction, gameObject));
     }
 
     // Update is called once per frame
@@ -46,9 +46,29 @@ public class WaypointNavigation : MonoBehaviour
                 return;
             }
             bool shouldBranch = false;
+            int branchIndex = 0;
             if (currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
             {
                 shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchProbability ? true : false;
+
+                branchIndex = Random.Range(0, currentWaypoint.branches.Count);
+
+                if (currentWaypoint.branches[branchIndex].trafficLightManager != null && currentWaypoint.trafficLightManager == null)
+                {
+                    if (!currentWaypoint.branches[branchIndex].CanEnterWaypoint())
+                    {
+                        shouldBranch = false;
+                    }
+                    //else if(nextIsExit > 0)
+                    //{
+                    //    Debug.Log("nuh uh");
+                    //}
+                    //else
+                    //{
+                    //    currentWaypoint.branches[branchIndex].EnterWaypoint(gameObject);
+                    //    Debug.Log("Entered waypoint ");
+                    //}
+                }
 
                 if (nextIsExit > 0)
                 {
@@ -61,11 +81,11 @@ public class WaypointNavigation : MonoBehaviour
             }
             if (shouldBranch)
             {
-                int branchIndex = Random.Range(0, currentWaypoint.branches.Count);
-
                 if (currentWaypoint.branches[branchIndex].trafficLightManager != null && currentWaypoint.trafficLightManager == null)
                 {
                     nextIsStop = true;
+                    currentWaypoint.branches[branchIndex].EnterWaypoint(gameObject);
+                    Debug.Log("Entered waypoint ");
                 }
 
                 currentWaypoint = currentWaypoint.branches[branchIndex];
@@ -101,7 +121,7 @@ public class WaypointNavigation : MonoBehaviour
                     }
                 }
             }
-            controller.SetDestination(currentWaypoint.GetPosition(direction));
+            controller.SetDestination(currentWaypoint.GetPosition(direction, gameObject));
         }
     }
 
@@ -129,13 +149,17 @@ public class WaypointNavigation : MonoBehaviour
 
         void DoThings()
         {
+            Debug.Log("Crossing the road");
+            currentWaypoint.ExitWaypoint(gameObject);
+
             currentWaypoint = currentWaypoint.nextWaypoint != null ? currentWaypoint.nextWaypoint : currentWaypoint.previousWaypoint;
             
-            controller.SetDestination(currentWaypoint.GetPosition(direction));
+            controller.SetDestination(currentWaypoint.GetPosition(direction, gameObject));
             direction = Random.Range(0, 2) == 0 ? 1 : -1;
 
             nextIsStop = false;
             nextIsExit = 2;
+
         }
     }
 }
