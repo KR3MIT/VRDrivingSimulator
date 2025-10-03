@@ -4,7 +4,7 @@ using UnityEngine;
 public class LogitechInput : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    [Header("Values")]
     public int steeringWheelValue;
     public int speederValue;
     public int brakeValue;
@@ -16,6 +16,13 @@ public class LogitechInput : MonoBehaviour
     public bool StartButton;
 
     public int dpadValue; // center = -1, up = 0, right = 2, down = 3, left = 4
+
+    [Header("heheheha")]
+    public int baseSaturation = 40;
+    public int baseCoefficient = 40;
+    public int maxSaturation = 100;
+    public int maxCoefficient = 100;
+    public int speedCoefficient = 1;
 
     void Start()
     {
@@ -76,6 +83,19 @@ public class LogitechInput : MonoBehaviour
                 default: dpadValue += -1; break; //center
             }
         }
+    }
+
+    public void SetSpringForce(float speed)
+    {
+        baseSaturation = 40;
+        baseCoefficient = 40;
+        maxSaturation = 100;
+        maxCoefficient = 100;
+
+        int saturation = Mathf.Clamp(baseSaturation + (int)(speed*speedCoefficient), baseSaturation, maxSaturation);
+        int coefficient = Mathf.Clamp(baseCoefficient + (int)(speed*speedCoefficient), baseCoefficient, maxCoefficient);
+
+        LogitechGSDK.LogiPlaySpringForce(0, 0, saturation, coefficient);
     }
 
     void OnApplicationQuit()
