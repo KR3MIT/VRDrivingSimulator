@@ -1658,6 +1658,14 @@ MonoBehaviour:
   brakeValue: 0
   leftBlinker: 0
   rightBlinker: 0
+  SelectButtonA: 0
+  StartButton: 0
+  dpadValue: 0
+  baseSaturation: 40
+  baseCoefficient: 40
+  maxSaturation: 100
+  maxCoefficient: 100
+  speedCoefficient: 1
 --- !u!114 &2098802096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,7 +1709,7 @@ MonoBehaviour:
   minCreepSpeed: 0.5
   brakeShiftThreshold: 0.3
   turnSensitivity: 1
-  maxSteerAngle: 30
+  maxSteerAngle: 22.5
   _centerOfMass: {x: 0, y: -1.5, z: 0}
   freezeYPosition: 0
   wheels:
