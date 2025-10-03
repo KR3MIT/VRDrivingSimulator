@@ -229,7 +229,7 @@ public class CarMover : MonoBehaviour
                 isCreeping = true;
 
                 float creepValue = 1f - Mathf.Clamp01(brakeInput / brakeShiftThreshold);
-                Debug.Log("creep value: " + creepValue);
+                //Debug.Log("creep value: " + creepValue);
 
                 torque = creepTorque * gearRatio * creepValue;
 
@@ -363,10 +363,9 @@ public class CarMover : MonoBehaviour
     {
         if (!steeringWheel) { return; }
 
-        var steerAngle = steerInput * -90f;
-        var steer01 = Mathf.InverseLerp(-1f, 1f, steerInput);
-        Debug.Log("steer01: " + steer01);
-
-        Mathf.Lerp(steeringWheel.transform.localRotation.eulerAngles.z, steerAngle, steer01);
+        float normalizedSteer = Mathf.Clamp(rawSteerInput / 32768f, -1f, 1f);
+        float wheelRotation = normalizedSteer * 450;
+        steeringWheel.transform.localRotation = Quaternion.Euler(-wheelRotation, -90f, 0);
+        //Debug.Log("wheelrot" + wheelRotation);
     }
 }
