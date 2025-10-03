@@ -9,54 +9,71 @@ public class TutorialTrigger : MonoBehaviour
 
     public InstructionManager InstructionManager;
     public List<GameObject> TutorialColliders;
-    public float CheckDelay = 2f;
+    public float CheckDelay = 1f;
+    public GameObject Arrow;
+    public Camera PlayerCamera;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject == TutorialColliders[0])
         {
             Debug.Log("Hit Collider");
-            InstructionManager.ShowFreezeHint(0, true, "Orienter dig rigtigt, før du udfører dit venstresving");
+            InstructionManager.ShowFreezeHint(0, true, "Opgave: Orienter dig rigtigt, før du udfører dit venstresving");
            // InstructionManager.allowContinue = true;
-            LeftTurn();
+            StartCoroutine(LeftOrientationCheck());
         }
-    }
-
-    void LeftTurn()
-    {
-        //he look at the right thing
-        StartCoroutine(LeftOrientationCheck());
-        //InstructionManager.allowContinue = true;
     }
 
     IEnumerator LeftOrientationCheck()
     {
         bool OpsDirection = true;
         bool PedDirection = true;
+        InstructionManager.ShowHint(1, true, "Kig efter modkørende biler");
+        Arrow = Instantiate(Arrow, new Vector3(5, 5, 10), Quaternion.Euler(0, 90, 0));
+       
         while (OpsDirection)
         {
-            InstructionManager.ShowHint(1,true, "Kig efter modkørende biler");
-            //spawn prefab of red arrow above opposite lane
-            //logic to check if player is looking at the right direction
-            yield return new WaitForSeconds(CheckDelay);
+            //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
+            if (Physics.BoxCast(PlayerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), PlayerCamera.transform.forward, out RaycastHit hitInfo, PlayerCamera.transform.rotation, 100f))
+            { 
+                if(hitInfo.collider.CompareTag("Arrow"))
+                {
+                    Debug.Log("Hit1");
+                    //DestroyImmediate(Arrow, true);
+                    OpsDirection = false;
+                }
+                else
+                {
+                    Debug.Log("no hit1");
+                }
 
-            //check condition
-            OpsDirection = false;
+            }
+                yield return new WaitForSeconds(CheckDelay);
         }
+
+        InstructionManager.ShowHint(1, true, "Kig efter forbipasserende mennesker og cykelister ved fodgængerovergang");
+        Arrow.transform.position = new Vector3(-5, 5, 10);
         while (PedDirection)
         {
-            InstructionManager.ShowHint(1, true, "Kig efter forbipasserende mennesker og cykelister ved fodgængerovergang");
-            //spawn prefab of red arrow above "overgangen" 
-            //logic to check if player is looking the right direction
+            //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
+            if (Physics.BoxCast(PlayerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), PlayerCamera.transform.forward, out RaycastHit hitInfo, PlayerCamera.transform.rotation, 100f))
+            {
+                if (hitInfo.collider.CompareTag("Arrow"))
+                {
+                    Debug.Log("Hit2");
+                    DestroyImmediate(Arrow, true);
+                    PedDirection = false;
+                }
+                else
+                {
+                    Debug.Log("No Hit2");
+                }
+            }
             yield return new WaitForSeconds(CheckDelay);
-
-            //check condition
-            PedDirection = false;
         }
-
+        InstructionManager.ShowHint(1, true, "Godt klaret! Tryk på *INSERT BUTTON* for at fortsætte.");
         InstructionManager.allowContinue = true;
     }
+
+    // lav flere IEnumerator til de andre opgaver og giv dem en collider
 }
