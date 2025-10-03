@@ -14,13 +14,17 @@ public class TrafficLightManager : MonoBehaviour
     List<Material> materialsLights1 = new List<Material>();
     List<Material> materialsLights2 = new List<Material>();
 
-    public float longWait = 20f;
-    public float shortWait = 5f;
+    public float redWait = 24f;
+    public float redYellowWait = 2f;
+    public float greenWait = 17f;
+    public float yellowWait = 5f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(LightStateSwitch());
+        StartCoroutine(LightStateSwitch(currentState1));
+        StartCoroutine(LightStateSwitch(currentState2));
         GetMaterials();
         UpdateMaterialState();
     }
@@ -32,19 +36,27 @@ public class TrafficLightManager : MonoBehaviour
     }
 
 
-   IEnumerator LightStateSwitch ()
+   IEnumerator LightStateSwitch (TrafficLightState currentState)
     {
         float waitTime = 0;
         while (true)
         {
             
-            if (currentState1 == TrafficLightState.Red || currentState1 == TrafficLightState.Green)
+            if (currentState == TrafficLightState.Red)
             {
-                waitTime = longWait;
+                waitTime = redWait;
             }
-            else
+            else if(currentState == TrafficLightState.RedYellow)
             {
-                waitTime = shortWait;
+                waitTime = redYellowWait;
+            }
+            else if (currentState == TrafficLightState.Green)
+            {
+                waitTime = greenWait;
+            }
+            else if (currentState == TrafficLightState.Yellow)
+            {
+                waitTime = yellowWait;
             }
 
             yield return new WaitForSeconds(waitTime);
