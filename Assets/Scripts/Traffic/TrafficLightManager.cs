@@ -69,23 +69,23 @@ public class TrafficLightManager : MonoBehaviour
         // Wrap around
         float localT1 = t % yellowEnd;
 
-        TrafficLightState state1;
-        if (localT1 < redEnd) state1 = TrafficLightState.Red;
-        else if (localT1 < redYellowEnd) state1 = TrafficLightState.RedYellow;
-        else if (localT1 < greenEnd) state1 = TrafficLightState.Green;
-        else state1 = TrafficLightState.Yellow;
+        //TrafficLightState state1;
+        if (localT1 < redEnd) currentState1 = TrafficLightState.Red;
+        else if (localT1 < redYellowEnd) currentState1 = TrafficLightState.RedYellow;
+        else if (localT1 < greenEnd) currentState1 = TrafficLightState.Green;
+        else currentState1 = TrafficLightState.Yellow;
 
         // Light 2 is opposite phase (half a cycle offset)
         float halfCycle = totalCycle / 2f;
         float localT2 = (t + halfCycle) % totalCycle;
 
-        TrafficLightState state2;
-        if (localT2 < redEnd) state2 = TrafficLightState.Red;
-        else if (localT2 < redYellowEnd) state2 = TrafficLightState.RedYellow;
-        else if (localT2 < greenEnd) state2 = TrafficLightState.Green;
-        else state2 = TrafficLightState.Yellow;
+        // TrafficLightState state2;
+        if (localT2 < redEnd) currentState2 = TrafficLightState.Red;
+        else if (localT2 < redYellowEnd) currentState2 = TrafficLightState.RedYellow;
+        else if (localT2 < greenEnd) currentState2 = TrafficLightState.Green;
+        else currentState2 = TrafficLightState.Yellow;
 
-        ApplyState(state1, state2);
+        ApplyState(currentState1, currentState2);
     }
 
   
@@ -95,20 +95,20 @@ public class TrafficLightManager : MonoBehaviour
         foreach (var mat in mats2) mat.SetInt("_State", (int)s2);
     }
 
-   /* IEnumerator LightStateSwitch (int lightIndex)
-    {
-        while (true)
-        {
-            float waitTime = StateSelect(lightIndex);
-            yield return new WaitForSeconds(waitTime);
-            IncrementState(lightIndex);
-            UpdateMaterialState();
-            Debug.Log("Switching Traffic Lights" + currentState1 + " " + currentState2);
+    /* IEnumerator LightStateSwitch (int lightIndex)
+     {
+         while (true)
+         {
+             float waitTime = StateSelect(lightIndex);
+             yield return new WaitForSeconds(waitTime);
+             IncrementState(lightIndex);
+             UpdateMaterialState();
+             Debug.Log("Switching Traffic Lights" + currentState1 + " " + currentState2);
 
-        }
-    }
-   */
-   
+         }
+     }
+    */
+
 
     public TrafficLightState CheckLightState1()
     {
