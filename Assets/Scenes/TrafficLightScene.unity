@@ -653,8 +653,10 @@ MonoBehaviour:
   trafficLights2:
   - {fileID: 1399907223}
   - {fileID: 1246536435}
-  longWait: 7
-  shortWait: 3
+  redTime: 24
+  redYellowTime: 1.5
+  greenTime: 17
+  yellowTime: 3
 --- !u!4 &661742022
 Transform:
   m_ObjectHideFlags: 0
