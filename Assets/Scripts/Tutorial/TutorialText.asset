@@ -16,5 +16,5 @@ MonoBehaviour:
   LeftTurnStep1: "Kig efter modk\xF8rende biler"
   LeftTurnStep2: "Kig efter forbipasserende mennesker og cykelister ved fodg\xE6ngerovergang"
   LeftTurnDone: "Godt klaret! Tryk p\xE5 *INSERT BUTTON* for at forts\xE6tte."
-  LeftBlinkerTask: "Opgave: Forbered dig p\xE5 at dreje til venstre"
-  LeftBlinkerStep1: 
+  LeftBlinkerTask: "Opgave: Du skal foretage et venstresving n\xE6ste gang det muligt"
+  LeftBlinkerStep1: Vis, at du vil skifte vognbane, ved at blinke til venstre

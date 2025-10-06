@@ -11,8 +11,16 @@ public class TutorialTrigger : MonoBehaviour
     public float CheckDelay = 1f;
     public GameObject Arrow;
     public Camera PlayerCamera;
+    public  LogitechInput LogitechInput;
     public TutorialTextScriptableObject TutorialText;
     public List<Transform> SpawnPoints;
+
+    private void Start()
+    {
+        InstructionManager = FindFirstObjectByType<InstructionManager>();
+
+        LogitechInput = FindFirstObjectByType<LogitechInput>();
+    }
     public void OnTriggerEnter(Collider collision)
     {
         //Left Turn Task
@@ -87,21 +95,22 @@ public class TutorialTrigger : MonoBehaviour
     //IEnumerator LeftBlinkCheck()
     //{
     //    bool Blinked = false;
-    //    while(!Blinked)
-    //    { 
-    //        if(Keypress, or blinker bool in car script becomes true,)
+    //    InstructionManager.ShowHint(1, true, TutorialText.LeftBlinkerStep1);
+    //    while (!Blinked)
+    //    {
+    //        if (LogitechInput.leftBlinker == true)
     //        {
     //            Blinked = true;
-    //        } 
+    //        }
     //        yield return new WaitForSeconds(CheckDelay);
-    //        Blinked = true;
+       
     //    }
     //    InstructionManager.allowContinue = true;
     //}
-    
+
 
     //IEnumerator RightOrientationCheck()
     //{
-    //    //
+    //    
     //}
 }
