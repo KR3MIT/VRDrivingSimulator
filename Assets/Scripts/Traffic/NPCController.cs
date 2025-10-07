@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 
 
 public class NPCController : MonoBehaviour
 {
+    private NavMeshAgent agent;
+
     public bool reachedDestination;
     public float moveSpeed = 2f;
     public float speedVariance = 0.2f;
@@ -15,10 +18,39 @@ public class NPCController : MonoBehaviour
 
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+
         moveSpeed = Random.Range(moveSpeed - speedVariance, moveSpeed + speedVariance);
+        agent.speed = moveSpeed;
     }
 
     void Update()
+    {
+        NavMeshMove();
+    }
+
+    private void NavMeshMove()
+    {
+        if (destination.HasValue)
+        {
+            Vector3 target = destination.Value;
+            Vector3 direction = target - transform.position;
+            direction.y = 0f; // Ignore vertical movement
+
+            float distance = direction.magnitude;
+            if (distance > stoppingDistance)
+            {
+                agent.SetDestination(target);
+            }
+            else
+            {
+                reachedDestination = true;
+                destination = null;
+            }
+        }
+    }
+
+    private void OldMove()
     {
         if (destination.HasValue)
         {
