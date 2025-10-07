@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +8,9 @@ using UnityEngine.AI;
 public class NPCController : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Animator animator;
+
+    public List<GameObject> PedestrianPrefabs;
 
     public bool reachedDestination;
     public float moveSpeed = 2f;
@@ -18,6 +23,11 @@ public class NPCController : MonoBehaviour
 
     private void Start()
     {
+        var randomPedestrianIndex = Random.Range(0, PedestrianPrefabs.Count);
+        var pedestrian = Instantiate(PedestrianPrefabs[randomPedestrianIndex], transform);
+        pedestrian.transform.localPosition = Vector3.zero;
+        animator = pedestrian.GetComponent<Animator>();
+
         agent = GetComponent<NavMeshAgent>();
 
         moveSpeed = Random.Range(moveSpeed - speedVariance, moveSpeed + speedVariance);
@@ -48,6 +58,10 @@ public class NPCController : MonoBehaviour
                 destination = null;
             }
         }
+
+        var normalizedSpeed = agent.velocity.magnitude / agent.speed;
+        if(normalizedSpeed < .1f) {normalizedSpeed = 0f; }
+        animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
     }
 
     private void OldMove()
