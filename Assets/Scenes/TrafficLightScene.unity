@@ -623,7 +623,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 84d1d37587ac7484291dddfeb628fb99, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!64 &600194578
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4bf842c4b27bc4886f2ecddb7f4218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PedestrianSpawner
-  pedestrianPrefab: {fileID: 914182283144920807, guid: c4293bb6f42ddcd4aaca2c60b76f1fa3, type: 3}
+  pedestrianPrefab: {fileID: 914182283144920807, guid: 6a3793bf6482ca84f83a04a988bb9635, type: 3}
   spawnCount: 11
 --- !u!1 &681862086
 GameObject:
@@ -2013,13 +2013,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725319868}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5750324, y: 0.7373362, z: 0.21800998, w: 0.27954367}
+  m_LocalRotation: {x: 0, y: 0.9350548, z: 0, w: 0.35450318}
   m_LocalPosition: {x: 6, y: -0, z: 15.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 676398138}
-  m_LocalEulerAnglesHint: {x: 0, y: 138.474, z: 75.9}
+  m_LocalEulerAnglesHint: {x: 0, y: 138.474, z: 0}
 --- !u!1 &1749703888 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 707569009080020022, guid: 193867363f969bc448397f781c56a905, type: 3}
