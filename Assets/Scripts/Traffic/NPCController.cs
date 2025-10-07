@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class NPCController : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Animator animator;
 
     public bool reachedDestination;
     public float moveSpeed = 2f;
@@ -19,6 +20,7 @@ public class NPCController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
 
         moveSpeed = Random.Range(moveSpeed - speedVariance, moveSpeed + speedVariance);
         agent.speed = moveSpeed;
@@ -48,6 +50,10 @@ public class NPCController : MonoBehaviour
                 destination = null;
             }
         }
+
+        var normalizedSpeed = agent.velocity.magnitude / agent.speed;
+        if(normalizedSpeed < .1f) {normalizedSpeed = 0f; }
+        animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
     }
 
     private void OldMove()
