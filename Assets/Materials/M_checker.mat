@@ -68,9 +68,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Has_BaseColor: 1
+    - _Has_MET: 0
     - _Has_NRM: 0
+    - _Has_ROUG: 0
+    - _MET_Strength: 1
+    - _NRM_Strength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ROUG_Strength: 0
     - _Tiling: 1
     - _Triplanar: 1
     m_Colors:

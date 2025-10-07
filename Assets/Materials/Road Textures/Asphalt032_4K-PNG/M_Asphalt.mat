@@ -133,12 +133,14 @@ Material:
     - _Has_MET: 0
     - _Has_NRM: 1
     - _Has_ROUG: 1
+    - _MET_Strength: 1
     - _Metallic: 0
+    - _NRM_Strength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ROUG_Strength: 0.5
+    - _ROUG_Strength: 1
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
