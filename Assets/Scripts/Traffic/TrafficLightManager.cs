@@ -141,7 +141,7 @@ public class TrafficLightManager : MonoBehaviour
             var renderer = light.GetComponent<Renderer>();
             if (renderer != null)
             {
-                mats1.Add(renderer.material);
+                mats1.Add(renderer.materials[1]);
             }
         }
         foreach (var light in trafficLights2)
@@ -149,7 +149,7 @@ public class TrafficLightManager : MonoBehaviour
             var renderer = light.GetComponent<Renderer>();
             if (renderer != null)
             {
-                mats2.Add(renderer.material);
+                mats2.Add(renderer.materials[1]);
             }
         }
     }
