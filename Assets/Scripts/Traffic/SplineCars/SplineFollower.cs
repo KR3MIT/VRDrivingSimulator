@@ -9,8 +9,9 @@ public class SplineFollower : MonoBehaviour
     // THINGS TO DO IN THIS SCRIPT
     // 1. Make smooth speed transition when starting drive from a standstill - DONE
     // 2. Introduce some randomness to speed and acceleration - maybe not actually
-    // 3. Implement system for handling other cars on the road (e.g., slowing down if a car in front is too close) - WIP
+    // 3. Implement system for handling other cars on the road (e.g., slowing down if a car in front is too close) - THIS IS DONE NOW!!! (i think)
     // 4. Implement system for instantiating and despawning cars (might not be in this script)
+    // 5. Implement system for handling traffic lights being turned off too late to stop at the light - WIP 
 
 
 
@@ -40,8 +41,11 @@ public class SplineFollower : MonoBehaviour
     RaycastHit hit;
     float raycastDistance = 0f;
     float distanceToOtherCar = Mathf.Infinity;
+    float minSafeDistance = 5f; // Minimum safe distance to maintain from the car in front
     float distanceModifier = 3f; // Multiplier to increase the distance for raycasting based on speed
 
+    float maxDistanceForStoppingAtRedLight = 20f; // Maximum distance at which the car will consider stopping for a red light
+    bool wasRedLightOnBefore =  false; // Track if the red light was on in the previous frame
 
 
     SplineAnimate splineAnimate;
@@ -102,10 +106,14 @@ public class SplineFollower : MonoBehaviour
         if (isTooCloseToCarInFront)
         {
             float otherCarSpeed = otherCarCol.GetComponent<SplineFollower>().currentSplineSpeed;
+            Debug.Log("Raycast distance: " + raycastDistance);
+            Debug.Log("Distance to other car: " + distanceToOtherCar);
 
             if (otherCarSpeed < 1f)
             {
-                currentSplineSpeed = Mathf.Lerp(0.001f, currentSplineInfo.TraversalSpeed / 2, distanceToOtherCar - 5 / raycastDistance);
+                float adjustedRayDistance = Mathf.Max(raycastDistance - 5f, 5f);
+                Debug.Log("Adjusted ray distance: " + adjustedRayDistance);
+                currentSplineSpeed = Mathf.Lerp(0.001f, currentSplineInfo.TraversalSpeed / 2, (distanceToOtherCar - minSafeDistance) / adjustedRayDistance);
                 currentSplineSpeed = Mathf.Min(currentSplineSpeed, prevSpeed);
             }
             else
@@ -113,11 +121,6 @@ public class SplineFollower : MonoBehaviour
                 currentSplineSpeed = Mathf.Min(currentSplineSpeed, Mathf.Lerp(otherCarSpeed * 0.95f, currentSplineSpeed, distanceToOtherCar / raycastDistance));
             }
                 
-            
-            
-            //currentSplineSpeed = Mathf.Lerp(otherCarCol.GetComponent<SplineFollower>().currentSplineSpeed * 0.95f, currentSplineSpeed, distanceToOtherCar / raycastDistance);
-
-            //currentSplineSpeed = Mathf.Max(currentSplineSpeed, 0.001f); // Ensure speed doesn't go negative
         }
         else
         {
@@ -126,6 +129,21 @@ public class SplineFollower : MonoBehaviour
             float distance = Vector3.Distance(transform.position, nextSplineStartPoint);
 
             nextSplineLocked = nextSplineInfo.isSplineLocked;
+
+            // If the next spline is locked and the red light wasn't on in the previous frame, check distance to decide if we should stop
+            // If the car is too close to the red light, don't stop abruptly, just continue driving
+            if (nextSplineLocked && !wasRedLightOnBefore)
+            {
+                if (distance > maxDistanceForStoppingAtRedLight)
+                {
+                    wasRedLightOnBefore = true;
+                }
+                else
+                {
+                    wasRedLightOnBefore = false;
+                    nextSplineLocked = false;
+                }
+            }
 
             // Determine the appropriate distance threshold based on whether the current spline is a turn
             float distanceThreshold = currentSplineIsATurn ? speedBlendDisOnTurn : speedBlendDisOffTurn;
