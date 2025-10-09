@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" SchemaVersion="123">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PlayerCarStart" ID="{5A172545-6CF2-40E0-A246-D4B5DE31114E}">
+					<ChildrenList>
+						<Action Name="" ID="{041D8B28-55F6-4C5F-A3A2-70B6AFA57FD6}" ShortID="450536694">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MotorTicSineDeep" ID="{2458B8D4-9AD2-4ADD-8964-32E24C60622A}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{C688DABD-E95D-4DF3-8D33-37FB1A7F792B}" ShortID="846722413">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MotorTicNoiseHigh" ID="{11E210CC-9018-407A-8497-C624D28A90F1}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{C899E8DA-3F93-48FC-AD31-0B7D98FDCB07}" ShortID="712614433">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MotorTicNoiseDeep" ID="{7D6CCE3D-EA61-4551-AFF1-6658DE120B7B}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{FA1FCBE9-807A-443B-874A-DC14E0A58C97}" ShortID="345613615">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SpeedNoiseDeep" ID="{5DA60495-35CE-4877-9546-8F611528B417}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{0206BA89-C095-46C4-90D5-C9ED6464A51B}" ShortID="980212295">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SpeedNoiseHigh" ID="{92F20CB4-5281-4B39-B32B-2FCEEF21EDEF}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{5F138D54-45CD-4E30-975A-7C23E6F0E8B8}" ShortID="683716060">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SpeedNoiseMid" ID="{10C98E72-8FA0-4AAA-A8CE-8BAECF489390}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{4FA5A2DC-BD7E-4ACA-9669-FF46F311A2C3}" ShortID="669350892">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MotorTicTriangleMid" ID="{753F5A13-076A-4E7C-9A67-1C9361DA9D85}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{05957C0C-7D54-4189-9B09-C0355F315589}" ShortID="106360260">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MotorTicNoiseMid" ID="{59300374-5224-4E62-829F-458245BC319B}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

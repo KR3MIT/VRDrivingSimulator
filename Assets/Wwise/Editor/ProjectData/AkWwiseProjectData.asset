@@ -94,8 +94,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584422931569364808
-    List: []
+    m_lastTime: -8584416132543838945
+    List:
+    - name: PlayerCarStart
+      guid: 4525175af26ce040a246d4b5de31114e
+      id: 3559953332
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dc514cccb904f143bb241ebea09b7ff3
+      - ElementName: PlayerCarStart
+        ObjectType: 3
+        guid: 4525175af26ce040a246d4b5de31114e
+      Path: Events\Default Work Unit\PlayerCarStart
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
