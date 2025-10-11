@@ -100,7 +100,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-19</Value>
+										<Value>-24</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -159,7 +159,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>2400</YPos>
+																		<YPos>1800</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -227,7 +227,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-12</Value>
+										<Value>-16</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -283,7 +283,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>2400</YPos>
+																		<YPos>1800</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -351,7 +351,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-8</Value>
+										<Value>-11</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -407,7 +407,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>2400</YPos>
+																		<YPos>1800</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -632,6 +632,11 @@
 										<Value>60</Value>
 									</ValueList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -685,7 +690,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>2400</YPos>
+																		<YPos>1800</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -743,7 +748,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-19</Value>
+										<Value>-24</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -803,7 +808,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>2400</YPos>
+																		<YPos>1800</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -839,7 +844,7 @@
 																	</Point>
 																	<Point>
 																		<XPos>100</XPos>
-																		<YPos>8</YPos>
+																		<YPos>0</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -856,7 +861,19 @@
 								<ActiveSource Name="Tone Generator" ID="{A017B23A-E9E6-47E1-8B9E-02FECC79F22B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="New Synth One" ID="{6DF627DC-1871-44E4-B7F7-2B8B2B343644}" ShortID="958133579">
+						<RandomSequenceContainer Name="Bumps" ID="{19C41411-A89F-4CF2-9A96-0BBE04972E99}" ShortID="789417316">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{A1613730-104D-4418-9067-D66B542572E8}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
@@ -866,68 +883,312 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<SourcePlugin Name="Synth One" ID="{D0E56238-261B-40B1-8C89-745E1CD15AC5}" ShortID="98009436" PluginName="Wwise Synth One" CompanyID="0" PluginID="148">
-									<PropertyList>
-										<Property Name="BaseFrequency" Type="Real32" Value="99"/>
-										<Property Name="NoiseLevel" Type="Real32" Value="-15"/>
-										<Property Name="NoiseShape" Type="int32" Value="2"/>
-										<Property Name="Osc1Level" Type="Real32" Value="-31"/>
-										<Property Name="Osc2Invert" Type="bool" Value="True"/>
-										<Property Name="Osc2Transpose" Type="int32" Value="-1200"/>
-										<Property Name="Osc2Waveform" Type="int32" Value="1"/>
-									</PropertyList>
-									<ObjectLists>
-										<ObjectList Name="RTPC">
-											<Reference>
-												<Local>
-													<RTPC Name="" ID="{1B2BDAF5-2C0B-417F-A844-244808465E7C}" ShortID="1044463715">
-														<PropertyList>
-															<Property Name="PropertyName" Type="string" Value="OutputLevel"/>
-														</PropertyList>
-														<ReferenceList>
-															<Reference Name="ControlInput">
-																<Custom>
-																	<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{790E0DB9-5DB8-44A1-B9BE-07820F4B8BE0}" ShortID="372644980">
-																		<PropertyList>
-																			<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.01"/>
-																		</PropertyList>
-																	</ModulatorEnvelope>
-																</Custom>
-															</Reference>
-															<Reference Name="Curve">
-																<Custom>
-																	<Curve Name="" ID="{6E0647DC-5FE7-4FA2-947E-E3742863AA20}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>-96</YPos>
-																				<Flags>21</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>1</XPos>
-																				<YPos>0</YPos>
-																				<Flags>53</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</Custom>
-															</Reference>
-														</ReferenceList>
-													</RTPC>
-												</Local>
-											</Reference>
-										</ObjectList>
-									</ObjectLists>
-									<Language>SFX</Language>
-								</SourcePlugin>
+								<Sound Name="Silence" ID="{C48F7F6C-6EB9-4EF6-B572-44328CCCA040}" ShortID="280267804">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<SourcePlugin Name="Silence" ID="{9D9043D1-EC69-45CC-BF81-8850CBDC9FC0}" ShortID="443500650" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+											<PropertyList>
+												<Property Name="Length" Type="Real32" Value="5"/>
+												<Property Name="LengthMax" Type="Real32" Value="5"/>
+												<Property Name="LengthMin" Type="Real32" Value="-4.5"/>
+											</PropertyList>
+											<Language>SFX</Language>
+										</SourcePlugin>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Silence" ID="{9D9043D1-EC69-45CC-BF81-8850CBDC9FC0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="Bump" ID="{83468AE3-3192-41E1-8228-55E857D88CFE}" ShortID="929864391">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="BumpSineDeep" ID="{CD5B48C8-EF75-4980-958E-637ED966E76E}" ShortID="648806054">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>90</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{7DE5D9AA-36C4-411B-94D7-076CC846EBAE}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="5"/>
+																	<Property Name="Min" Type="Real64" Value="-5"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Tone Generator" ID="{256E81CA-C18D-49E9-A184-1DE01006FD9A}" ShortID="799783569" PluginName="Wwise Tone Generator" CompanyID="0" PluginID="102">
+													<PropertyList>
+														<Property Name="DecayTime" Type="Real32" Value="0.5"/>
+														<Property Name="FixDur" Type="Real32" Value="0.2"/>
+														<Property Name="ReleaseTime" Type="Real32" Value="1"/>
+														<Property Name="StartFreq" Type="Real32" Value="80"/>
+														<Property Name="StartFreqRandMax" Type="Real32" Value="10"/>
+														<Property Name="StartFreqRandMin" Type="Real32" Value="-10"/>
+														<Property Name="StopFreq" Type="Real32" Value="20"/>
+														<Property Name="StopFreqRandMax" Type="Real32" Value="10"/>
+														<Property Name="StopFreqRandMin" Type="Real32" Value="-10"/>
+														<Property Name="SustainLevel" Type="Real32" Value="-10.9"/>
+														<Property Name="SustainTime" Type="Real32" Value="0"/>
+														<Property Name="SweepFreq" Type="bool" Value="True"/>
+														<Property Name="SweepFreqType" Type="int32" Value="1"/>
+														<Property Name="WaveGain" Type="Real32" Value="0"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{F3B652A9-7022-4F06-A39C-14F5DC014C7B}" ShortID="1029110507">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Pitch"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="SpeederValue" ID="{EADC0E4D-6CFA-42FC-A445-1C6FA9EFA8E5}" WorkUnitID="{7576D3DE-2DAD-4ADC-91F4-648A60BC1C3C}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{DFC4C639-C1CE-4BB8-8D8A-90F0173AD9E1}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="65537"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>0</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>2400</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{E73F8312-3816-4A00-B24A-273ADAA3E78D}" ShortID="336843794">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Volume"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="SpeederValue" ID="{EADC0E4D-6CFA-42FC-A445-1C6FA9EFA8E5}" WorkUnitID="{7576D3DE-2DAD-4ADC-91F4-648A60BC1C3C}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{80AD16E8-0298-4344-8E44-59DF95A0CF82}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="3"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>-10</YPos>
+																						<Flags>5</Flags>
+																						<SegmentShape>Log2</SegmentShape>
+																					</Point>
+																					<Point>
+																						<XPos>100</XPos>
+																						<YPos>8</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+											<ActiveSourceList>
+												<ActiveSource Name="Tone Generator" ID="{256E81CA-C18D-49E9-A184-1DE01006FD9A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="BumpNoiseDeep" ID="{4574981A-F3E7-43C2-9465-C7A534A1682E}" ShortID="857900595">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>90</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{985EC937-51D2-41AF-83E8-E1C31D59AFB9}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-10"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Tone Generator" ID="{AAC0BA2C-0BC5-4BE8-A1DE-D59227B1A0D9}" ShortID="187984447" PluginName="Wwise Tone Generator" CompanyID="0" PluginID="102">
+													<PropertyList>
+														<Property Name="FixDur" Type="Real32" Value="0.2"/>
+														<Property Name="StartFreq" Type="Real32" Value="134"/>
+														<Property Name="SustainTime" Type="Real32" Value="0"/>
+														<Property Name="WaveGain" Type="Real32" Value="0"/>
+														<Property Name="WaveType" Type="int32" Value="5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="RTPC">
+													<Reference>
+														<Local>
+															<RTPC Name="" ID="{02C3F3C0-34A7-4A62-81A4-C72EEA2A971F}" ShortID="934585307">
+																<PropertyList>
+																	<Property Name="PropertyName" Type="string" Value="Volume"/>
+																</PropertyList>
+																<ReferenceList>
+																	<Reference Name="ControlInput">
+																		<ObjectRef Name="CarSpeed" ID="{B6E1792D-3163-4894-A631-506B848988E6}" WorkUnitID="{7576D3DE-2DAD-4ADC-91F4-648A60BC1C3C}"/>
+																	</Reference>
+																	<Reference Name="Curve">
+																		<Custom>
+																			<Curve Name="" ID="{833587E7-CC27-4C1D-84CF-5569AAA0FDD0}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="3"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>0</XPos>
+																						<YPos>-200</YPos>
+																						<Flags>5</Flags>
+																						<SegmentShape>Exp2</SegmentShape>
+																					</Point>
+																					<Point>
+																						<XPos>150</XPos>
+																						<YPos>5</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</Custom>
+																	</Reference>
+																</ReferenceList>
+															</RTPC>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+											<ActiveSourceList>
+												<ActiveSource Name="Tone Generator" ID="{AAC0BA2C-0BC5-4BE8-A1DE-D59227B1A0D9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<BlendTrackList>
+										<BlendTrack Name="Bump" ID="{95A189FA-AD48-44BB-9823-0EF08E220559}" ShortID="417230606">
+											<BlendTrackAssocList>
+												<BlendTrackAssoc>
+													<ItemRef Name="BumpSineDeep" ID="{CD5B48C8-EF75-4980-958E-637ED966E76E}"/>
+												</BlendTrackAssoc>
+												<BlendTrackAssoc>
+													<ItemRef Name="BumpNoiseDeep" ID="{4574981A-F3E7-43C2-9465-C7A534A1682E}"/>
+												</BlendTrackAssoc>
+											</BlendTrackAssocList>
+										</BlendTrack>
+									</BlendTrackList>
+								</BlendContainer>
 							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="Synth One" ID="{D0E56238-261B-40B1-8C89-745E1CD15AC5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
+							<ObjectLists>
+								<ObjectList Name="Playlist">
+									<Reference>
+										<ObjectRef Name="Silence" ID="{C48F7F6C-6EB9-4EF6-B572-44328CCCA040}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+									</Reference>
+									<Reference>
+										<ObjectRef Name="Bump" ID="{83468AE3-3192-41E1-8228-55E857D88CFE}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+									</Reference>
+								</ObjectList>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{F02DF051-7760-4F6E-8128-793D4E0F2BDB}" ShortID="517284652">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="Volume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="CarSpeed" ID="{B6E1792D-3163-4894-A631-506B848988E6}" WorkUnitID="{7576D3DE-2DAD-4ADC-91F4-648A60BC1C3C}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{E89DB7EE-2919-4AF6-8855-89BE4DE3AE90}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log2</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>150</XPos>
+																		<YPos>3.11776</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>

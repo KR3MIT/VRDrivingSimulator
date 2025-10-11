@@ -11,6 +11,18 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID PLAYERCARSTART = 3559953332U;
+    } // namespace EVENTS
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID CARGEAR = 627703336U;
+        static const AkUniqueID CARSPEED = 3943412870U;
+        static const AkUniqueID SPEEDERVALUE = 2023261350U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

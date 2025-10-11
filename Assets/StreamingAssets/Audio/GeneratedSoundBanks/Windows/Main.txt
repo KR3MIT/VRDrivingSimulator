@@ -1,0 +1,19 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3559953332	PlayerCarStart			\Default Work Unit\PlayerCarStart	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2023261350	SpeederValue			\Default Work Unit\SpeederValue	
+	3943412870	CarSpeed			\Default Work Unit\CarSpeed	
+
+Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	187984447	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\Bumps\Bump\BumpNoiseDeep\Tone Generator	
+	252657989	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\SpeedNoiseDeep\Tone Generator	
+	260881444	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicNoiseMid\Tone Generator	
+	334120196	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicNoiseDeep\Tone Generator	
+	357021535	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\SpeedNoiseMid\Tone Generator	
+	431262976	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicNoiseHigh\Tone Generator	
+	479184483	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicTriangleMid\Tone Generator	
+	680149278	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\SpeedNoiseHigh\Tone Generator	
+	799783569	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\Bumps\Bump\BumpSineDeep\Tone Generator	
+	937086646	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicSineDeep\Tone Generator	
+

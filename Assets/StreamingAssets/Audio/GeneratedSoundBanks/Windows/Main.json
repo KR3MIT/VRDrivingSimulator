@@ -10,12 +10,153 @@
     "Type": "User",
     "GUID": "{8DBC6A34-B924-403F-9D78-3CA39456114D}",
     "Language": "SFX",
-    "Hash": "{11CE3D2C-B4A2-49DB-D6D7-5BEFB7DE3069}",
+    "Hash": "{C9556DE5-6952-A97E-0AFC-FB1967BE6164}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
-    "Path": "Main.bnk"
+    "Path": "Main.bnk",
+    "Plugins": {
+     "Custom": [
+      {
+       "Id": "187984447",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\Bumps\\Bump\\BumpNoiseDeep\\Tone Generator",
+       "GUID": "{AAC0BA2C-0BC5-4BE8-A1DE-D59227B1A0D9}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "252657989",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\SpeedNoiseDeep\\Tone Generator",
+       "GUID": "{B8A1D038-5EEF-457A-8797-8CE4EC7BD6DB}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "260881444",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\MotorTicNoiseMid\\Tone Generator",
+       "GUID": "{C058457B-CE01-48CE-B90B-9397D8791A88}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "334120196",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\MotorTicNoiseDeep\\Tone Generator",
+       "GUID": "{6C16B7DA-6BE5-40FD-979C-360F9159974B}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "357021535",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\SpeedNoiseMid\\Tone Generator",
+       "GUID": "{85E14664-6160-4CBA-A1EA-A337D21EAE8A}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "431262976",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\MotorTicNoiseHigh\\Tone Generator",
+       "GUID": "{6AD83CBA-7AF4-4990-BA80-6CB82EBEC0E9}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "479184483",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\MotorTicTriangleMid\\Tone Generator",
+       "GUID": "{A017B23A-E9E6-47E1-8B9E-02FECC79F22B}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "680149278",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\SpeedNoiseHigh\\Tone Generator",
+       "GUID": "{77B22C29-BA6E-4816-86A5-17DA05ADBE42}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "799783569",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\Bumps\\Bump\\BumpSineDeep\\Tone Generator",
+       "GUID": "{256E81CA-C18D-49E9-A184-1DE01006FD9A}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      },
+      {
+       "Id": "937086646",
+       "Name": "Tone Generator",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\PlayerCar\\MotorTicSineDeep\\Tone Generator",
+       "GUID": "{B934D77C-8575-4E72-9614-B0421E3C6F68}",
+       "LibName": "Wwise Tone Generator",
+       "LibId": "6684674"
+      }
+     ]
+    },
+    "Events": [
+     {
+      "Id": "3559953332",
+      "Name": "PlayerCarStart",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerCarStart",
+      "GUID": "{5A172545-6CF2-40E0-A246-D4B5DE31114E}",
+      "DurationType": "Infinite",
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "187984447"
+        },
+        {
+         "Id": "252657989"
+        },
+        {
+         "Id": "260881444"
+        },
+        {
+         "Id": "334120196"
+        },
+        {
+         "Id": "357021535"
+        },
+        {
+         "Id": "431262976"
+        },
+        {
+         "Id": "479184483"
+        },
+        {
+         "Id": "680149278"
+        },
+        {
+         "Id": "799783569"
+        },
+        {
+         "Id": "937086646"
+        }
+       ]
+      }
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "2023261350",
+      "Name": "SpeederValue",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SpeederValue",
+      "GUID": "{EADC0E4D-6CFA-42FC-A445-1C6FA9EFA8E5}"
+     },
+     {
+      "Id": "3943412870",
+      "Name": "CarSpeed",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\CarSpeed",
+      "GUID": "{B6E1792D-3163-4894-A631-506B848988E6}"
+     }
+    ]
    }
   ],
-  "FileHash": "{487422F8-5F9F-EF92-0BAB-A4DF5A1EC4D4}"
+  "FileHash": "{263FA5D2-2516-2A41-B3A4-9C6ADD54BD38}"
  }
 }

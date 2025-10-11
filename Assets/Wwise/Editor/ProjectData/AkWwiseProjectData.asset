@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584416132543838945
+    m_lastTime: -8584415937175719592
     List:
     - name: PlayerCarStart
       guid: 4525175af26ce040a246d4b5de31114e
@@ -125,8 +125,50 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: ded37675ad2ddc4a91f4648a60bc1c3c
     GuidInternal: 
-    m_lastTime: -8584422931569354809
-    List: []
+    m_lastTime: -8584415937175557249
+    List:
+    - name: CarGear
+      guid: fa2dde58dffd7448832081629a58141e
+      id: 627703336
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: ded37675ad2ddc4a91f4648a60bc1c3c
+      - ElementName: CarGear
+        ObjectType: 13
+        guid: fa2dde58dffd7448832081629a58141e
+      Path: Game Parameters\Default Work Unit\CarGear
+    - name: CarSpeed
+      guid: 2d79e1b663319448a631506b848988e6
+      id: 3943412870
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: ded37675ad2ddc4a91f4648a60bc1c3c
+      - ElementName: CarSpeed
+        ObjectType: 13
+        guid: 2d79e1b663319448a631506b848988e6
+      Path: Game Parameters\Default Work Unit\CarSpeed
+    - name: SpeederValue
+      guid: 4d0edceafa6cfc42a4451c6fa9efa8e5
+      id: 2023261350
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: ded37675ad2ddc4a91f4648a60bc1c3c
+      - ElementName: SpeederValue
+        ObjectType: 13
+        guid: 4d0edceafa6cfc42a4451c6fa9efa8e5
+      Path: Game Parameters\Default Work Unit\SpeederValue
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     PathAndIcons:

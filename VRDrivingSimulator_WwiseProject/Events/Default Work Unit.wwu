@@ -61,6 +61,13 @@
 								</Reference>
 							</ReferenceList>
 						</Action>
+						<Action Name="" ID="{4C8E462B-75A1-4965-A497-17F4FE7FC59E}" ShortID="266226587">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Bump" ID="{83468AE3-3192-41E1-8228-55E857D88CFE}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
 					</ChildrenList>
 				</Event>
 			</ChildrenList>
