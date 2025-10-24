@@ -116,7 +116,7 @@ public class TrafficLightManager : MonoBehaviour
 
     private void UpdateSplineLocking(List<SplineInfo> splines, TrafficLightState state)
     {
-        bool lockSplines = (state == TrafficLightState.Red || state == TrafficLightState.RedYellow);
+        bool lockSplines = (state == TrafficLightState.Red || state == TrafficLightState.RedYellow || state == TrafficLightState.Yellow);
         foreach (var splineInfo in splines)
         {
             if (splineInfo != null)
