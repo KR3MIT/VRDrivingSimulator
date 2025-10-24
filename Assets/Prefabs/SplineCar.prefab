@@ -151,10 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa93086a0cc86004ba50e3c005786e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  splines:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  splines: []
+  splineRoute: {fileID: 0}
 --- !u!1 &5239678617897338560
 GameObject:
   m_ObjectHideFlags: 0

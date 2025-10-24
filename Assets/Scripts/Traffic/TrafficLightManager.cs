@@ -26,6 +26,9 @@ public class TrafficLightManager : MonoBehaviour
     private float cycleTimer = 0f;
     private float totalCycle;
 
+    [Header("Splines To Control")]
+    [SerializeField] private List<SplineInfo> controlledSplines1 = new List<SplineInfo>();
+    [SerializeField] private List<SplineInfo> controlledSplines2 = new List<SplineInfo>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -85,6 +88,8 @@ public class TrafficLightManager : MonoBehaviour
         else if (localT2 < greenEnd) currentState2 = TrafficLightState.Green;
         else currentState2 = TrafficLightState.Yellow;
 
+        UpdateSplineLocking(controlledSplines1, currentState1);
+        UpdateSplineLocking(controlledSplines2, currentState2);
         ApplyState(currentState1, currentState2);
     }
 
@@ -108,6 +113,18 @@ public class TrafficLightManager : MonoBehaviour
          }
      }
     */
+
+    private void UpdateSplineLocking(List<SplineInfo> splines, TrafficLightState state)
+    {
+        bool lockSplines = (state == TrafficLightState.Red || state == TrafficLightState.RedYellow);
+        foreach (var splineInfo in splines)
+        {
+            if (splineInfo != null)
+            {
+                splineInfo.isSplineLocked = lockSplines;
+            }
+        }
+    }
 
 
     public TrafficLightState CheckLightState1()

@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: db73392b9b4b1f4b91f4d3a3456beb8b
     GuidInternal: 
-    m_lastTime: -8584422931569247788
+    m_lastTime: -8584414324970750378
     List:
     - name: Main
       guid: 346abc8d24b93f409d783ca39456114d
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584415937175719592
+    m_lastTime: -8584414329824394566
     List:
     - name: PlayerCarStart
       guid: 4525175af26ce040a246d4b5de31114e
@@ -111,8 +111,8 @@ MonoBehaviour:
         guid: 4525175af26ce040a246d4b5de31114e
       Path: Events\Default Work Unit\PlayerCarStart
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -212,7 +212,7 @@ MonoBehaviour:
     m_lastTime: -8584422931569237786
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 15000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

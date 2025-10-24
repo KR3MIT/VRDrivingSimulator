@@ -16,7 +16,8 @@ public class SplineFollower : MonoBehaviour
 
 
 
-    [SerializeField] private List<SplineContainer> splines;
+    [SerializeField] public List<SplineContainer> splines;
+    [SerializeField] private SplineRoute splineRoute;
 
     int currentSpline = -1;
     SplineInfo currentSplineInfo;
@@ -55,6 +56,8 @@ public class SplineFollower : MonoBehaviour
     void Start()
     {
         splineAnimate = GetComponent<SplineAnimate>();
+
+        //splines = splineRoute.splines; // Assign the splines from the SplineRoute (This is now done in the spawner)
     }
 
     // Update is called once per frame
@@ -105,14 +108,20 @@ public class SplineFollower : MonoBehaviour
 
         if (isTooCloseToCarInFront)
         {
+            
+            if (otherCarCol == null)
+            {
+                isTooCloseToCarInFront = false;
+                return;
+            }
             float otherCarSpeed = otherCarCol.GetComponent<SplineFollower>().currentSplineSpeed;
-            Debug.Log("Raycast distance: " + raycastDistance);
-            Debug.Log("Distance to other car: " + distanceToOtherCar);
+            //Debug.Log("Raycast distance: " + raycastDistance);
+            //Debug.Log("Distance to other car: " + distanceToOtherCar);
 
             if (otherCarSpeed < 1f)
             {
                 float adjustedRayDistance = Mathf.Max(raycastDistance - 5f, 5f);
-                Debug.Log("Adjusted ray distance: " + adjustedRayDistance);
+                //Debug.Log("Adjusted ray distance: " + adjustedRayDistance);
                 currentSplineSpeed = Mathf.Lerp(0.001f, currentSplineInfo.TraversalSpeed / 2, (distanceToOtherCar - minSafeDistance) / adjustedRayDistance);
                 currentSplineSpeed = Mathf.Min(currentSplineSpeed, prevSpeed);
             }
