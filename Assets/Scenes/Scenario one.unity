@@ -12144,7 +12144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PedestrianSpawner
   pedestrianPrefab: {fileID: 914182283144920807, guid: 6a3793bf6482ca84f83a04a988bb9635, type: 3}
-  spawnCount: 10
+  spawnCount: 100
 --- !u!1 &1307220430
 GameObject:
   m_ObjectHideFlags: 0

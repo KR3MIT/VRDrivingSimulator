@@ -7,12 +7,17 @@ public class WaypointNavigation : MonoBehaviour
 
     NPCController controller;
     public Waypoint currentWaypoint;
+    public bool isCurrentlyCrossingRoad = false;
     [SerializeField]
     int direction = 1; // 1 for forward, -1 for backward
 
     public bool nextIsStop = false;
     public int nextIsExit = 0;
 
+    private RaycastHit hit;
+    private float crossingBoxcastDistance = 2f;
+    private Vector3 crossingBoxcastScale = new Vector3(2f, 2f, 2f);
+    private bool isCarBlockingCrossing = false;
 
     private void Awake()
     {
@@ -40,6 +45,9 @@ public class WaypointNavigation : MonoBehaviour
     {
         if (controller.reachedDestination)
         {
+
+            if (isCurrentlyCrossingRoad) isCurrentlyCrossingRoad = false;
+
             if (currentWaypoint.trafficLightManager != null && nextIsStop == true)
             {
                 CheckCrossing();
@@ -127,7 +135,21 @@ public class WaypointNavigation : MonoBehaviour
 
         void CheckCrossing() 
     {
-        if (currentWaypoint.trafficLightIndex == 1)
+        // Perform a box cast forward from the car's position to detect other cars
+        if (Physics.BoxCast(transform.position, crossingBoxcastScale, transform.forward, out hit, transform.rotation, crossingBoxcastDistance))
+        {
+            if (hit.collider.CompareTag("SplineCar"))
+            {
+                Debug.Log("Car blocking crossing");
+                isCarBlockingCrossing = true;
+            }
+            else
+            {
+                isCarBlockingCrossing = false;
+            }
+        }
+
+        if (currentWaypoint.trafficLightIndex == 1 && !isCarBlockingCrossing)
         {
             if(currentWaypoint.trafficLightManager.CheckLightState1() == TrafficLightManager.TrafficLightState.Green)
             {
@@ -135,7 +157,7 @@ public class WaypointNavigation : MonoBehaviour
             }
             // else wait
         }
-        else if (currentWaypoint.trafficLightIndex == 2)
+        else if (currentWaypoint.trafficLightIndex == 2 && !isCarBlockingCrossing)
         {
             if (currentWaypoint.trafficLightManager.CheckLightState2() == TrafficLightManager.TrafficLightState.Green)
             {
@@ -150,6 +172,7 @@ public class WaypointNavigation : MonoBehaviour
         void DoThings()
         {
             Debug.Log("Crossing the road");
+            isCurrentlyCrossingRoad = true;
             currentWaypoint.ExitWaypoint(gameObject);
 
             currentWaypoint = currentWaypoint.nextWaypoint != null ? currentWaypoint.nextWaypoint : currentWaypoint.previousWaypoint;

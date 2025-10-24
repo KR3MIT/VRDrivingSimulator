@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Splines;
 
 public class SplineFollower : MonoBehaviour
@@ -14,10 +16,26 @@ public class SplineFollower : MonoBehaviour
     // 5. Implement system for handling traffic lights being turned off too late to stop at the light - WIP 
 
 
+    [Header("Pedestrian Spotting")]
+    [Tooltip("Pedestrian Spotting FOV")]
+    public float viewRadius = 10f;
+    [Tooltip("Field of view angle (degrees)")]
+    [Range(0f, 360f)]
+    public float viewAngle = 90f;
+    private string pedestrianTag = "Pedestrian";
 
+    [Header("Visualization of pedestrian spotting")]
+    [Tooltip("Number of segments used to draw the FOV arc. Higher gives smoother arc.")]
+    [Range(4, 128)]
+    public int meshResolution = 24;
+    [Tooltip("Color used to draw the FOV lines")]
+    public Color viewColor = new Color(0f, 1f, 0f, 0.25f);
 
-    [SerializeField] public List<SplineContainer> splines;
-    [SerializeField] private SplineRoute splineRoute;
+    [Header("Spline Following")]
+    [Tooltip("Splines for the car to follow (this is most likely set in code from spawner)")]
+    public List<SplineContainer> splines;
+    
+    private SplineRoute splineRoute;
 
     int currentSpline = -1;
     SplineInfo currentSplineInfo;
@@ -45,6 +63,9 @@ public class SplineFollower : MonoBehaviour
     float minSafeDistance = 5f; // Minimum safe distance to maintain from the car in front
     float distanceModifier = 3f; // Multiplier to increase the distance for raycasting based on speed
 
+    bool isPedestrianInFront = false;
+    float distanceToPedestrian = Mathf.Infinity;
+
     float maxDistanceForStoppingAtRedLight = 20f; // Maximum distance at which the car will consider stopping for a red light
     bool wasRedLightOnBefore =  false; // Track if the red light was on in the previous frame
 
@@ -71,6 +92,16 @@ public class SplineFollower : MonoBehaviour
         
         AdjustCarSpeed();
         CheckIfCarInFront();
+        if (currentSplineIsATurn)
+        {
+            CheckIfPedestrianInFront();
+        }
+        else
+        {
+            isPedestrianInFront = false;
+            distanceToPedestrian = Mathf.Infinity;
+        }
+
     }
 
     void SwitchSpline()
@@ -105,8 +136,13 @@ public class SplineFollower : MonoBehaviour
         // Store the previous progress to maintain position on the spline
         float prevProgress = splineAnimate.NormalizedTime;
         float prevSpeed = currentSplineSpeed;
-
-        if (isTooCloseToCarInFront)
+        if (isPedestrianInFront)
+        {
+            Debug.Log("Pedestrian detected in front at distance: " + distanceToPedestrian);
+            float tPed = Mathf.Clamp01((distanceToPedestrian - 5) / viewRadius);
+            currentSplineSpeed = Mathf.Lerp(0.001f, currentSplineInfo.TraversalSpeed, tPed);
+        }
+        else if (isTooCloseToCarInFront)
         {
             
             if (otherCarCol == null)
@@ -230,7 +266,7 @@ public class SplineFollower : MonoBehaviour
             {
                 otherCarCol = hit.collider;
                 isTooCloseToCarInFront = true;
-                Debug.Log("Car detected in front: " + otherCarCol.name);
+                //Debug.Log("Car detected in front: " + otherCarCol.name);
 
                 distanceToOtherCar = hit.distance;
             }
@@ -245,9 +281,115 @@ public class SplineFollower : MonoBehaviour
 
     }
 
+    void CheckIfPedestrianInFront()
+    {
+        // Find candidate colliders in radius
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, LayerMask.GetMask("Default"));
+        float bestDist = float.MaxValue;
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            if (!targetsInViewRadius[i].CompareTag(pedestrianTag))
+                continue;
+
+            if (targetsInViewRadius[i].gameObject.GetComponent<WaypointNavigation>() == null)
+                continue;
+
+            if (!targetsInViewRadius[i].gameObject.GetComponent<WaypointNavigation>().isCurrentlyCrossingRoad)
+                continue;
+
+            Transform target = targetsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+
+            // angle check
+            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle * 0.5f)
+            {
+                float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+                // prefer the nearest visible target
+                if (dstToTarget < bestDist)
+                {
+                    bestDist = dstToTarget;
+                }
+            }
+        }
+
+        if (bestDist < 1000) {
+            isPedestrianInFront = true;
+            distanceToPedestrian = bestDist;
+        }
+        else
+        {
+            isPedestrianInFront = false;
+            distanceToPedestrian = Mathf.Infinity;
+        }
+
+    }
+
+
     //Draw the BoxCast as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     void OnDrawGizmos()
     {
+
+        // Draw field-of-view wedge if requested
+        if (currentSplineIsATurn)
+        {
+            // Save previous color
+            Color prevGiz = Gizmos.color;
+
+            // Use a slightly darker line color for edges while keeping alpha
+            Gizmos.color = viewColor;
+
+            Vector3 origin = transform.position;
+            Vector3 up = transform.up;
+            Vector3 forward = transform.forward;
+
+            int segments = Mathf.Clamp(meshResolution, 4, 128);
+            float halfAngle = viewAngle * 0.5f;
+
+            // Precompute the first point
+            Vector3 prevPoint = origin + (Quaternion.AngleAxis(-halfAngle, up) * forward).normalized * viewRadius;
+            // Draw line from origin to first boundary point
+            Gizmos.DrawLine(origin, prevPoint);
+
+            // Iterate segments and draw edges
+            for (int i = 1; i <= segments; i++)
+            {
+                float t = (float)i / segments;
+                float angle = -halfAngle + (viewAngle * t);
+                Vector3 dir = Quaternion.AngleAxis(angle, up) * forward;
+                Vector3 point = origin + dir.normalized * viewRadius;
+
+                // Draw boundary edge segment
+                Gizmos.DrawLine(prevPoint, point);
+                // Draw line from origin to this boundary point (helps visualize wedge)
+                Gizmos.DrawLine(origin, point);
+
+                prevPoint = point;
+            }
+
+#if UNITY_EDITOR
+            // Draw a filled arc in the Scene view using Handles (editor only).
+            // Use UnityEditor.Handles.DrawSolidArc to respect alpha in viewColor.
+            try
+            {
+                var prevHandleColor = UnityEditor.Handles.color;
+                UnityEditor.Handles.color = viewColor;
+                Vector3 startDir = Quaternion.AngleAxis(-halfAngle, up) * forward;
+                UnityEditor.Handles.DrawSolidArc(origin, up, startDir, viewAngle, viewRadius);
+                UnityEditor.Handles.color = prevHandleColor;
+            }
+            catch
+            {
+                // Ignore any editor-only drawing errors (defensive).
+            }
+#endif
+
+            // Restore previous gizmo color
+            Gizmos.color = prevGiz;
+        }
+
+
         Gizmos.color = Color.red;
 
         //Check if there has been a hit yet
@@ -266,5 +408,6 @@ public class SplineFollower : MonoBehaviour
             //Draw a cube at the maximum distance
             Gizmos.DrawWireCube(transform.position + transform.forward * raycastDistance, transform.localScale);
         }
+
     }
 }
