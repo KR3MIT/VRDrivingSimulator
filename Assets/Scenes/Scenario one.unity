@@ -12144,7 +12144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PedestrianSpawner
   pedestrianPrefab: {fileID: 914182283144920807, guid: 6a3793bf6482ca84f83a04a988bb9635, type: 3}
-  spawnCount: 100
+  spawnCount: 10
 --- !u!1 &1307220430
 GameObject:
   m_ObjectHideFlags: 0
@@ -13422,63 +13422,6 @@ MonoBehaviour:
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
---- !u!1001 &1433516400
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.001662612
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -21.42321
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999981
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0019531467
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.224
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753822004275278862, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3277593762465525428, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
-      propertyPath: m_Name
-      value: car exterior
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 284a61d9adc120e4784e7c843f7c3bc0, type: 3}
 --- !u!1 &1437830218
 GameObject:
   m_ObjectHideFlags: 0
@@ -20344,7 +20287,6 @@ SceneRoots:
   - {fileID: 184798436}
   - {fileID: 306114477}
   - {fileID: 1365603094}
-  - {fileID: 1433516400}
   - {fileID: 382251943}
   - {fileID: 796167495}
   - {fileID: 298405592}
