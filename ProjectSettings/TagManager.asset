@@ -9,6 +9,7 @@ TagManager:
   - Arrow
   - TrafficLight
   - Pedestrian
+  - NOTURLANE
   layers:
   - Default
   - TransparentFX

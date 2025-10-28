@@ -18,3 +18,8 @@ MonoBehaviour:
   LeftTurnDone: "Godt klaret! Tryk p\xE5 *INSERT BUTTON* for at forts\xE6tte."
   LeftBlinkerTask: "Opgave: Du skal foretage et venstresving n\xE6ste gang det muligt"
   LeftBlinkerStep1: Vis, at du vil skifte vognbane, ved at blinke til venstre
+  ErrorPedestrian: "Du ramte en fodg\xE6nger! Husk altid at orienter dig efter fodg\xE6ngere."
+  ErrorCarCollision: "Du ramte en anden bil! Husk altid at kigge orienter dig efter
+    andre bilister f\xF8r du foretager dig et sving eller vognbaneskift."
+  ErrorRoad: "Du kom for langt v\xE6k fra din vognbane. Husk at f\xF8lge vejens forl\xF8b
+    og hold dig indenfor din egen vognbane."

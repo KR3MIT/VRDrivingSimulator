@@ -11,7 +11,7 @@ public class TutorialTrigger : MonoBehaviour
     public float CheckDelay = 1f;
     public GameObject Arrow;
     public Camera PlayerCamera;
-    public  LogitechInput LogitechInput;
+    public LogitechInput LogitechInput;
     public TutorialTextScriptableObject TutorialText;
     public List<Transform> SpawnPoints;
 
