@@ -9,5 +9,8 @@ public class TutorialTextScriptableObject : ScriptableObject
     public string LeftTurnDone;
     public string LeftBlinkerTask;
     public string LeftBlinkerStep1;
+    public string ErrorPedestrian;
+    public string ErrorCarCollision;
+    public string ErrorRoad;
 
 }
