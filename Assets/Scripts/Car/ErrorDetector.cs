@@ -6,26 +6,35 @@ public class ErrorDetector : MonoBehaviour
 {
     public InstructionManager instructionManager;
     public TutorialTextScriptableObject TutorialText;
-    private void OnTriggerEnter(Collider other)
+
+
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pedestrian"))
         {
-            instructionManager.ShowFreezeHint(0, true,TutorialText.ErrorPedestrian);
+            Debug.Log("Pedestrian hit");
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
-            Debug.Log("Collision with pedestrian detected!");
+            //restart game?
         }
-        if (other.CompareTag("Player"))
+        else if (other.CompareTag("SplineCar"))
         {
+            Debug.Log("Car hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
             instructionManager.allowContinue = true;
-            Debug.Log("Collision with another car detected!");
+            //restart game?
         }
-        if (other.CompareTag("ErrorCollider"))
+        else if (other.CompareTag("NOTURLANE"))
         {
+            Debug.Log("Off road");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorRoad);
             instructionManager.allowContinue = true;
-            Debug.Log("Off-road driving detected!");
+            //restart game?
         }
     }
 }
+
+
+
+
 
