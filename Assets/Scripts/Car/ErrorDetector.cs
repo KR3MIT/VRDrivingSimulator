@@ -1,26 +1,40 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class ErrorDetector : MonoBehaviour
 {
-    public SplineContainer spline;  // Assign in Inspector
-    public Transform car;
-    public float allowedDistance = 2f;
-    public Vector3 nearestPoint;
-    void Update()
+    public InstructionManager instructionManager;
+    public TutorialTextScriptableObject TutorialText;
+
+
+    public void OnTriggerEnter(Collider other)
     {
-       
-
-        Vector3 carPos = car.position;
-        Spline splineRef = spline.Spline;
-        var ray = new Ray(carPos + Vector3.up * 50f, Vector3.down);
-        SplineUtility.GetNearestPoint(splineRef, ray, out carPos, out float nearestT, out Vector3 nearestPoint);
-
-        float distance = Vector3.Distance(carPos, nearestPoint);
-
-        if (distance > allowedDistance)
+        if (other.CompareTag("Pedestrian"))
         {
-            Debug.Log("Car is off the spline!");
+            Debug.Log("Pedestrian hit");
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
+            instructionManager.allowContinue = true;
+            //restart game?
+        }
+        else if (other.CompareTag("SplineCar"))
+        {
+            Debug.Log("Car hit");
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
+            instructionManager.allowContinue = true;
+            //restart game?
+        }
+        else if (other.CompareTag("NOTURLANE"))
+        {
+            Debug.Log("Off road");
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorRoad);
+            instructionManager.allowContinue = true;
+            //restart game?
         }
     }
 }
+
+
+
+
+
