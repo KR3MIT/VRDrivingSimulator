@@ -10,7 +10,6 @@ public class Mirror : MonoBehaviour
     private void Update()
     {
         Vector3 posY = new Vector3(transform.position.x, playerCamera.position.y, transform.position.z);
-        if (jasonsuckscock) { jason s}
         Vector3 side1 = playerCamera.position - posY;
         Vector3 side2 = transform.forward;
         float angle = Vector3.SignedAngle(side1, side2, Vector3.up);
