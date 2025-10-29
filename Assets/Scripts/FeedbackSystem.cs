@@ -34,7 +34,7 @@ public struct DrivingError
 
 public class FeedbackSystem : MonoBehaviour
 {
-    public FeedbackSystem instance;
+    public static FeedbackSystem Instance;
     private List<DrivingError> drivingErrors = new List<DrivingError>();
 
     public void Awake()
