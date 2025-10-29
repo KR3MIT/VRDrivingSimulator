@@ -16,22 +16,25 @@ public class DashboardController : MonoBehaviour
     private GameObject speedNeedlePivot;
 
     [Header("Blinkers")]
-    
     public GameObject leftBlinkerLight;
     public GameObject rightBlinkerLight;
     [SerializeField]
     private float blinkerFlashRate = 0.5f;
-    [SerializeField]
     private float blinkerTimer = 0f;
     [SerializeField]
-    private bool blinkerState = false;
+    private bool blinkerState = false;   
+    public float wheelRotationThreshold;
+    private float wheelRotation;
 
     private bool leftBlinkerOn = false;
     private bool rightBlinkerOn = false;
     private bool anyBlinkerOn = false;
-
     private bool prevLeftBlinker = false;
     private bool prevRightBlinker = false;
+    private bool rightWheelRotationThresholdExceeded = false;
+    private bool leftWheelRotationThresholdExceeded = false;
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,6 +45,7 @@ public class DashboardController : MonoBehaviour
         speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, minRotation);
         leftBlinkerLight.SetActive(false);
         rightBlinkerLight.SetActive(false);
+        wheelRotationThreshold = Mathf.Abs(wheelRotationThreshold);
     }
 
     // Update is called once per frame
@@ -49,6 +53,7 @@ public class DashboardController : MonoBehaviour
     {
         AnimateSpeedNeedle();
         CheckBlinkerChanges();
+        CheckWheelRotationCancelBlinkers();
         BlinkerControl();
     }
 
@@ -104,7 +109,7 @@ public class DashboardController : MonoBehaviour
 
         if (currentRightBlinker && !prevRightBlinker)
         {
-            ToggleLeftBlinker();
+            ToggleRightBlinker();
         }
         prevLeftBlinker = currentLeftBlinker;
         prevRightBlinker = currentRightBlinker;
@@ -145,6 +150,60 @@ public class DashboardController : MonoBehaviour
         }
     }
 
+    private void CheckWheelRotationCancelBlinkers()
+    {
+        wheelRotation = carMover.wheelRotation;
+
+        if (leftBlinkerOn)
+        {
+            if (!leftWheelRotationThresholdExceeded && wheelRotation < -wheelRotationThreshold)
+            {
+                leftWheelRotationThresholdExceeded = true;
+            }
+            if (leftWheelRotationThresholdExceeded && wheelRotation >= -wheelRotationThreshold)
+            {
+                leftWheelRotationThresholdExceeded = false;
+                leftBlinkerOn = false;
+                if (!rightBlinkerOn)
+                {
+                    blinkerState = false;
+                    blinkerTimer = 0f;
+                    leftBlinkerLight.SetActive(false);
+                    rightBlinkerLight.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            leftWheelRotationThresholdExceeded = false;
+        }
+
+        if (rightBlinkerOn)
+        {
+            if (!rightWheelRotationThresholdExceeded && wheelRotation > wheelRotationThreshold)
+            {
+                rightWheelRotationThresholdExceeded = true;
+            }
+            if (rightWheelRotationThresholdExceeded && wheelRotation <= wheelRotationThreshold)
+            {
+                rightWheelRotationThresholdExceeded = false;
+                rightBlinkerOn = false;
+                if (!leftBlinkerOn)
+                {
+                    blinkerState = false;
+                    blinkerTimer = 0f;
+                    leftBlinkerLight.SetActive(false);
+                    rightBlinkerLight.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            rightWheelRotationThresholdExceeded = false;
+        }
+
+
+    }
     private void AnimateSpeedNeedle()
     {
         speed = carMover.magnitude;
