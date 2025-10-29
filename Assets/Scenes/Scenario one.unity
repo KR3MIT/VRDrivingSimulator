@@ -5287,6 +5287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286084500}
   - component: {fileID: 286084499}
+  - component: {fileID: 286084501}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -5334,6 +5335,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &286084501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286084498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df3260989d1ce40acc995edee5076d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkBank
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c149d2663fc91dd4286cd58d995da364, type: 2}
+  decodeBank: 0
+  overrideLoadSetting: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &294421344
 GameObject:
   m_ObjectHideFlags: 0
@@ -14509,6 +14535,92 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1306783174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &849369376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849369379}
+  - component: {fileID: 849369378}
+  - component: {fileID: 849369377}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &849369377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849369376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250221b142cc1d34591e5c973e538ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkEvent
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e91e9989434f98041a429aad8436f939, type: 2}
+  useCallbacks: 0
+  stopSoundOnDestroy: 1
+  Callbacks: []
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+--- !u!114 &849369378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849369376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7a8e647f0bba746bdff9ab3f6a65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkGameObj
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!4 &849369379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849369376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.73445, y: 0.78117, z: 15.33348}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &859160940
 GameObject:
@@ -24651,7 +24763,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5161168440370940348, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
   m_PrefabInstance: {fileID: 2023043540}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2146663724}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f40d7a15e91d6a49b85c3e97685ab0d, type: 3}
@@ -34171,6 +34283,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: BackMirror
       objectReference: {fileID: 0}
+    - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: speedRTPC.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 9aad6a469bd611045acb522111c2a708, type: 2}
+    - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: speederRTPC.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 0067248c5e1d26249a087f4bab655b2d, type: 2}
+    - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: carStartEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: e91e9989434f98041a429aad8436f939, type: 2}
     - target: {fileID: 6248745215726705565, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.227
@@ -34242,6 +34366,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1139110503}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3346315548363364692, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2146663733}
     - targetCorrespondingSourceObject: {fileID: 6248745215726705566, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1874803603}
@@ -36449,6 +36576,35 @@ Transform:
   - {fileID: 1977291591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2146663724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3346315548363364692, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+  m_PrefabInstance: {fileID: 2023043540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2146663733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146663724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7a8e647f0bba746bdff9ab3f6a65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkGameObj
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &262451527296638608
 GameObject:
   m_ObjectHideFlags: 0
@@ -36883,3 +37039,4 @@ SceneRoots:
   - {fileID: 934091668}
   - {fileID: 1930782533}
   - {fileID: 560316589}
+  - {fileID: 849369379}

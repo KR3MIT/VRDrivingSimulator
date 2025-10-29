@@ -90,6 +90,11 @@ public class CarMover : MonoBehaviour
 
     public float magnitude;
 
+    [Header("Audio")]
+    public AK.Wwise.Event carStartEvent;
+    public AK.Wwise.RTPC speederRTPC;
+    public AK.Wwise.RTPC speedRTPC;
+
     private bool isCreeping = false;
 
     //priv value
@@ -138,6 +143,8 @@ public class CarMover : MonoBehaviour
 
         if (freezeYPosition)//make it impossible to flip, messes a bit with speed value ie slows down everything
             Invoke(nameof(FreezePositionY), 3f);
+
+        carStartEvent.Post(gameObject);
     }
 
     void FreezePositionY()
@@ -177,6 +184,7 @@ public class CarMover : MonoBehaviour
             speeder = 1 - speeder;
             if(speeder < 0.05f) speeder = 0f;
             acceleratorInput = speeder;
+            speederRTPC.SetGlobalValue(acceleratorInput);
 
             float brake = (float)logitechInput.brakeValue;
             brake = (brake + 32768f) / 2 / 32768f;
@@ -197,6 +205,8 @@ public class CarMover : MonoBehaviour
     {
         float torque = 0f;
         float speed = carRb.linearVelocity.magnitude;
+
+        speedRTPC.SetGlobalValue(speed);
 
         logitechInput.SetSpringForce(speed);
 
