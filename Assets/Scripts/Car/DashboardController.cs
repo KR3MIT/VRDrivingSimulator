@@ -9,9 +9,9 @@ public class DashboardController : MonoBehaviour
     [SerializeField]
     private float speed = 0f;
     [SerializeField]
-    private float minRotation = 133f;
+    private float minRotation = 140f;
     [SerializeField]
-    private float maxRotation = -133f;
+    private float maxRotation = -125f;
     [SerializeField]
     private GameObject speedNeedlePivot;
 
@@ -27,6 +27,7 @@ public class DashboardController : MonoBehaviour
     [SerializeField]
     private float wheelRotation;
 
+    //blinker bools
     private bool leftBlinkerOn = false;
     private bool rightBlinkerOn = false;
     private bool anyBlinkerOn = false;
@@ -35,7 +36,10 @@ public class DashboardController : MonoBehaviour
     private bool rightWheelRotationThresholdExceeded = false;
     private bool leftWheelRotationThresholdExceeded = false;
 
-
+    // Animation of speed needle
+    const float maxSpeed = 220f;
+    float speedNormalized = 0f;
+    float pivotRotation;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -210,10 +214,19 @@ public class DashboardController : MonoBehaviour
     private void AnimateSpeedNeedle()
     {
         speed = carMover.magnitude;
-       // float normalizeRotation = Mathf.Clamp(speed/220f,minRotation, maxRotation);
-        float normalizeRotation = Mathf.Lerp(minRotation, maxRotation, speed / 220f);
-        speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, normalizeRotation);
+        speedNormalized = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
+        pivotRotation = Mathf.Lerp(minRotation, maxRotation, speedNormalized);
+        speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, pivotRotation);
     }
 
+    public bool CheckLeftBlinkerOn()
+    {
+        return leftBlinkerOn;
+    }
+
+    public bool CheckRightBlinkerOn()
+    {
+        return rightBlinkerOn;
+    }
 
 }
