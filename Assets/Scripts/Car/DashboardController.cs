@@ -22,8 +22,9 @@ public class DashboardController : MonoBehaviour
     private float blinkerFlashRate = 0.5f;
     private float blinkerTimer = 0f;
     [SerializeField]
-    private bool blinkerState = false;   
+    private bool blinkerState = false;
     public float wheelRotationThreshold;
+    [SerializeField]
     private float wheelRotation;
 
     private bool leftBlinkerOn = false;
@@ -118,7 +119,8 @@ public class DashboardController : MonoBehaviour
     public void ToggleRightBlinker()
     {
         rightBlinkerOn = !rightBlinkerOn;
-        if (leftBlinkerOn || rightBlinkerOn)
+        leftBlinkerOn = false;
+        if (rightBlinkerOn)
         {
             blinkerState = true;
             blinkerTimer = 0f;
@@ -135,8 +137,9 @@ public class DashboardController : MonoBehaviour
     private void ToggleLeftBlinker()
     {
         leftBlinkerOn = !leftBlinkerOn;
+        rightBlinkerOn = false;
         // start visible immediately when turned on
-        if (leftBlinkerOn || rightBlinkerOn)
+        if (leftBlinkerOn)
         {
             blinkerState = true;
             blinkerTimer = 0f;
