@@ -48,6 +48,7 @@ public class ErrorDetector : MonoBehaviour
         else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
         {
             enteringCross = true;
+            Debug.Log("Entering crossroad");
         }
       
         if(other.CompareTag("StopLine"))
@@ -56,6 +57,7 @@ public class ErrorDetector : MonoBehaviour
            {
                 FeedbackSystem.Instance.RegisterDrivingError("Husk at orienter dig.", "Husk "+"spejl spejl skulder " +"for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
             }
+           Debug.Log("Stop line crossed");
         }
 
         if (other.CompareTag("Pedestrian"))
@@ -80,6 +82,7 @@ public class ErrorDetector : MonoBehaviour
     {
        if(dashboard.CheckLeftBlinkerOn())
        {
+
             return;
        }
          else
@@ -96,6 +99,7 @@ public class ErrorDetector : MonoBehaviour
                 if (hitInfo.collider.CompareTag("BackMirror"))
                 {
                     backMirrorCheck = true;
+                    Debug.Log("Back mirror checked");
                 }
             }
         }
@@ -106,6 +110,7 @@ public class ErrorDetector : MonoBehaviour
                 if (hitInfo.collider.CompareTag("SideMirror"))
                 {
                     sideMirrorCheck = true;
+                    Debug.Log("Side mirror checked");
                 }
             }
         }
@@ -116,6 +121,7 @@ public class ErrorDetector : MonoBehaviour
                 if (hitInfo.collider.CompareTag("Shoulder"))
                 {
                     shoulderCheck = true;
+                    Debug.Log("Shoulder checked");
                 }
             }
         }
@@ -142,7 +148,10 @@ public class ErrorDetector : MonoBehaviour
             CheckBlinker();
         }
         if (car.magnitude > 55f)
+        {
             FeedbackSystem.Instance.RegisterDrivingError("Speeding.", "Watch your speed.", DrivingError.ErrorSeverity.Low);
+            Debug.Log("Speeding Error registered");
+        }
         
 
     }
