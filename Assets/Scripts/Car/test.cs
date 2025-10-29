@@ -1,28 +1,59 @@
+using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class test : MonoBehaviour
 {
-    public PlayerInput input;
-    private InputAction gasPedalAction;
-    private InputAction steer;
+    public GameObject waypointContainer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private List<Vector3> waypoints = new List<Vector3>();
+
+    public void Start()
     {
-        gasPedalAction = input.actions["GasPedal"];
-        gasPedalAction.Enable();
-
-        steer = input.actions["Steer"];
-        steer.Enable();
+        foreach (Transform child in waypointContainer.transform)
+        {
+            waypoints.Add(child.gameObject.transform.position);
+        }
     }
 
-    private void Update()
+
+    public void Update()
     {
-        if (steer != null)
+        Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
+    }
+
+    public float GetDistanceToPath(Vector3 carPosition, List<Vector3> waypoints)
+    {
+        float minDistance = float.MaxValue;
+        for (int i = 0; i < waypoints.Count - 1; i++)
         {
-            float steerVal = steer.ReadValue<float>();
-            Debug.Log("GasPedal value: " + steerVal);
+            Vector3 start = waypoints[i];
+            Vector3 end = waypoints[i + 1];
+            Vector3 lineDirection = (end - start).normalized;
+            float lineLength = Vector3.Distance(start, end);
+            Vector3 toCar = carPosition - start;
+            float projectionLength = Vector3.Dot(toCar, lineDirection);
+            projectionLength = Mathf.Clamp(projectionLength, 0, lineLength);
+            Vector3 closestPoint = start + lineDirection * projectionLength;
+            float distance = Vector3.Distance(carPosition, closestPoint);
+            if (distance < minDistance)
+                minDistance = distance;
+        }
+        return minDistance;
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        for(int i = 0; i < waypoints.Count - 1; i++)
+        {
+            Gizmos.DrawLine(waypoints[i], waypoints[i + 1]);
+        }
+
+        foreach (Vector3 waypoint in waypoints)
+        {
+            Gizmos.DrawSphere(waypoint, 0.25f);
         }
     }
 }
