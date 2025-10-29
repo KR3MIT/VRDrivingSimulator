@@ -368,7 +368,7 @@ public class CarMover : MonoBehaviour
 
         float normalizedSteer = Mathf.Clamp(rawSteerInput / 32768f, -1f, 1f);
         wheelRotation = normalizedSteer * 450;
-        steeringWheel.transform.localRotation = Quaternion.Euler(-wheelRotation, -90f, 0);
+        steeringWheel.transform.localRotation = Quaternion.Euler(-wheelRotation, -90, 0);
         //Debug.Log("wheelrot" + wheelRotation);
     }
 }

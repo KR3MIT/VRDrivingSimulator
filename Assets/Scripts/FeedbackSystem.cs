@@ -34,23 +34,23 @@ public struct DrivingError
 
 public class FeedbackSystem : MonoBehaviour
 {
-    public FeedbackSystem instance;
+    public static FeedbackSystem Instance;
     private List<DrivingError> drivingErrors = new List<DrivingError>();
 
     public void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    public void RegisterDrivingError(string name = "", float time = 0f, string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
+    public void RegisterDrivingError(string name = "", string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
     {
-        drivingErrors.Add(new DrivingError(name, time, desc, sev));
+        drivingErrors.Add(new DrivingError(name, 0f, desc, sev));
     }
 }

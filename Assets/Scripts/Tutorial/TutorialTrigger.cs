@@ -12,13 +12,12 @@ public class TutorialTrigger : MonoBehaviour
     public GameObject Arrow;
     public Camera PlayerCamera;
     public LogitechInput LogitechInput;
-    public TutorialTextScriptableObject TutorialText;
-    public List<Transform> SpawnPoints;
+    public TutorialTextScriptableObject tutorialText;
+    public List<Transform> spawnPoints;
 
     private void Start()
     {
         InstructionManager = FindFirstObjectByType<InstructionManager>();
-
         LogitechInput = FindFirstObjectByType<LogitechInput>();
     }
     public void OnTriggerEnter(Collider collision)
@@ -27,14 +26,14 @@ public class TutorialTrigger : MonoBehaviour
         if (collision.gameObject == TutorialColliders[0])
         {
            // Debug.Log("Hit Tutorial1");
-            InstructionManager.ShowFreezeHint(0, true, TutorialText.LeftTurnTask);
+            InstructionManager.ShowFreezeHint(0, true, tutorialText.LeftTurnTask);
             StartCoroutine(LeftOrientationCheck());
         }
         //Left Blinker Task
         if (collision.gameObject == TutorialColliders[1])
         {
             //Debug.Log("Hit Tutorial2");
-            InstructionManager.ShowFreezeHint(0, true, TutorialText.LeftBlinkerTask);
+            InstructionManager.ShowFreezeHint(0, true, tutorialText.LeftBlinkerTask);
             //StartCoroutine(LeftBlinkCheck());
         }
     }
@@ -43,8 +42,8 @@ public class TutorialTrigger : MonoBehaviour
     {
         bool OpsDirection = true;
         bool PedDirection = true;
-        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnStep1);
-        Arrow = Instantiate(Arrow, SpawnPoints[0].position, SpawnPoints[0].rotation);
+        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep1);
+        Arrow = Instantiate(Arrow, spawnPoints[0].position, spawnPoints[0].rotation);
         Arrow.SetActive(true);
 
         while (OpsDirection)
@@ -67,9 +66,9 @@ public class TutorialTrigger : MonoBehaviour
                 yield return new WaitForSeconds(CheckDelay);
         }
 
-        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnStep2);
-        Arrow.transform.position = SpawnPoints[1].position;
-        Arrow.transform.rotation = SpawnPoints[1].rotation;
+        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep2);
+        Arrow.transform.position = spawnPoints[1].position;
+        Arrow.transform.rotation = spawnPoints[1].rotation;
         while (PedDirection)
         {
             //Debug.DrawLine(PlayerCamera.transform.position, PlayerCamera.transform.position + PlayerCamera.transform.forward * 100f, Color.red, 1f);
@@ -88,7 +87,7 @@ public class TutorialTrigger : MonoBehaviour
             }
             yield return new WaitForSeconds(CheckDelay);
         }
-        InstructionManager.ShowHint(1, true, TutorialText.LeftTurnDone);
+        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnDone);
         InstructionManager.allowContinue = true;
     }
 
