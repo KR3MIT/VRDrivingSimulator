@@ -66,11 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: db73392b9b4b1f4b91f4d3a3456beb8b
     GuidInternal: 
-<<<<<<< Updated upstream
     m_lastTime: -8584410923711089918
-=======
-    m_lastTime: -8584399676710697093
->>>>>>> Stashed changes
     List:
     - name: Main
       guid: 346abc8d24b93f409d783ca39456114d
@@ -98,11 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-<<<<<<< Updated upstream
     m_lastTime: -8584410923711289994
-=======
-    m_lastTime: -8584399676710922581
->>>>>>> Stashed changes
     List:
     - name: PlayerCarStart
       guid: 4525175af26ce040a246d4b5de31114e
@@ -133,11 +125,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: ded37675ad2ddc4a91f4648a60bc1c3c
     GuidInternal: 
-<<<<<<< Updated upstream
     m_lastTime: -8584410923711289994
-=======
-    m_lastTime: -8584399676710922581
->>>>>>> Stashed changes
     List:
     - name: CarGear
       guid: fa2dde58dffd7448832081629a58141e
@@ -224,7 +212,7 @@ MonoBehaviour:
     m_lastTime: -8584422931569237786
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 15000000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
