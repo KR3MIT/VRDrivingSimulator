@@ -1,8 +1,6 @@
-using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TutorialTrigger : MonoBehaviour
 {
@@ -91,25 +89,5 @@ public class TutorialTrigger : MonoBehaviour
         InstructionManager.allowContinue = true;
     }
 
-    //IEnumerator LeftBlinkCheck()
-    //{
-    //    bool Blinked = false;
-    //    InstructionManager.ShowHint(1, true, TutorialText.LeftBlinkerStep1);
-    //    while (!Blinked)
-    //    {
-    //        if (LogitechInput.leftBlinker == true)
-    //        {
-    //            Blinked = true;
-    //        }
-    //        yield return new WaitForSeconds(CheckDelay);
-       
-    //    }
-    //    InstructionManager.allowContinue = true;
-    //}
-
-
-    //IEnumerator RightOrientationCheck()
-    //{
-    //    
-    //}
+ 
 }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -9,13 +11,33 @@ public class ErrorDetector : MonoBehaviour
     public TutorialTextScriptableObject TutorialText;
    public TrafficLightManager lightManager;
     public bool enteringCross = false;
-    public Camera playerCamera;
+    private Camera playerCamera;
     private bool backMirrorCheck = false;
     private  bool sideMirrorCheck = false;
     private bool shoulderCheck = false;
-    public CarMover car;
-    public DashboardController dashboard;
+    private CarMover car;
+    private DashboardController dashboard;
 
+    [Header("Lane")]
+    public GameObject waypointContainer;
+    private List<Vector3> waypoints = new List<Vector3>();
+    public bool laneDelay;
+    public float laneThreshold = 3f;
+    public float laneDelayHz = 2f;
+
+
+    private void Start()
+    {
+        playerCamera = Camera.main;
+        car = GetComponent<CarMover>();
+        dashboard = GetComponent<DashboardController>();
+
+        // Get all waypoints from the container
+        foreach (Transform child in waypointContainer.transform)
+        {
+            waypoints.Add(child.position);
+        }
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -64,9 +86,6 @@ public class ErrorDetector : MonoBehaviour
          {
                 FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
          }
-       
-
-
     }
     public void CheckOrientation()
     {
@@ -105,7 +124,17 @@ public class ErrorDetector : MonoBehaviour
 
     void Update()
     {
-        if(enteringCross)
+
+        //Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
+        if(laneDelay==false)
+        {
+            if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
+            {
+                FeedbackSystem.Instance.RegisterDrivingError("Lane boundary violated", "Please stay within your lane.", DrivingError.ErrorSeverity.Medium);
+                StartCoroutine(LaneError());
+            }
+        }
+        if (enteringCross)
         {
             enteringCross = false;
             CheckOrientation();
@@ -115,6 +144,45 @@ public class ErrorDetector : MonoBehaviour
             FeedbackSystem.Instance.RegisterDrivingError("Speeding.", "Watch your speed.", DrivingError.ErrorSeverity.Low);
         
 
+    }
+    IEnumerator LaneError()
+    {
+        laneDelay = true;
+        yield return new WaitForSeconds(laneDelayHz);
+        laneDelay = false;
+    }
+    public float GetDistanceToPath(Vector3 carPosition, List<Vector3> waypoints)
+    {
+        float minDistance = float.MaxValue;
+        for (int i = 0; i < waypoints.Count - 1; i++)
+        {
+            Vector3 start = waypoints[i];
+            Vector3 end = waypoints[i + 1];
+            Vector3 lineDirection = (end - start).normalized;
+            float lineLength = Vector3.Distance(start, end);
+            Vector3 toCar = carPosition - start;
+            float projectionLength = Vector3.Dot(toCar, lineDirection);
+            projectionLength = Mathf.Clamp(projectionLength, 0, lineLength);
+            Vector3 closestPoint = start + lineDirection * projectionLength;
+            float distance = Vector3.Distance(carPosition, closestPoint);
+            if (distance < minDistance)
+                minDistance = distance;
+        }
+        return minDistance;
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        for (int i = 0; i < waypoints.Count - 1; i++)
+        {
+            Gizmos.DrawLine(waypoints[i], waypoints[i + 1]);
+        }
+
+        foreach (Vector3 waypoint in waypoints)
+        {
+            Gizmos.DrawSphere(waypoint, 0.25f);
+        }
     }
 }
 
