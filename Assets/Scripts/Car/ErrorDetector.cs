@@ -43,6 +43,7 @@ public class ErrorDetector : MonoBehaviour
     {
         if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
         {
+            Debug.Log("Red light crossed");
             FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt lys.", "Du kørte over for rødt lys og det må man ikke.", DrivingError.ErrorSeverity.High);
         }
         else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
