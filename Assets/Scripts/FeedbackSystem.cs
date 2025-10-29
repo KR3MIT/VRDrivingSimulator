@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -32,5 +34,23 @@ public struct DrivingError
 
 public class FeedbackSystem : MonoBehaviour
 {
-    
+    public FeedbackSystem instance;
+    private List<DrivingError> drivingErrors = new List<DrivingError>();
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void RegisterDrivingError(string name = "", float time = 0f, string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
+    {
+        drivingErrors.Add(new DrivingError(name, time, desc, sev));
+    }
 }
