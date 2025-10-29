@@ -81,11 +81,11 @@ public class LogitechInput : MonoBehaviour
             {
                 case (0): dpadValue = 1; break; //up
                 //case (4500): actualState += "POV : UP-RIGHT\n"; break; //up-right
-                //case (9000): actualState += "POV : RIGHT\n"; break; //right
+                case (9000): dpadValue = 2; break; //right
                 //case (13500): actualState += "POV : DOWN-RIGHT\n"; break; //down-right
                 case (18000): dpadValue = -1; break; //down
                 //case (22500): actualState += "POV : DOWN-LEFT\n"; break; //down-left
-                //case (27000): actualState += "POV : LEFT\n"; break; //left
+                case (27000): dpadValue = -2; break; //left
                 //case (31500): actualState += "POV : UP-LEFT\n"; break; //up-left
                 default: dpadValue = 0; break; //center
             }
