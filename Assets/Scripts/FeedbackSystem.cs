@@ -17,6 +17,15 @@ public struct DrivingError
         High,
         Medium,
         Low,
+        None,
+    }
+
+    public DrivingError(string name = "", float time = 0f, string desc = "", ErrorSeverity sev = ErrorSeverity.None)
+    {
+        errorName = name;
+        timestamp = time;
+        description = desc;
+        severity = sev;
     }
 
 }
