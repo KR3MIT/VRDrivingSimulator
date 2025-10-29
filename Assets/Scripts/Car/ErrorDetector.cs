@@ -22,7 +22,7 @@ public class ErrorDetector : MonoBehaviour
     public GameObject waypointContainer;
     private List<Vector3> waypoints = new List<Vector3>();
     public bool laneDelay;
-    public float laneThreshold = 3f;
+    public float laneThreshold = 2.5f;
     public float laneDelayHz = 2f;
 
 
@@ -132,6 +132,7 @@ public class ErrorDetector : MonoBehaviour
             {
                 FeedbackSystem.Instance.RegisterDrivingError("Lane boundary violated", "Please stay within your lane.", DrivingError.ErrorSeverity.Medium);
                 StartCoroutine(LaneError());
+                Debug.Log("Lane Error registered");
             }
         }
         if (enteringCross)
