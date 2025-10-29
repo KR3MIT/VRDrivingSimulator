@@ -2193,7 +2193,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 255
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 727f87098255ad04987a60f5f08390bc, type: 2}
@@ -2236,7 +2236,7 @@ Transform:
   m_GameObject: {fileID: 603594475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.29494, y: 0.831, z: -23.2313}
+  m_LocalPosition: {x: 8.89, y: 0.831, z: -23.2313}
   m_LocalScale: {x: 1.85, y: 1.6, z: 4.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2880,7 +2880,7 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_RenderingLayerMask:
     serializedVersion: 0
-    m_Bits: 1
+    m_Bits: 256
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.5}
   m_Size: {x: 4.9, y: 0.05, z: 1}
@@ -2896,7 +2896,7 @@ Transform:
   m_GameObject: {fileID: 730661112}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 8.81794, y: 0.84, z: -23.721298}
+  m_LocalPosition: {x: 9.04, y: 2.16, z: -23.721298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4817,7 +4817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1222546186}
-  - component: {fileID: 1222546185}
+  - component: {fileID: 1222546187}
   m_Layer: 0
   m_Name: FeedbackSystem
   m_TagString: Untagged
@@ -4825,20 +4825,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1222546185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222546184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02e4f3834ee4914cb49150fd63bdecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FeedbackSystem
-  errorLogName: errorLog.txt
-  feedbackText: {fileID: 861415788}
 --- !u!4 &1222546186
 Transform:
   m_ObjectHideFlags: 0
@@ -4854,6 +4840,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222546187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222546184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27631989279366c4fbb2f44dd5161b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataLog
 --- !u!1 &1264178883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5790,7 +5788,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 256
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
