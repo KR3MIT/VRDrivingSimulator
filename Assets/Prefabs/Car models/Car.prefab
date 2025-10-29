@@ -964,7 +964,7 @@ MonoBehaviour:
   currentGear: 0
   maxAcceleration: 200
   reverseAcceleration: 50
-  brakeAcceleration: 300
+  brakeAcceleration: 500
   creepTorque: 5
   maxCreepSpeed: 5
   minCreepSpeed: 0.5
@@ -1058,8 +1058,8 @@ MonoBehaviour:
   SelectButtonB: 0
   StartButton: 0
   dpadValue: 0
-  baseSaturation: 40
-  baseCoefficient: 40
+  baseSaturation: 30
+  baseCoefficient: 30
   maxSaturation: 100
   maxCoefficient: 100
   speedCoefficient: 1
