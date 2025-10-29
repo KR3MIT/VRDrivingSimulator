@@ -14,6 +14,8 @@ public class DashboardController : MonoBehaviour
     private float maxRotation = -125f;
     [SerializeField]
     private GameObject speedNeedlePivot;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI speedDisplay;
 
     [Header("Blinkers")]
     public GameObject leftBlinkerLight;
@@ -217,6 +219,11 @@ public class DashboardController : MonoBehaviour
         speedNormalized = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
         pivotRotation = Mathf.Lerp(minRotation, maxRotation, speedNormalized);
         speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, pivotRotation);
+
+        if (speedDisplay != null)
+        {
+            speedDisplay.text = Mathf.RoundToInt(speed).ToString();
+        }
     }
 
     public bool CheckLeftBlinkerOn()
