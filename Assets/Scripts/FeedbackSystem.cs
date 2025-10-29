@@ -1,36 +1,56 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FeedbackSystem : MonoBehaviour
+public struct DrivingError
 {
+    public string errorName;
+    public float timestamp;
+    public string description;
+    public ErrorSeverity severity;
 
-    public string errorLogName = "errorLog.txt";
-
-    public TMP_Text feedbackText;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public enum ErrorSeverity
     {
-        string filepath = Path.Combine(Application.persistentDataPath, errorLogName);
-        Debug.Log(Application.persistentDataPath);
-
-        if (File.Exists(filepath))
-        {
-            string feedback = File.ReadAllText(filepath);
-            feedbackText.text = feedback;
-        } else
-        {
-            feedbackText.text = "No error log found.";
-        }
-
+        Extreme,
+        High,
+        Medium,
+        Low,
+        None,
     }
 
-    // Update is called once per frame
-    void Update()
+    public DrivingError(string name = "", float time = 0f, string desc = "", ErrorSeverity sev = ErrorSeverity.None)
     {
-        
+        errorName = name;
+        timestamp = time;
+        description = desc;
+        severity = sev;
+    }
+
+}
+
+public class FeedbackSystem : MonoBehaviour
+{
+    public static FeedbackSystem Instance;
+    private List<DrivingError> drivingErrors = new List<DrivingError>();
+
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void RegisterDrivingError(string name = "", string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
+    {
+        drivingErrors.Add(new DrivingError(name, 0f, desc, sev));
     }
 }

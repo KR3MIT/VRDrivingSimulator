@@ -6,6 +6,7 @@ public class ErrorDetector : MonoBehaviour
 {
     public InstructionManager instructionManager;
     public TutorialTextScriptableObject TutorialText;
+   
 
 
     public void OnTriggerEnter(Collider other)
@@ -15,6 +16,7 @@ public class ErrorDetector : MonoBehaviour
             Debug.Log("Pedestrian hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
+            FeedbackSystem.Instance.RegisterDrivingError();
             //restart game?
         }
         else if (other.CompareTag("SplineCar"))
