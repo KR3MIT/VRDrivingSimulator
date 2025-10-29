@@ -14,13 +14,14 @@ public class ErrorDetector : MonoBehaviour
     private  bool sideMirrorCheck = false;
     private bool shoulderCheck = false;
     public CarMover car;
+    public DashboardController dashboard;
 
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
         {
-            //send error for running red light
+            FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt lys.", "Du kørte over for rødt lys og det må man ikke.", DrivingError.ErrorSeverity.High);
         }
         else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
         {
@@ -40,7 +41,7 @@ public class ErrorDetector : MonoBehaviour
             Debug.Log("Pedestrian hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "You killed someones child, someones loved one, someones parent.", DrivingError.ErrorSeverity.Extreme);
+            FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt INGAME manddrab", "You killed someones child INGAME, someones loved one INGAME, someones parent INGAME.", DrivingError.ErrorSeverity.Extreme);
             //restart game?
         }
         else if (other.CompareTag("SplineCar"))
@@ -51,13 +52,21 @@ public class ErrorDetector : MonoBehaviour
             FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Extreme);
             //restart game?
         }
-        //else if (other.CompareTag("NOTURLANE"))
-        //{
-        //    Debug.Log("Off road");
-        //    instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorRoad);
-        //    instructionManager.allowContinue = true;
-        //    //restart game?
-        //}
+      
+    }
+    public void CheckBlinker()
+    {
+       if(dashboard.CheckLeftBlinkerOn())
+       {
+            return;
+       }
+         else
+         {
+                FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
+         }
+       
+
+
     }
     public void CheckOrientation()
     {
