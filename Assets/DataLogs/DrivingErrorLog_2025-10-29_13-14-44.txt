@@ -1,0 +1,29 @@
+Scenario 1 - Driving Errors:
+
+User: NAME_HERE
+Attempt: ATTEMPT 1
+
+Time Taken: 0.01999999
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
+Ran a red light               12             [HIGH]                   Player ran red at intersection 3
+
