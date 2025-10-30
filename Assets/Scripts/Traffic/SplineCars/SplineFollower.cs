@@ -150,7 +150,18 @@ public class SplineFollower : MonoBehaviour
                 isTooCloseToCarInFront = false;
                 return;
             }
-            float otherCarSpeed = otherCarCol.GetComponent<SplineFollower>().currentSplineSpeed;
+            
+            float otherCarSpeed;
+
+            if (otherCarCol.TryGetComponent<SplineFollower>(out SplineFollower otherCarSplineFollower))
+            {
+               otherCarSpeed = otherCarSplineFollower.currentSplineSpeed;
+            } else
+            {
+               otherCarSpeed = otherCarCol.GetComponent<CarMover>().magnitude * 3.6f;
+            }
+            
+            //float otherCarSpeed = otherCarCol.GetComponent<SplineFollower>().currentSplineSpeed;
             //Debug.Log("Raycast distance: " + raycastDistance);
             //Debug.Log("Distance to other car: " + distanceToOtherCar);
 
@@ -262,7 +273,7 @@ public class SplineFollower : MonoBehaviour
         // Perform a box cast forward from the car's position to detect other cars
         if (Physics.BoxCast(transform.position, transform.localScale, transform.forward, out hit, transform.rotation, raycastDistance))
         {
-            if (hit.collider.CompareTag("SplineCar"))
+            if (hit.collider.CompareTag("SplineCar") || hit.collider.CompareTag("Player"))
             {
                 otherCarCol = hit.collider;
                 isTooCloseToCarInFront = true;
