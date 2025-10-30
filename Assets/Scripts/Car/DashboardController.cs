@@ -211,7 +211,6 @@ public class DashboardController : MonoBehaviour
             rightWheelRotationThresholdExceeded = false;
         }
 
-
     }
     private void AnimateSpeedNeedle()
     {
