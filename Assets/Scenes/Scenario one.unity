@@ -31466,7 +31466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceXRRigLocation
   logitechInput: {fileID: 1527609427}
-  sentetivity: 0.001
+  sensitivity: 0
 --- !u!1 &1885875379
 GameObject:
   m_ObjectHideFlags: 0
@@ -34282,6 +34282,10 @@ PrefabInstance:
     - target: {fileID: 5990498311947959818, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_TagString
       value: BackMirror
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: maxAcceleration
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: speedRTPC.WwiseObjectReference

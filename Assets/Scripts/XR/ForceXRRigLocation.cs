@@ -5,7 +5,7 @@ public class ForceXRRigLocation : MonoBehaviour
     private Vector3 lockPosition;
     [SerializeField] private LogitechInput logitechInput;
     private Vector3 positionOffset;
-    public float sentetivity;
+    public float sensitivity;
 
     private float inputDelay = 0.2f;
     private float lastInputTime;
@@ -33,22 +33,22 @@ public class ForceXRRigLocation : MonoBehaviour
             //up = 1, down = -1, right = 2, left = -2
             if (logitechInput.dpadValue == 1) // Up
             {
-                ZOffset += sentetivity;
+                ZOffset += sensitivity;
                 lastInputTime = Time.time;
             }
             else if (logitechInput.dpadValue == -1) // Down
             {
-                ZOffset -= sentetivity;
+                ZOffset -= sensitivity;
                 lastInputTime = Time.time;
             }
             else if (logitechInput.dpadValue == 2) // Right
             {
-                XOffset += sentetivity;
+                XOffset += sensitivity;
                 lastInputTime = Time.time;
             }
             else if (logitechInput.dpadValue == -2) // Left
             {
-                XOffset -= sentetivity;
+                XOffset -= sensitivity;
                 lastInputTime = Time.time;
             }
             positionOffset = new Vector3(XOffset, 0f, ZOffset);

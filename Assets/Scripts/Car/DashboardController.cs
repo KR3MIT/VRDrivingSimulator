@@ -211,11 +211,11 @@ public class DashboardController : MonoBehaviour
             rightWheelRotationThresholdExceeded = false;
         }
 
-
     }
     private void AnimateSpeedNeedle()
     {
         speed = carMover.magnitude;
+        speed = speed * 3.6f; // convert m/s to km/h
         speedNormalized = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
         pivotRotation = Mathf.Lerp(minRotation, maxRotation, speedNormalized);
         speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, pivotRotation);
