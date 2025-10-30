@@ -53,4 +53,10 @@ public class FeedbackSystem : MonoBehaviour
     {
         drivingErrors.Add(new DrivingError(name, 0f, desc, sev));
     }
+
+    public List<DrivingError> GetDrivingErrors()
+    {
+        return drivingErrors;
+    }
+
 }
