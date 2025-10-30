@@ -15,7 +15,7 @@ public class DataLog : MonoBehaviour
     {
         EnsureInitialized();
         // Remove or replace the sample call below with real error logging from your systems:
-        LogError(new DrivingError("Ran a red light", 12f, "Player ran red at intersection 3", DrivingError.ErrorSeverity.High));
+        //LogError(new DrivingError("Ran a red light", 12f, "Player ran red at intersection 3", DrivingError.ErrorSeverity.High));
     }
 
     // Ensure header and file are created without calling LogError (prevents recursion)
@@ -49,20 +49,29 @@ public class DataLog : MonoBehaviour
     }
 
     // Call this method when an error occurs. It appends the error entry (name, time, severity, description) on a single aligned row.
-    public void LogError(DrivingError error)
+    public void LogAllErrors()
     {
         EnsureInitialized();
 
-        string nameCol = (error.errorName ?? string.Empty).PadRight(30);
-        // format timestamp to a compact numeric string (change format if you prefer a time string)
-        string timeCol = error.timestamp.ToString("0.##").PadRight(15);
-        string sevText = error.severity.ToString().ToUpperInvariant();
-        string sevCol = $"[{sevText}]".PadRight(25);
-        string descCol = error.description ?? string.Empty;
+        if (FeedbackSystem.Instance == null)
+        {
+            Debug.LogWarning("DataLog.LogAllErrors: FeedbackSystem.Instance is null - no errors to log.");
+            File.WriteAllText(_filePath, _sb.ToString());
+            return;
+        }
 
-        // Single-line, aligned entry with the 4 details
-        _sb.AppendLine($"{nameCol}{timeCol}{sevCol}{descCol}");
-        _sb.AppendLine(); // blank line after the entry to match the example
+        var errors = FeedbackSystem.Instance.GetDrivingErrors();
+        foreach (var error in errors)
+        {
+            string nameCol = (error.errorName ?? string.Empty).PadRight(30);
+            string timeCol = error.timestamp.ToString("0.##").PadRight(15);
+            string sevText = error.severity.ToString().ToUpperInvariant();
+            string sevCol = $"[{sevText}]".PadRight(25);
+            string descCol = error.description ?? string.Empty;
+
+            _sb.AppendLine($"{nameCol}{timeCol}{sevCol}{descCol}");
+            _sb.AppendLine(); // blank line after each entry to match previous layout
+        }
 
         File.WriteAllText(_filePath, _sb.ToString());
     }
