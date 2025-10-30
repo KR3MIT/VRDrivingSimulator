@@ -23,7 +23,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-11</Value>
+										<Value>5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -67,13 +67,13 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
+																		<YPos>-17</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Exp2</SegmentShape>
 																	</Point>
 																	<Point>
 																		<XPos>150</XPos>
-																		<YPos>13.06425</YPos>
+																		<YPos>-0</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -100,7 +100,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-24</Value>
+										<Value>5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -189,7 +189,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-10</YPos>
+																		<YPos>-0</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
 																	</Point>
@@ -227,7 +227,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-16</Value>
+										<Value>-12</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -313,7 +313,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-20</YPos>
+																		<YPos>-8</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
 																	</Point>
@@ -351,7 +351,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-11</Value>
+										<Value>-7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -437,7 +437,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-10</YPos>
+																		<YPos>-0</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
 																	</Point>
@@ -471,6 +471,11 @@
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
 										<Value>2400</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -514,13 +519,13 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
+																		<YPos>-14</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Exp2</SegmentShape>
 																	</Point>
 																	<Point>
 																		<XPos>150</XPos>
-																		<YPos>5</YPos>
+																		<YPos>-0</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -552,7 +557,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -596,13 +601,13 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
+																		<YPos>-17</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Exp2</SegmentShape>
 																	</Point>
 																	<Point>
 																		<XPos>150</XPos>
-																		<YPos>30</YPos>
+																		<YPos>0</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -634,7 +639,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>2</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -720,13 +725,13 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
+																		<YPos>5</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
 																	</Point>
 																	<Point>
 																		<XPos>1</XPos>
-																		<YPos>25</YPos>
+																		<YPos>15</YPos>
 																		<Flags>37</Flags>
 																	</Point>
 																</PointList>
@@ -748,7 +753,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-24</Value>
+										<Value>-8</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -838,7 +843,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
+																		<YPos>-10</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
 																	</Point>
