@@ -83,7 +83,7 @@ public class ErrorDetector : MonoBehaviour
     {
        if(dashboard.CheckLeftBlinkerOn())
        {
-
+            Debug.Log("venstre blinker tændt ved check");
             return;
        }
          else

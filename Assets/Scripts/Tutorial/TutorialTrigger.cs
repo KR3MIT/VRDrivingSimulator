@@ -12,23 +12,29 @@ public class TutorialTrigger : MonoBehaviour
     public LogitechInput LogitechInput;
     public TutorialTextScriptableObject tutorialText;
     public List<Transform> spawnPoints;
+    
 
     private void Start()
     {
+        this.enabled = FindFirstObjectByType<TutorialToggler>().startTutorial;
         InstructionManager = FindFirstObjectByType<InstructionManager>();
         LogitechInput = FindFirstObjectByType<LogitechInput>();
+       
     }
     public void OnTriggerEnter(Collider collision)
     {
         //Left Turn Task
         if (collision.gameObject == TutorialColliders[0])
         {
-           // Debug.Log("Hit Tutorial1");
-            InstructionManager.ShowFreezeHint(0, true, tutorialText.LeftTurnTask);
-            StartCoroutine(LeftOrientationCheck());
+            InstructionManager.ShowHint(0, true, tutorialText.LeftTurnTask);
         }
+
         //Left Blinker Task
         if (collision.gameObject == TutorialColliders[1])
+        {
+            StartCoroutine(LeftOrientationCheck());
+        }
+        if (collision.gameObject == TutorialColliders[2])
         {
             //Debug.Log("Hit Tutorial2");
             InstructionManager.ShowFreezeHint(0, true, tutorialText.LeftBlinkerTask);

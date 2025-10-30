@@ -21,7 +21,7 @@ public class InstructionManager : MonoBehaviour
         continueTime = input.actions["Continue"];
         continueTime.Enable();
         hintTexts = GetComponentsInChildren<TextMeshProUGUI>(true);
-        HideHints();
+        //HideHints();
         //ShowFreezeHint(0, true, "1");
         //ShowHint(1, true, "2");
     }
