@@ -113,8 +113,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void QuitButton()
     {
-        //TEST
-        FindFirstObjectByType<DataLog>().LogError(new DrivingError("Ran a red light", 12f, "Player ran red at intersection 3", DrivingError.ErrorSeverity.High));
+        FeedbackSystem.Instance.RegisterDrivingError("Ran a red light", "Player ran red at intersection 3", DrivingError.ErrorSeverity.High);
+        FindFirstObjectByType<DataLog>().LogAllErrors();
         Application.Quit();
     }
 
