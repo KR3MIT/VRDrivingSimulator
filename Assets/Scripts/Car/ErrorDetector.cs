@@ -24,6 +24,7 @@ public class ErrorDetector : MonoBehaviour
     public bool laneDelay;
     public float laneThreshold = 2.5f;
     public float laneDelayHz = 2f;
+    public bool speedErrorDelay = false;
 
 
     private void Start()
@@ -148,13 +149,19 @@ public class ErrorDetector : MonoBehaviour
             CheckOrientation();
             CheckBlinker();
         }
-        if (car.magnitude > 55f)
+        if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
         {
-            FeedbackSystem.Instance.RegisterDrivingError("Speeding.", "Watch your speed.", DrivingError.ErrorSeverity.Low);
-            Debug.Log("Speeding Error registered");
+            StartCoroutine(SpeedError());
         }
-        
 
+    }
+    IEnumerator SpeedError()
+    {
+        speedErrorDelay = true;
+        FeedbackSystem.Instance.RegisterDrivingError("Speed warning", "Too much speed.", DrivingError.ErrorSeverity.Medium);
+        Debug.Log("Speed Error registered");
+        yield return new WaitForSeconds(1f);
+        speedErrorDelay = false;
     }
     IEnumerator LaneError()
     {
