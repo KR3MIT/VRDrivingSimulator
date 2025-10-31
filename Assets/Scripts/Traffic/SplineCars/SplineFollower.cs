@@ -138,7 +138,7 @@ public class SplineFollower : MonoBehaviour
         float prevSpeed = currentSplineSpeed;
         if (isPedestrianInFront)
         {
-            Debug.Log("Pedestrian detected in front at distance: " + distanceToPedestrian);
+            //Debug.Log("Pedestrian detected in front at distance: " + distanceToPedestrian);
             float tPed = Mathf.Clamp01((distanceToPedestrian - 5) / viewRadius);
             currentSplineSpeed = Mathf.Lerp(0.001f, currentSplineInfo.TraversalSpeed, tPed);
         }

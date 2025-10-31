@@ -70,6 +70,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="BlinkerOn" ID="{1876A138-9454-4045-9717-A081E89105C1}">
+					<ChildrenList>
+						<Action Name="" ID="{EB2BC160-3A64-4F36-A53F-645C58231FAA}" ShortID="920349547">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BlinkerOn" ID="{69E2449E-C087-4CBC-9312-3864EF39E7EE}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="BlinkerOff" ID="{E4887F3D-B049-466B-A2FB-DE59A375765D}">
+					<ChildrenList>
+						<Action Name="" ID="{31B28B7E-D818-4C6D-8D01-1B7C22B3F1CE}" ShortID="66946657">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BlinkerOff" ID="{3E2CC09E-E556-40C8-89FC-7ECFEB607F25}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

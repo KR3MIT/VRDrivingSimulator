@@ -140,7 +140,7 @@ public class WaypointNavigation : MonoBehaviour
         {
             if (hit.collider.CompareTag("SplineCar"))
             {
-                Debug.Log("Car blocking crossing");
+                //Debug.Log("Car blocking crossing");
                 isCarBlockingCrossing = true;
             }
             else

@@ -1,4 +1,5 @@
 using UnityEngine;
+using AK.Wwise;
 
 public class DashboardController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class DashboardController : MonoBehaviour
     [Header("Blinkers")]
     public GameObject leftBlinkerLight;
     public GameObject rightBlinkerLight;
+    public AK.Wwise.Event blinkerOnSoundEvent;
+    public AK.Wwise.Event blinkerOffSoundEvent;
     [SerializeField]
     private float blinkerFlashRate = 0.5f;
     private float blinkerTimer = 0f;
@@ -77,6 +80,29 @@ public class DashboardController : MonoBehaviour
             {
                 blinkerTimer -= blinkerFlashRate;
                 blinkerState = !blinkerState;
+
+                if (rightBlinkerOn)
+                {
+                    rightBlinkerLight.SetActive(blinkerState);
+                    blinkerOnSoundEvent.Post(gameObject);
+                }
+                else
+                {
+                    rightBlinkerLight.SetActive(false);
+                    blinkerOffSoundEvent.Post(gameObject);
+                }
+
+                if (leftBlinkerOn)
+                {
+                    leftBlinkerLight.SetActive(blinkerState);
+                    blinkerOnSoundEvent.Post(gameObject);
+                }
+                else
+                {
+                    leftBlinkerLight.SetActive(false);
+                    blinkerOffSoundEvent.Post(gameObject);
+                }
+
             }
         }
         else
@@ -85,23 +111,7 @@ public class DashboardController : MonoBehaviour
             blinkerTimer = 0f;
         }
 
-        if (rightBlinkerOn)
-        {
-            rightBlinkerLight.SetActive(blinkerState);
-        }
-        else
-        {
-            rightBlinkerLight.SetActive(false);
-        }
-
-        if (leftBlinkerOn)
-        {
-            leftBlinkerLight.SetActive(blinkerState);
-        }
-        else
-        {
-            leftBlinkerLight.SetActive(false);
-        }
+       
     }
 
     private void CheckBlinkerChanges ()
