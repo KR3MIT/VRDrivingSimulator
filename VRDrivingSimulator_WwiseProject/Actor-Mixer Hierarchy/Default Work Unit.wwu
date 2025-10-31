@@ -1268,41 +1268,6 @@
 								<ActiveSource Name="car-blinker-99033" ID="{3E141F03-1E2C-44B5-BFB9-052280E65E73}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="BlinkerOn_01" ID="{36F43637-36F5-4039-B58C-11CE3EDE9A2C}" ShortID="315300363">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>12</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="car-blinker-99033" ID="{6C7F46F6-B55B-4BA8-BAD3-D105850C475A}">
-									<PropertyList>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.0301357469947088"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="0.00602714939894189"/>
-										<Property Name="TrimEnd" Type="Real64" Value="5.31594570120212"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>car-blinker-99033.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="821921771"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="car-blinker-99033" ID="{6C7F46F6-B55B-4BA8-BAD3-D105850C475A}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
