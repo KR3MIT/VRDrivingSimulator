@@ -6,36 +6,28 @@ public class DashboardController : MonoBehaviour
     
     private LogitechInput logitechInput;
     private CarMover carMover;
+
     [Header("Speedometer")]
-    [SerializeField]
-    private float speed = 0f;
-    [SerializeField]
-    private float minRotation = 140f;
-    [SerializeField]
-    private float maxRotation = -125f;
-    [SerializeField]
-    private GameObject speedNeedlePivot;
-    [SerializeField]
-    private TMPro.TextMeshProUGUI speedDisplay;
+    [SerializeField] private float speed = 0f;
+    [SerializeField] private float minRotation = 140f;
+    [SerializeField] private float maxRotation = -125f;
+    [SerializeField] private GameObject speedNeedlePivot;
+    [SerializeField] private TMPro.TextMeshProUGUI speedDisplay;
 
     [Header("Blinkers")]
     public GameObject leftBlinkerLight;
     public GameObject rightBlinkerLight;
     public AK.Wwise.Event blinkerOnSoundEvent;
     public AK.Wwise.Event blinkerOffSoundEvent;
-    [SerializeField]
-    private float blinkerFlashRate = 0.5f;
-    private float blinkerTimer = 0f;
-    [SerializeField]
-    private bool blinkerState = false;
-    public float wheelRotationThreshold;
-    [SerializeField]
-    private float wheelRotation;
+    [SerializeField] private float blinkerFlashRate = 0.5f;
+    [SerializeField] private bool blinkerState = false;
+    [SerializeField] private float wheelRotationThreshold;
 
-    //blinker bools
+    // useful private variables for blinker logic
+    private float blinkerTimer = 0f;
     private bool leftBlinkerOn = false;
     private bool rightBlinkerOn = false;
-    private bool anyBlinkerOn = false;
+    // private bool anyBlinkerOn = false;
     private bool prevLeftBlinker = false;
     private bool prevRightBlinker = false;
     private bool rightWheelRotationThresholdExceeded = false;
@@ -43,8 +35,6 @@ public class DashboardController : MonoBehaviour
 
     // Animation of speed needle
     const float maxSpeed = 220f;
-    float speedNormalized = 0f;
-    float pivotRotation;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,10 +42,13 @@ public class DashboardController : MonoBehaviour
     {
         logitechInput = GetComponent<LogitechInput>();
         carMover = GetComponent<CarMover>();
-        speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, minRotation);
-        leftBlinkerLight.SetActive(false);
-        rightBlinkerLight.SetActive(false);
+
+        SetBlinkerLights(false, false);
         wheelRotationThreshold = Mathf.Abs(wheelRotationThreshold);
+
+        if(speedNeedlePivot != null)
+            speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, minRotation);
+       
     }
 
     // Update is called once per frame
@@ -63,14 +56,138 @@ public class DashboardController : MonoBehaviour
     {
         AnimateSpeedNeedle();
         CheckBlinkerChanges();
-        CheckWheelRotationCancelBlinkers();
-        BlinkerControl();
+        UpdateBlinkerFlashing();
+        HandleWheelAutoCancel();
     }
 
+    #region Speedometer
+    private void AnimateSpeedNeedle()
+    {
+        if(carMover == null) return;
+
+        speed = carMover.magnitude * 3.6f; // convert m/s to km/h
+        float speedNormalized = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
+        float pivotRotation = Mathf.Lerp(minRotation, maxRotation, speedNormalized);
+        
+        if (speedNeedlePivot != null)
+            speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, pivotRotation);
+        else 
+        Debug.LogWarning($"{nameof(DashboardController)}: Speed needle pivot is not assigned.");
+
+        if (speedDisplay != null) speedDisplay.text = Mathf.RoundToInt(speed).ToString();
+    }
+    #endregion
+
+    #region Blinkers
+    private void CheckBlinkerChanges ()
+    {
+        
+            if (logitechInput == null) return;
+
+            bool curLeft = logitechInput.leftBlinker;
+            bool curRight = logitechInput.rightBlinker;
+
+            if (curLeft && !prevLeftBlinker) ToggleBlinker(ref leftBlinkerOn, ref rightBlinkerOn);
+            if (curRight && !prevRightBlinker) ToggleBlinker(ref rightBlinkerOn, ref leftBlinkerOn);
+
+            prevLeftBlinker = curLeft;
+            prevRightBlinker = curRight;
+    }
+
+    private  void UpdateBlinkerFlashing()
+    {
+        if (!(leftBlinkerOn || rightBlinkerOn))
+        {
+            blinkerState = false;
+            blinkerTimer = 0f;
+            return;
+        }
+
+        blinkerTimer += Time.deltaTime;
+        if (blinkerTimer < blinkerFlashRate) return;
+
+        blinkerTimer -= blinkerFlashRate;
+        blinkerState = !blinkerState;
+
+        SetBlinkerLights(leftBlinkerOn && blinkerState, rightBlinkerOn && blinkerState);
+
+        var soundEvent = blinkerState ? blinkerOnSoundEvent : blinkerOffSoundEvent;
+        soundEvent.Post(gameObject);
+    }
+
+    private void ToggleBlinker(ref bool targetBlinker, ref bool oppositeBlinker)
+    {
+        targetBlinker = !targetBlinker;
+        oppositeBlinker = false;
+        blinkerState = targetBlinker;
+        blinkerTimer = 0f;
+
+        if (!targetBlinker)
+            SetBlinkerLights(false, false);
+    }
+
+    private void HandleWheelAutoCancel()
+    {
+        float rotation = carMover.wheelRotation;
+
+        HandleBlinkerAutoCancel(ref leftBlinkerOn, ref leftWheelRotationThresholdExceeded, rotation, true);
+        HandleBlinkerAutoCancel(ref rightBlinkerOn, ref rightWheelRotationThresholdExceeded, rotation, false);
+    }
+
+    /// <summary>
+    /// Handles automatic cancellation of a blinker after a wheel turn.
+    /// </summary>
+    /// <param name="blinkerOn">Reference to the blinker state (left or right)</param>
+    /// <param name="thresholdExceeded">Reference to the threshold memory for this blinker</param>
+    /// <param name="rotation">Current wheel rotation</param>
+    /// <param name="isLeft">True if left blinker, false if right</param>
+    private void HandleBlinkerAutoCancel(ref bool blinkerOn, ref bool thresholdExceeded, float rotation, bool isLeft)
+    {
+        if (blinkerOn)
+        {
+            // Mark threshold as exceeded when turning past it
+            if (!thresholdExceeded && ((isLeft && rotation < -wheelRotationThreshold) || (!isLeft && rotation > wheelRotationThreshold)))
+            {
+                thresholdExceeded = true;
+            }
+
+            // Cancel blinker when wheel returns past threshold
+            if (thresholdExceeded && ((isLeft && rotation >= -wheelRotationThreshold) || (!isLeft && rotation <= wheelRotationThreshold)))
+            {
+                blinkerOn = false;
+                thresholdExceeded = false;
+
+                // Turn off blinkers visually if none are active
+                if (!leftBlinkerOn && !rightBlinkerOn)
+                {
+                    blinkerState = false;
+                    blinkerTimer = 0f;
+                    SetBlinkerLights(false, false);
+                }
+            }
+        }
+        else
+        {
+            thresholdExceeded = false;
+        }
+    }
+
+    private void SetBlinkerLights(bool leftOn, bool rightOn)
+    {
+        if (leftBlinkerLight != null) leftBlinkerLight.SetActive(leftOn);
+        if (rightBlinkerLight != null) rightBlinkerLight.SetActive(rightOn);
+    }
+
+    public bool CheckLeftBlinkerOn() => leftBlinkerOn;
+    public bool CheckRightBlinkerOn() => rightBlinkerOn;
+    #endregion
+
+#region Deprecated, possibly useful code
+#if false
     private void BlinkerControl()
     {
         if (logitechInput == null) return;
-  
+
         anyBlinkerOn = leftBlinkerOn || rightBlinkerOn;
 
         if (anyBlinkerOn)
@@ -111,27 +228,7 @@ public class DashboardController : MonoBehaviour
             blinkerTimer = 0f;
         }
 
-       
     }
-
-    private void CheckBlinkerChanges ()
-    {
-        bool currentLeftBlinker = logitechInput.leftBlinker;
-        bool currentRightBlinker = logitechInput.rightBlinker;
-
-        if (currentLeftBlinker && !prevLeftBlinker)
-        {
-            ToggleLeftBlinker();
-        }
-
-        if (currentRightBlinker && !prevRightBlinker)
-        {
-            ToggleRightBlinker();
-        }
-        prevLeftBlinker = currentLeftBlinker;
-        prevRightBlinker = currentRightBlinker;
-    }
-
     public void ToggleRightBlinker()
     {
         rightBlinkerOn = !rightBlinkerOn;
@@ -149,7 +246,6 @@ public class DashboardController : MonoBehaviour
             if (rightBlinkerLight != null) rightBlinkerLight.SetActive(false);
         }
     }
-
     private void ToggleLeftBlinker()
     {
         leftBlinkerOn = !leftBlinkerOn;
@@ -168,7 +264,6 @@ public class DashboardController : MonoBehaviour
             if (rightBlinkerLight != null) rightBlinkerLight.SetActive(false);
         }
     }
-
     private void CheckWheelRotationCancelBlinkers()
     {
         wheelRotation = carMover.wheelRotation;
@@ -222,28 +317,7 @@ public class DashboardController : MonoBehaviour
         }
 
     }
-    private void AnimateSpeedNeedle()
-    {
-        speed = carMover.magnitude;
-        speed = speed * 3.6f; // convert m/s to km/h
-        speedNormalized = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
-        pivotRotation = Mathf.Lerp(minRotation, maxRotation, speedNormalized);
-        speedNeedlePivot.transform.localRotation = Quaternion.Euler(0, 0, pivotRotation);
-
-        if (speedDisplay != null)
-        {
-            speedDisplay.text = Mathf.RoundToInt(speed).ToString();
-        }
-    }
-
-    public bool CheckLeftBlinkerOn()
-    {
-        return leftBlinkerOn;
-    }
-
-    public bool CheckRightBlinkerOn()
-    {
-        return rightBlinkerOn;
-    }
+#endif
+#endregion
 
 }
