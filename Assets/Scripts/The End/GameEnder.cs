@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameEnder : MonoBehaviour
 {
     public static GameEnder Instance;
-
+    private Canvas gameEndCanvas;
     public enum GameEndCondition
     {
         None,
@@ -15,13 +15,13 @@ public class GameEnder : MonoBehaviour
 
     public GameEndCondition endCondition = GameEndCondition.None;
     public bool gameEnded = false;
-
     public GameObject errorUIPrefab;
     public GameObject errorContainer;
 
 
     private void Start()
     {
+        gameEndCanvas = GetComponent<Canvas>();
         if(Instance == null)
         {
             Instance = this;
@@ -31,14 +31,16 @@ public class GameEnder : MonoBehaviour
             Destroy(this);
         }
 
-        CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.Medium));
-        CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.Extreme));
-        CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.High));
+        //CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.Medium));
+        //CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.Extreme));
+        //CreateErrorCard(new DrivingError("Sample Error", 0f, "This is a sample error description.", DrivingError.ErrorSeverity.High));
     }
     public void EndGame(GameEndCondition condition)
     {
+
         if (gameEnded) return;
         gameEnded = true;
+        gameEndCanvas.enabled = true;
         switch (condition)
         {
             case GameEndCondition.FinishZone:
