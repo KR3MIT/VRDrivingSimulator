@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private InstructionManager ins;
     [SerializeField] private LogitechInput input;
+    [SerializeField] private CarMover car;
 
     [SerializeField] private UnityEvent onGameStart;
     [SerializeField] private UnityEvent onGamePlaying;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("InstructionManager reference is missing in GameManager.");
             return;
         }
-        else if (input)
+        else if (input == null)
         {
             Debug.LogError("LogitechInput reference is missing in GameManager.");
             return;
@@ -70,16 +71,18 @@ public class GameManager : MonoBehaviour
 
     void StartState()
     {
-        ins.SmoothStop();
+        car.transmissionState = CarMover.TransmissionType.Park;
+        Debug.Log("Game " + car.transmissionState);
         onGameStart?.Invoke();
         StartCoroutine(SpeederCheck());
+        ins.StartCoroutine(ins.SmoothResume());
     }
 
     private IEnumerator SpeederCheck()
     {
         while (true)
         {
-            if (input.speederValue > 10000)
+            if (input.speederValue < 0)
             {
                 SetState(State.playing);
                 yield break;
@@ -90,19 +93,20 @@ public class GameManager : MonoBehaviour
 
     void PlayState()
     {
-        ins.SmoothResume();
+        car.transmissionState = CarMover.TransmissionType.Drive;
+        Debug.Log("Game2 " + car.transmissionState);
         onGamePlaying?.Invoke();
     }
 
     void PausedState()
     {
-        ins.SmoothStop();
+        ins.StartCoroutine(ins.SmoothStop());
         onGamePaused?.Invoke();
     }
 
     void EndState()
     {
-        ins.SmoothStop();
+        ins.StartCoroutine(ins.SmoothStop());
         onGameEnd?.Invoke();
     }
 

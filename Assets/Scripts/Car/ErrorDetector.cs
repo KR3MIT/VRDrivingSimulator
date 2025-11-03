@@ -92,7 +92,7 @@ public class ErrorDetector : MonoBehaviour
             FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
        }
     }
-    public void CheckOrientation()
+    public IEnumerator CheckOrientation()
     {
         while (!backMirrorCheck)
         {
@@ -104,6 +104,7 @@ public class ErrorDetector : MonoBehaviour
                     Debug.Log("Back mirror checked");
                 }
             }
+            yield return null;
         }
         while(!sideMirrorCheck)
         {
@@ -115,6 +116,7 @@ public class ErrorDetector : MonoBehaviour
                     Debug.Log("Side mirror checked");
                 }
             }
+            yield return null;
         }
         while(!shoulderCheck)
         {
@@ -126,6 +128,7 @@ public class ErrorDetector : MonoBehaviour
                     Debug.Log("Shoulder checked");
                 }
             }
+            yield return null;
         }
         //all checks done, set next check methods bool true
     }

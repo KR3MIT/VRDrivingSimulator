@@ -34,22 +34,22 @@ public class ForceXRRigLocation : MonoBehaviour
             if (logitechInput.dpadValue == 1) // Up
             {
                 ZOffset += sensitivity;
-                lastInputTime = Time.time;
+                lastInputTime = Time.deltaTime;
             }
             else if (logitechInput.dpadValue == -1) // Down
             {
                 ZOffset -= sensitivity;
-                lastInputTime = Time.time;
+                lastInputTime = Time.deltaTime;
             }
             else if (logitechInput.dpadValue == 2) // Right
             {
                 XOffset += sensitivity;
-                lastInputTime = Time.time;
+                lastInputTime = Time.deltaTime;
             }
             else if (logitechInput.dpadValue == -2) // Left
             {
                 XOffset -= sensitivity;
-                lastInputTime = Time.time;
+                lastInputTime = Time.deltaTime;
             }
             positionOffset = new Vector3(XOffset, 0f, ZOffset);
         }

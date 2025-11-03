@@ -345,7 +345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Make a left turn on the upcomming intersection
+  m_text: "Make a left turn on the upcoming intersection. \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -994,9 +994,10 @@ GameObject:
   - component: {fileID: 255834527655580283}
   - component: {fileID: 5525631989454046126}
   - component: {fileID: 6221890105179843503}
+  - component: {fileID: 9124112890545606059}
   m_Layer: 0
   m_Name: rear mirror
-  m_TagString: Untagged
+  m_TagString: BackMirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1073,6 +1074,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9124112890545606059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137668555245788905}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0027662143, y: 0.00012067248, z: 0.0007881522}
+  m_Center: {x: 5.1875912e-12, y: 0.000087152606, z: -0.00002124396}
 --- !u!1 &3346315548363364692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450e45c38e922304f94641f1494790a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMover
-  useWheelInput: 0
+  useWheelInput: 1
   transmissionState: 3
   useGears: 1
   gears:
@@ -1381,7 +1403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3346315548363364692}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e23e82f24d76ac42af4cc866215d022, type: 3}
   m_Name: 
@@ -1616,9 +1638,10 @@ GameObject:
   - component: {fileID: 8072937308292315866}
   - component: {fileID: 7153750184430894078}
   - component: {fileID: 5508109509636758292}
+  - component: {fileID: 2702672791087888725}
   m_Layer: 0
   m_Name: left side mirror
-  m_TagString: Untagged
+  m_TagString: SideMirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1695,6 +1718,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2702672791087888725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026150425750229910}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.001603192, y: 0.0012276237, z: 0.00028558873}
+  m_Center: {x: -0.00070566655, y: 0.000022826103, z: -0.000048671}
 --- !u!1 &4148161517650047232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,63 +1974,9 @@ Transform:
   - {fileID: 4548424828535050290}
   - {fileID: 4793955986366258973}
   - {fileID: 7483312015137315918}
-  - {fileID: 2531964756261606347}
   - {fileID: 2528249076321805494}
   m_Father: {fileID: 7313995181795280918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5849502647931457001
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2531964756261606347}
-  - component: {fileID: 6162390710417620207}
-  m_Layer: 0
-  m_Name: ShoulderCheckBox
-  m_TagString: Shoulder
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2531964756261606347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849502647931457001}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5763915, z: -0, w: 0.8171737}
-  m_LocalPosition: {x: -1.08, y: 0.532, z: -0.222}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6050692017375751401}
-  m_LocalEulerAnglesHint: {x: 0, y: 70.394, z: 0}
---- !u!65 &6162390710417620207
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849502647931457001}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.5, z: 0.07}
-  m_Center: {x: 0, y: 0.093863904, z: 0}
 --- !u!1 &5973169600669934681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,9 +2077,10 @@ GameObject:
   - component: {fileID: 8783740060853850060}
   - component: {fileID: 3349763804234539885}
   - component: {fileID: 7573651626894448455}
+  - component: {fileID: 4086700234172617959}
   m_Layer: 0
   m_Name: right side mirror
-  m_TagString: Untagged
+  m_TagString: SideMirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2166,6 +2157,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4086700234172617959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178566705584580676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016031915, y: 0.0012276237, z: 0.0002855889}
+  m_Center: {x: -0.0007057707, y: 0.000022855907, z: -0.000049028713}
 --- !u!1 &7345952432770082549
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,12 +3359,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5452213015348593100, guid: 2efab454686aebd499111fd03243e476, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8903082286540581533}
-    - targetCorrespondingSourceObject: {fileID: 5452213015348593100, guid: 2efab454686aebd499111fd03243e476, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1692938433113803103}
-    - targetCorrespondingSourceObject: {fileID: 5452213015348593100, guid: 2efab454686aebd499111fd03243e476, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3738771933816569736}
   m_SourcePrefab: {fileID: 100100000, guid: 2efab454686aebd499111fd03243e476, type: 3}
 --- !u!4 &4715099728024231648 stripped
 Transform:
@@ -3382,35 +3388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceXRRigLocation
   logitechInput: {fileID: 5161168440370940348}
-  sensitivity: 0
---- !u!114 &1692938433113803103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6248745215726705566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803bf483a7571d149b1542164425edf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ForceXRRigLocation
-  logitechInput: {fileID: 5161168440370940348}
-  sensitivity: 0
---- !u!114 &3738771933816569736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6248745215726705566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803bf483a7571d149b1542164425edf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ForceXRRigLocation
-  logitechInput: {fileID: 5161168440370940348}
-  sensitivity: 0
+  sensitivity: 0.005
 --- !u!1001 &2209136019307389978
 PrefabInstance:
   m_ObjectHideFlags: 0

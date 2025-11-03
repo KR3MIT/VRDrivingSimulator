@@ -5256,6 +5256,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
+      propertyPath: car
+      value: 
+      objectReference: {fileID: 2047864262}
+    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
       propertyPath: ins
       value: 
       objectReference: {fileID: 2047864254}
@@ -5263,18 +5267,6 @@ PrefabInstance:
       propertyPath: input
       value: 
       objectReference: {fileID: 2047864255}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
       propertyPath: onGameStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5299,58 +5291,6 @@ PrefabInstance:
       propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 2023043541}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGameStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_material
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGameStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_material
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_material
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_material
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512442158738751380, guid: d9f8332b8a839b445a608587f652f949, type: 3}
-      propertyPath: onGamePlaying.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40638,6 +40578,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: lightManager
       value: 
       objectReference: {fileID: 690044864}
@@ -40645,6 +40589,10 @@ PrefabInstance:
       propertyPath: waypointContainer
       value: 
       objectReference: {fileID: 560316588}
+    - target: {fileID: 2320627808006824114, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2320627808006824114, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: TutorialColliders.Array.size
       value: 3
@@ -40731,7 +40679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: useWheelInput
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6178566705584580676, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_TagString
@@ -40817,7 +40765,17 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8656923218372371209, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_text
+      value: "Make a left turn on the upcoming intersection. \n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903082286540581533, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: sensitivity
+      value: 0.005
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3738771933816569736, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+    - {fileID: 1692938433113803103, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5849502647931457001, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
     m_AddedGameObjects: []
@@ -41465,6 +41423,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f40d7a15e91d6a49b85c3e97685ab0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogitechInput
+--- !u!114 &2047864262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+  m_PrefabInstance: {fileID: 2023043540}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450e45c38e922304f94641f1494790a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarMover
 --- !u!1001 &2048717122
 PrefabInstance:
   m_ObjectHideFlags: 0
