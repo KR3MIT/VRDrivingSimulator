@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
-using Unity.Tutorials.Core.Editor;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InstructionManager : MonoBehaviour
@@ -74,7 +71,7 @@ public class InstructionManager : MonoBehaviour
             textobj.gameObject.SetActive(false);
         }
     }
-    private IEnumerator SmoothResume()
+    public IEnumerator SmoothResume()
     {
 
         Debug.Log("Resuming game");
@@ -89,7 +86,7 @@ public class InstructionManager : MonoBehaviour
         allowContinue = false;
 
     }
-    private IEnumerator SmoothStop()
+    public IEnumerator SmoothStop()
     {
 
         Debug.Log("Freezing game");
@@ -102,9 +99,7 @@ public class InstructionManager : MonoBehaviour
 
         Time.timeScale = 0;
        // allowContinue = true;
-
     }
-
 }
 
 

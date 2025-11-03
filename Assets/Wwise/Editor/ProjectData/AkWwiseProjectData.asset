@@ -94,8 +94,42 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584398776207743273
+    m_lastTime: -8584394468159481400
     List:
+    - name: BlinkerOff
+      guid: 3d7f88e449b06b46a2fbde59a375765d
+      id: 410377967
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dc514cccb904f143bb241ebea09b7ff3
+      - ElementName: BlinkerOff
+        ObjectType: 3
+        guid: 3d7f88e449b06b46a2fbde59a375765d
+      Path: Events\Default Work Unit\BlinkerOff
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: BlinkerOn
+      guid: 38a17618549445409717a081e89105c1
+      id: 385229051
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dc514cccb904f143bb241ebea09b7ff3
+      - ElementName: BlinkerOn
+        ObjectType: 3
+        guid: 38a17618549445409717a081e89105c1
+      Path: Events\Default Work Unit\BlinkerOn
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PlayerCarStart
       guid: 4525175af26ce040a246d4b5de31114e
       id: 3559953332

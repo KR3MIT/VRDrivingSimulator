@@ -15,6 +15,7 @@ public class LogitechInput : MonoBehaviour
     public bool SelectButtonA;
     public bool SelectButtonB;
     public bool StartButton;
+    public bool RSB;
 
     public int dpadValue; // center = -1, up = 0, right = 2, down = 3, left = 4
 
@@ -75,6 +76,11 @@ public class LogitechInput : MonoBehaviour
             }
             else { StartButton = false; }
 
+            if (rec.rgbButtons[8] == 128)
+            {
+                RSB = true;
+            }
+            else { RSB = false; }
 
 
             switch (rec.rgdwPOV[0])
