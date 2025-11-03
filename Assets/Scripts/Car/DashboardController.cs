@@ -122,6 +122,20 @@ public class DashboardController : MonoBehaviour
         blinkerState = targetBlinker;
         blinkerTimer = 0f;
 
+        // clear wheel auto-cancel memory so a previous turn doesn't immediately cancel the newly toggled blinker
+        leftWheelRotationThresholdExceeded = false;
+        rightWheelRotationThresholdExceeded = false;
+
+        // update visuals immediately
+        SetBlinkerLights(leftBlinkerOn && blinkerState, rightBlinkerOn && blinkerState);
+
+        // play immediate on/off sound
+        if (targetBlinker)
+            blinkerOnSoundEvent?.Post(gameObject);
+        else
+            blinkerOffSoundEvent?.Post(gameObject);
+
+
         if (!targetBlinker)
             SetBlinkerLights(false, false);
     }
