@@ -41,6 +41,10 @@ public class GameEnder : MonoBehaviour
         if (gameEnded) return;
         gameEnded = true;
         gameEndCanvas.enabled = true;
+        foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
+        {
+            CreateErrorCard(error);
+        }
         switch (condition)
         {
             case GameEndCondition.FinishZone:
