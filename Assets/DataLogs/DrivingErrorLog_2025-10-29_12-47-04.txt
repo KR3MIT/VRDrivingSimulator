@@ -1,9 +1,0 @@
-Scenario 1 - Driving Errors:
-
-User: NAME_HERE
-Attempt: ATTEMPT 1
-
-Time Taken: ___
-
-ERROR_NAME			ERROR_CHECK		SEVERITY_LEVEL
-

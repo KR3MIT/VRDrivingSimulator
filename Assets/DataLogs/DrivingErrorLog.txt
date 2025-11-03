@@ -1,4 +1,0 @@
-Error Name: Speeding
-Timestamp: 12.5
-Description: Exceeded speed limit by 15 mph
-Severity: High

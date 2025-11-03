@@ -1,4 +1,5 @@
 using Logitech;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class MainMenuUI : MonoBehaviour
     public Button[] startButtons;
     public Button[] controlsButtons;
 
+    public TMP_InputField playerNameInput;
 
     private Button[] currentButtons;
     private int selectedButtonIndex = 0;
@@ -30,6 +32,13 @@ public class MainMenuUI : MonoBehaviour
         selectedButtonIndex = 0;
         SelectButton(selectedButtonIndex);
 
+        // Load previously saved player name into the input field (if any)
+        if (playerNameInput != null)
+        {
+            playerNameInput.text = PlayerPrefs.GetString("PlayerName", string.Empty);
+            // Optionally subscribe to value change events in code:
+            playerNameInput.onEndEdit.AddListener(OnPlayerNameChanged);
+        }
     }
 
     void Update()
@@ -80,7 +89,11 @@ public class MainMenuUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(currentButtons[index].gameObject);
     }
 
-
+    public void OnPlayerNameChanged(string newName)
+    {
+        PlayerPrefs.SetString("PlayerName", newName ?? string.Empty);
+        PlayerPrefs.Save();
+    }
     public void StartButton()
     {
         mainMenu.SetActive(false);
@@ -113,8 +126,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void QuitButton()
     {
-        FeedbackSystem.Instance.RegisterDrivingError("Ran a red light", "Player ran red at intersection 3", DrivingError.ErrorSeverity.High);
-        FindFirstObjectByType<DataLog>().LogAllErrors();
+        //FeedbackSystem.Instance.RegisterDrivingError("Ran a red light", "Player ran red at intersection 3", DrivingError.ErrorSeverity.High);
+       FindFirstObjectByType<DataLog>().EnsureInitialized();
         Application.Quit();
     }
 

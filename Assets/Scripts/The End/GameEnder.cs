@@ -37,7 +37,7 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
-
+        FindFirstObjectByType<DataLog>().LogAllErrors();
         if (gameEnded) return;
         gameEnded = true;
         gameEndCanvas.enabled = true;
