@@ -995,6 +995,7 @@ GameObject:
   - component: {fileID: 5525631989454046126}
   - component: {fileID: 6221890105179843503}
   - component: {fileID: 9124112890545606059}
+  - component: {fileID: 6482813968474090616}
   m_Layer: 0
   m_Name: rear mirror
   m_TagString: BackMirror
@@ -1075,6 +1076,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &9124112890545606059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137668555245788905}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0027662143, y: 0.00012067248, z: 0.0007881522}
+  m_Center: {x: 5.1875912e-12, y: 0.000087152606, z: -0.00002124396}
+--- !u!65 &6482813968474090616
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1639,6 +1661,7 @@ GameObject:
   - component: {fileID: 7153750184430894078}
   - component: {fileID: 5508109509636758292}
   - component: {fileID: 2702672791087888725}
+  - component: {fileID: 2742385823903930767}
   m_Layer: 0
   m_Name: left side mirror
   m_TagString: SideMirror
@@ -1719,6 +1742,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2702672791087888725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026150425750229910}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.001603192, y: 0.0012276237, z: 0.00028558873}
+  m_Center: {x: -0.00070566655, y: 0.000022826103, z: -0.000048671}
+--- !u!65 &2742385823903930767
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2078,6 +2122,7 @@ GameObject:
   - component: {fileID: 3349763804234539885}
   - component: {fileID: 7573651626894448455}
   - component: {fileID: 4086700234172617959}
+  - component: {fileID: 2792827754783325053}
   m_Layer: 0
   m_Name: right side mirror
   m_TagString: SideMirror
@@ -2158,6 +2203,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4086700234172617959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178566705584580676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016031915, y: 0.0012276237, z: 0.0002855889}
+  m_Center: {x: -0.0007057707, y: 0.000022855907, z: -0.000049028713}
+--- !u!65 &2792827754783325053
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3405,6 +3471,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 930718908747076560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
+      propertyPath: m_TagString
+      value: SideMirror
+      objectReference: {fileID: 0}
     - target: {fileID: 2429460866294379560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.30000004
@@ -3660,6 +3730,10 @@ PrefabInstance:
     - target: {fileID: 930718908747076560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930718908747076560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
+      propertyPath: m_TagString
+      value: SideMirror
       objectReference: {fileID: 0}
     - target: {fileID: 2429460866294379560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
       propertyPath: m_LocalScale.x
@@ -3971,6 +4045,10 @@ PrefabInstance:
     - target: {fileID: 930718908747076560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930718908747076560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
+      propertyPath: m_TagString
+      value: BackMirror
       objectReference: {fileID: 0}
     - target: {fileID: 2429460866294379560, guid: 504ef03b538ac6e44a38c4c75a2ad33b, type: 3}
       propertyPath: m_LocalScale.x

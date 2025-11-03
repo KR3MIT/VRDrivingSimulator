@@ -93,7 +93,7 @@ public class WaypointNavigation : MonoBehaviour
                 {
                     nextIsStop = true;
                     currentWaypoint.branches[branchIndex].EnterWaypoint(gameObject);
-                    Debug.Log("Entered waypoint ");
+                    //Debug.Log("Entered waypoint ");
                 }
 
                 currentWaypoint = currentWaypoint.branches[branchIndex];
@@ -171,7 +171,7 @@ public class WaypointNavigation : MonoBehaviour
 
         void DoThings()
         {
-            Debug.Log("Crossing the road");
+            //Debug.Log("Crossing the road");
             isCurrentlyCrossingRoad = true;
             currentWaypoint.ExitWaypoint(gameObject);
 

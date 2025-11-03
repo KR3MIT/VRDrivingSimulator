@@ -52,6 +52,7 @@ public class FeedbackSystem : MonoBehaviour
     public void RegisterDrivingError(string name = "", string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
     {
         drivingErrors.Add(new DrivingError(name, 0f, desc, sev));
+        Debug.Log("Registered Driving Error: " + name + " - " + desc + " - Severity: " + sev.ToString());
     }
 
     public List<DrivingError> GetDrivingErrors()

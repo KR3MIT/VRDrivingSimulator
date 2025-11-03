@@ -18,6 +18,8 @@ public class ErrorDetector : MonoBehaviour
     private CarMover car;
     private DashboardController dashboard;
 
+    public LayerMask mirrorLayer;
+
     [Header("Lane")]
     public GameObject waypointContainer;
     private List<Vector3> waypoints = new List<Vector3>();
@@ -25,6 +27,8 @@ public class ErrorDetector : MonoBehaviour
     public float laneThreshold = 2.5f;
     public float laneDelayHz = 2f;
     public bool speedErrorDelay = false;
+
+    private bool onlyStopOnce = false;
 
 
     private void Start()
@@ -57,7 +61,11 @@ public class ErrorDetector : MonoBehaviour
         {
            if(backMirrorCheck == false || sideMirrorCheck == false || shoulderCheck == false)
            {
-                FeedbackSystem.Instance.RegisterDrivingError("Husk at bruge dine spejle.", "Husk "+"spejl spejl skulder " +"for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
+                if(onlyStopOnce==false)
+                {
+                    onlyStopOnce = true;
+                    FeedbackSystem.Instance.RegisterDrivingError("Husk at bruge dine spejle.", "Husk "+"spejl spejl skulder " +"for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
+                }
             }
            Debug.Log("Stop line crossed");
         }
@@ -94,21 +102,24 @@ public class ErrorDetector : MonoBehaviour
     }
     public IEnumerator CheckOrientation()
     {
-        while (!backMirrorCheck)
+        //Debug.Log("Starting mirror checks");
+        backMirrorCheck = true;
+        //while (!backMirrorCheck)
+        //{
+        //    if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f, mirrorLayer))
+        //    {
+        //        Debug.Log("Boxcast hit: " + hitInfo.collider.name);
+        //        if (hitInfo.collider.CompareTag("BackMirror"))
+        //        {
+        //            backMirrorCheck = true;
+        //            Debug.Log("Back mirror checked");
+        //        }
+        //    }
+        //    yield return new WaitForSeconds(.2f);
+        //}
+        while (!sideMirrorCheck)
         {
-            if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f))
-            {
-                if (hitInfo.collider.CompareTag("BackMirror"))
-                {
-                    backMirrorCheck = true;
-                    Debug.Log("Back mirror checked");
-                }
-            }
-            yield return null;
-        }
-        while(!sideMirrorCheck)
-        {
-            if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f))
+            if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f, mirrorLayer))
             {
                 if (hitInfo.collider.CompareTag("SideMirror"))
                 {
@@ -120,7 +131,7 @@ public class ErrorDetector : MonoBehaviour
         }
         while(!shoulderCheck)
         {
-            if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f))
+            if (Physics.BoxCast(playerCamera.transform.position, new Vector3(0.5f, 0.5f, 0.5f), playerCamera.transform.forward, out RaycastHit hitInfo, playerCamera.transform.rotation, 100f, mirrorLayer))
             {
                 if (hitInfo.collider.CompareTag("Shoulder"))
                 {
@@ -149,7 +160,7 @@ public class ErrorDetector : MonoBehaviour
         if (enteringCross)
         {
             enteringCross = false;
-            CheckOrientation();
+            StartCoroutine(CheckOrientation());
             CheckBlinker();
         }
         if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
