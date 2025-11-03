@@ -44,8 +44,8 @@ public class ErrorDetector : MonoBehaviour
     {
         if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
         {
-            Debug.Log("Red light crossed");
-            FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt lys.", "Du kørte over for rødt lys og det må man ikke.", DrivingError.ErrorSeverity.High);
+            Debug.Log("Ran a red");
+            FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk først at køre ind i et kryds, når lyset bliver grønt", DrivingError.ErrorSeverity.High);
         }
         else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
         {
@@ -57,7 +57,7 @@ public class ErrorDetector : MonoBehaviour
         {
            if(backMirrorCheck == false || sideMirrorCheck == false || shoulderCheck == false)
            {
-                FeedbackSystem.Instance.RegisterDrivingError("Husk at orienter dig.", "Husk "+"spejl spejl skulder " +"for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
+                FeedbackSystem.Instance.RegisterDrivingError("Husk at bruge dine spejle.", "Husk "+"spejl spejl skulder " +"for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
             }
            Debug.Log("Stop line crossed");
         }
@@ -67,7 +67,7 @@ public class ErrorDetector : MonoBehaviour
             Debug.Log("Pedestrian hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt INGAME manddrab", "You killed someones child INGAME, someones loved one INGAME, someones parent INGAME.", DrivingError.ErrorSeverity.Extreme);
+            FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Extreme);
             //restart game?
         }
         else if (other.CompareTag("SplineCar"))
@@ -87,10 +87,10 @@ public class ErrorDetector : MonoBehaviour
             Debug.Log("venstre blinker tændt ved check");
             return;
        }
-         else
-         {
-                FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
-         }
+       else
+       {
+            FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Medium);
+       }
     }
     public void CheckOrientation()
     {
