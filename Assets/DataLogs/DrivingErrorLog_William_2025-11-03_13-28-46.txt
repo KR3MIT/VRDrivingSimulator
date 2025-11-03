@@ -1,9 +1,9 @@
-Scenario 1 - Driving Errors:
+Scenario: DecalScene - Driving Errors:
 
-User: NAME_HERE
-Attempt: ATTEMPT 1
+User: William
+Attempt: 2
 
-Time Taken: 0.01999999
+Time Taken: 0
 
 ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
 

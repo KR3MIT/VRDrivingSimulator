@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &49191703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8266426202855037412, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+  m_PrefabInstance: {fileID: 5485251872768934448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &84981685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &701498670
 Transform:
   m_ObjectHideFlags: 0
@@ -2531,6 +2542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27631989279366c4fbb2f44dd5161b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataLog
+  playerName: NAME_HERE
 --- !u!114 &1286551977 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6452925641164606022, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
@@ -4104,6 +4116,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 787965874}
     - target: {fileID: 8063346323891753938, guid: 1d0b4750fec0a6f4dbb8271c4d7cafde, type: 3}
+      propertyPath: playerNameInput
+      value: 
+      objectReference: {fileID: 49191703}
+    - target: {fileID: 8063346323891753938, guid: 1d0b4750fec0a6f4dbb8271c4d7cafde, type: 3}
       propertyPath: 'menuButtons.Array.data[0]'
       value: 
       objectReference: {fileID: 1565224682}
@@ -4170,6 +4186,10 @@ PrefabInstance:
       objectReference: {fileID: 425189449}
     - target: {fileID: 6452925641164606022, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 425189449}
+    - target: {fileID: 8266426202855037412, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 425189449}
     - target: {fileID: 8540719705689065072, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}

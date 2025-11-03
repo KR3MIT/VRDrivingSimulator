@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataLog : MonoBehaviour
 {
@@ -10,16 +11,38 @@ public class DataLog : MonoBehaviour
     private string _fileName;
     private string _filePath;
 
+    public string playerName = "NAME_HERE";
+    private int attemptNumber = 1;
+   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+
         EnsureInitialized();
-        // Remove or replace the sample call below with real error logging from your systems:
-        //LogError(new DrivingError("Ran a red light", 12f, "Player ran red at intersection 3", DrivingError.ErrorSeverity.High));
+        
     }
 
+    private void IncrementAttemptForCurrentScene()
+    {
+        // Use a stable PlayerPrefs key per player and scene. Sanitize playerName for key safety.
+        string sceneName = SceneManager.GetActiveScene().name;
+        string safePlayer = string.IsNullOrEmpty(playerName) ? "PLAYER" : playerName.Replace(" ", "_");
+        string key = $"AttemptCount_{safePlayer}_{sceneName}";
+
+        int stored = PlayerPrefs.GetInt(key, 0);
+        stored++; // this Start() indicates a new attempt for this scene
+        PlayerPrefs.SetInt(key, stored);
+        PlayerPrefs.Save();
+
+        attemptNumber = stored;
+    }
+
+
+
     // Ensure header and file are created without calling LogError (prevents recursion)
-    private void EnsureInitialized()
+    public void EnsureInitialized()
     {
         if (_sb != null) return;
 
@@ -27,17 +50,20 @@ public class DataLog : MonoBehaviour
         {
             Directory.CreateDirectory(LogsDir);
         }
+        // load player name saved by MainMenuUI (if any)
+        playerName = PlayerPrefs.GetString("PlayerName", playerName);
+        IncrementAttemptForCurrentScene();
 
-        _fileName = "DrivingErrorLog_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        _fileName = "DrivingErrorLog_" + playerName + "_" + SceneManager.GetActiveScene().name + "_Attempt " + attemptNumber + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         _filePath = Path.Combine(LogsDir, _fileName + ".txt");
 
         _sb = new StringBuilder();
-        _sb.AppendLine("Scenario 1 - Driving Errors:");
+        _sb.AppendLine("Scenario: " + SceneManager.GetActiveScene().name + " - Driving Errors:");
         _sb.AppendLine();
-        _sb.AppendLine("User: NAME_HERE");
-        _sb.AppendLine("Attempt: ATTEMPT 1");
+        _sb.AppendLine("User: " + playerName);
+        _sb.AppendLine("Attempt: " + attemptNumber);
         _sb.AppendLine();
-        _sb.AppendLine("Time Taken: " + Time.deltaTime);
+        _sb.AppendLine("Time Taken: " + Time.timeSinceLevelLoad);
         _sb.AppendLine();
 
         // Use column headings that match the requested layout
@@ -81,10 +107,5 @@ public class DataLog : MonoBehaviour
     {
         string path = Path.Combine(LogsDir, fileName + ".txt");
         File.WriteAllText(path, content);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

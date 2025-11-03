@@ -1,0 +1,9 @@
+Scenario: TEMP SCENE - Driving Errors:
+
+User: Oskar  
+Attempt: 1
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
