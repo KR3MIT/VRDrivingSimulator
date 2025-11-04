@@ -15,14 +15,15 @@ public struct DrivingError
 
     public enum ErrorSeverity
     {
-        Extreme,
-        High,
-        Medium,
-        Low,
-        None,
+        Ekstrem,
+        Høj,
+        Mellem,
+        Lav,
+        Ingen,
+        Korrekt,
     }
 
-    public DrivingError(string name = "", float time = 0f, string desc = "", ErrorSeverity sev = ErrorSeverity.None)
+    public DrivingError(string name = "", float time = 0f, string desc = "", ErrorSeverity sev = ErrorSeverity.Ingen)
     {
         errorName = name;
         timestamp = time;
@@ -49,7 +50,7 @@ public class FeedbackSystem : MonoBehaviour
         }
     }
 
-    public void RegisterDrivingError(string name = "", string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.None)
+    public void RegisterDrivingError(string name = "", string desc = "", DrivingError.ErrorSeverity sev = DrivingError.ErrorSeverity.Ingen)
     {
         drivingErrors.Add(new DrivingError(name, 0f, desc, sev));
         Debug.Log("Registered Driving Error: " + name + " - " + desc + " - Severity: " + sev.ToString());

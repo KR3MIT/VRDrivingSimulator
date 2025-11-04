@@ -76,17 +76,20 @@ public class GameEnder : MonoBehaviour
 
         switch (error.severity)
         {
-            case DrivingError.ErrorSeverity.Extreme:
+            case DrivingError.ErrorSeverity.Ekstrem:
                 color = Color.red;
                 break;
-            case DrivingError.ErrorSeverity.High:
+            case DrivingError.ErrorSeverity.Høj:
                 color = new Color(1f, 0.5f, 0f); // Orange
                 break;
-            case DrivingError.ErrorSeverity.Medium:
+            case DrivingError.ErrorSeverity.Mellem:
                 color = Color.yellow;
                 break;
-            case DrivingError.ErrorSeverity.Low:
+            case DrivingError.ErrorSeverity.Lav:
                 color = Color.white;
+                break;
+            case DrivingError.ErrorSeverity.Korrekt:
+                color = Color.green;
                 break;
             default:
                 color = Color.gray;
