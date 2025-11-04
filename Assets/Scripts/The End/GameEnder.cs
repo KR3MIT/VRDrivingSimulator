@@ -18,6 +18,7 @@ public class GameEnder : MonoBehaviour
     public GameObject errorUIPrefab;
     public GameObject errorContainer;
 
+    
 
     private void Start()
     {
@@ -64,6 +65,7 @@ public class GameEnder : MonoBehaviour
                 endCondition = GameEndCondition.ManualEnd;
                 break;
         }
+        StartCoroutine(GameManager.Instance.ins.SmoothStop());
     }
 
     public void CreateErrorCard(DrivingError error)

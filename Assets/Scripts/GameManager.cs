@@ -1,12 +1,12 @@
 using System.Collections;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public State gameState;
     public enum State
     {
@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
         end
     }
 
-    [SerializeField] private InstructionManager ins;
-    [SerializeField] private LogitechInput input;
+    public InstructionManager ins;
+    [SerializeField] private LogitechInput carInput;
+    [SerializeField] private PlayerInput input;
     [SerializeField] private CarMover car;
 
     [SerializeField] private UnityEvent onGameStart;
@@ -28,12 +29,22 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(ins == null)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+
+        if (ins == null)
         {
             Debug.LogError("InstructionManager reference is missing in GameManager.");
             return;
         }
-        else if (input == null)
+        else if (carInput == null)
         {
             Debug.LogError("LogitechInput reference is missing in GameManager.");
             return;
@@ -82,7 +93,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            if (input.speederValue < 0)
+            if (carInput.speederValue < 0 || input.actions["GasPedal"].ReadValue<float>() > 0.1f)
             {
                 SetState(State.playing);
                 yield break;
@@ -115,7 +126,7 @@ public class GameManager : MonoBehaviour
         if(gameState != State.playing)
             return;
 
-        if (input.StartButton && input.RSB)
+        if (carInput.StartButton && carInput.RSB)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

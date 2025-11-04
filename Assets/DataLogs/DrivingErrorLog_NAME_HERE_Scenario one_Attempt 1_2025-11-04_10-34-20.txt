@@ -1,0 +1,33 @@
+Scenario: Scenario one - Driving Errors:
+
+User: NAME_HERE
+Attempt: 1
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Lane boundary violated        0              [MEDIUM]                 Please stay within your lane.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
+Glemte blinklys før du kørte ud i svinget.0              [MEDIUM]                 Husk at bruge dit blinklys før du foretager et sving.
+
+Glemte blinklys før du kørte ud i svinget.0              [MEDIUM]                 Husk at bruge dit blinklys før du foretager et sving.
+
+Husk at bruge dine spejle.    0              [MEDIUM]                 Husk spejl spejl skulder for at orientere dig før du foretager et sving.
+
+Speed warning                 0              [MEDIUM]                 Too much speed.
+
