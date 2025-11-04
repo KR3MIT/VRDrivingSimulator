@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class GameEnder : MonoBehaviour
@@ -38,6 +39,22 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
+        bool foundSpeedError = false;
+
+        foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
+        {
+            if (error.errorName == "Fart overskridelse")
+            {
+                foundSpeedError = true;
+                break;
+            }
+        }
+
+        if(!foundSpeedError)
+        {
+            FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
+        }
+
         FindFirstObjectByType<DataLog>().LogAllErrors();
         if (gameEnded) return;
         gameEnded = true;

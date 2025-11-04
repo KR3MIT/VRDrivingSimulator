@@ -1,0 +1,15 @@
+Scenario: Scenario one - Driving Errors:
+
+User: NAME_HERE
+Attempt: 5
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Kørte over for rødt.          0              [HØJ]                    Husk først at køre ind i et kryds, når lyset bliver grønt
+
+Husk at bruge spejle.         0              [MELLEM]                 Husk spejl spejl skulder for at orientere dig før du foretager et sving.
+
+Ingen fart overskridelse      0              [KORREKT]                Du holde dig inde for fart grænsen.
+

@@ -40613,9 +40613,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 901788908800236838, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9937619
+      objectReference: {fileID: 0}
+    - target: {fileID: 901788908800236838, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.111522764
+      objectReference: {fileID: 0}
+    - target: {fileID: 901788908800236838, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0000026950934
+      objectReference: {fileID: 0}
+    - target: {fileID: 901788908800236838, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000030245096
+      objectReference: {fileID: 0}
+    - target: {fileID: 901788908800236838, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 12.806
+      objectReference: {fileID: 0}
     - target: {fileID: 963101967999279602, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_text
-      value: 'Fejl:'
+      value: 'Oversigt:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 963101967999279602, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_margin.z
+      value: 10.019356
       objectReference: {fileID: 0}
     - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: lightManager

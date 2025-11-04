@@ -30,13 +30,12 @@ public struct DrivingError
         description = desc;
         severity = sev;
     }
-
 }
 
 public class FeedbackSystem : MonoBehaviour
 {
     public static FeedbackSystem Instance;
-    private List<DrivingError> drivingErrors = new List<DrivingError>();
+    private HashSet<DrivingError> drivingErrors = new HashSet<DrivingError>();
 
     public void Awake()
     {
@@ -56,7 +55,7 @@ public class FeedbackSystem : MonoBehaviour
         Debug.Log("Registered Driving Error: " + name + " - " + desc + " - Severity: " + sev.ToString());
     }
 
-    public List<DrivingError> GetDrivingErrors()
+    public HashSet<DrivingError> GetDrivingErrors()
     {
         return drivingErrors;
     }

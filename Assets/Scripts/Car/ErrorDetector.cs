@@ -9,7 +9,7 @@ public class ErrorDetector : MonoBehaviour
 {
     public InstructionManager instructionManager;
     public TutorialTextScriptableObject TutorialText;
-   public TrafficLightManager lightManager;
+    public TrafficLightManager lightManager;
     public bool enteringCross = false;
     private Camera playerCamera;
     private bool backMirrorCheck = false;
@@ -30,7 +30,6 @@ public class ErrorDetector : MonoBehaviour
 
     private bool onlyStopOnce = false;
 
-
     private void Start()
     {
         playerCamera = Camera.main;
@@ -48,13 +47,11 @@ public class ErrorDetector : MonoBehaviour
     {
         if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
         {
-            Debug.Log("Ran a red");
             FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk først at køre ind i et kryds, når lyset bliver grønt", DrivingError.ErrorSeverity.Høj);
         }
         else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
         {
             enteringCross = true;
-            Debug.Log("Entering crossroad");
             FeedbackSystem.Instance.RegisterDrivingError("Grønt lys", "Godt klaret! Du kørte først ind i krydset, når lyset var grønt.", DrivingError.ErrorSeverity.Korrekt);
         }
       
@@ -65,9 +62,8 @@ public class ErrorDetector : MonoBehaviour
                 if(onlyStopOnce==false)
                 {
                     onlyStopOnce = true;
-                    FeedbackSystem.Instance.RegisterDrivingError("Husk at bruge spejle.", "Husk spejl spejl skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
+                    FeedbackSystem.Instance.RegisterDrivingError("Husk at orientere dig.", "Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
                 }
-                
            }
            else
            {
@@ -76,13 +72,10 @@ public class ErrorDetector : MonoBehaviour
                     FeedbackSystem.Instance.RegisterDrivingError("Godt orienteret.", "Du huskede at bruge dine spejle og orientere dig før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
                 }
            }
-
-           Debug.Log("Stop line crossed");
         }
 
         if (other.CompareTag("Pedestrian"))
         {
-            Debug.Log("Pedestrian hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
             FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
@@ -90,19 +83,16 @@ public class ErrorDetector : MonoBehaviour
         }
         else if (other.CompareTag("SplineCar"))
         {
-            Debug.Log("Car hit");
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
             instructionManager.allowContinue = true;
             FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
-            //restart game?
         }
-      
     }
+
     public void CheckBlinker()
     {
        if(dashboard.CheckLeftBlinkerOn())
        {
-            Debug.Log("venstre blinker tændt ved check");
             FeedbackSystem.Instance.RegisterDrivingError("Korrekt brug af blinklys.", "Godt klaret! Du huskede at bruge dit blinklys før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
             return;
        }
@@ -111,6 +101,7 @@ public class ErrorDetector : MonoBehaviour
             FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
        }
     }
+
     public IEnumerator CheckOrientation()
     {
         //Debug.Log("Starting mirror checks");
@@ -135,7 +126,6 @@ public class ErrorDetector : MonoBehaviour
                 if (hitInfo.collider.CompareTag("SideMirror"))
                 {
                     sideMirrorCheck = true;
-                    Debug.Log("Side mirror checked");
                 }
             }
             yield return null;
@@ -147,7 +137,6 @@ public class ErrorDetector : MonoBehaviour
                 if (hitInfo.collider.CompareTag("Shoulder"))
                 {
                     shoulderCheck = true;
-                    Debug.Log("Shoulder checked");
                 }
             }
             yield return null;
@@ -163,9 +152,8 @@ public class ErrorDetector : MonoBehaviour
         {
             if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
             {
-                FeedbackSystem.Instance.RegisterDrivingError("Lane boundary violated", "Please stay within your lane.", DrivingError.ErrorSeverity.Mellem);
+                FeedbackSystem.Instance.RegisterDrivingError("Vognbane overskridelse", "Du afveg fra din vognbane.", DrivingError.ErrorSeverity.Mellem);
                 StartCoroutine(LaneError());
-                Debug.Log("Lane Error registered");
             }
         }
         if (enteringCross)
@@ -177,17 +165,17 @@ public class ErrorDetector : MonoBehaviour
         if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
         {
             speedErrorDelay = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Speed warning", "Too much speed.", DrivingError.ErrorSeverity.Mellem);
-            Debug.Log("Speed Error registered");
+            FeedbackSystem.Instance.RegisterDrivingError("Fart overskridelse", "Fart for høj.", DrivingError.ErrorSeverity.Mellem);
         }
-
     }
+
     IEnumerator LaneError()
     {
         laneDelay = true;
         yield return new WaitForSeconds(laneDelayHz);
         laneDelay = false;
     }
+
     public float GetDistanceToPath(Vector3 carPosition, List<Vector3> waypoints)
     {
         float minDistance = float.MaxValue;
