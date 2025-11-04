@@ -27,6 +27,7 @@ public class SplineCarSpawner : MonoBehaviour
 
             SplineRoute selectedRoute = splineRoutes[routeIndex];
             GameObject carInstance = Instantiate(carPrefabs[carIndex], selectedRoute.transform);
+            carInstance.transform.localPosition = carInstance.transform.localPosition + Vector3.down * 30f;//all routes are in 0,0,0 so move them so they dont appear for a frame
             SplineFollower carSplineFollower = carInstance.GetComponent<SplineFollower>();
             
             if (carSplineFollower == null)
@@ -41,5 +42,4 @@ public class SplineCarSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnIntervalMin, spawnIntervalMax));
         }
     }
-
 }
