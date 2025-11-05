@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID BLINKEROFF = 410377967U;
+        static const AkUniqueID BLINKERON = 385229051U;
         static const AkUniqueID PLAYERCARSTART = 3559953332U;
     } // namespace EVENTS
 

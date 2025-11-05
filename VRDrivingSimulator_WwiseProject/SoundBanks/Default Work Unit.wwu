@@ -5,7 +5,9 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{8DBC6A34-B924-403F-9D78-3CA39456114D}">
 					<ObjectInclusionList>
+						<ObjectRef Name="BlinkerOn" ID="{1876A138-9454-4045-9717-A081E89105C1}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PlayerCarStart" ID="{5A172545-6CF2-40E0-A246-D4B5DE31114E}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="BlinkerOff" ID="{E4887F3D-B049-466B-A2FB-DE59A375765D}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

@@ -10,10 +10,28 @@
     "Type": "User",
     "GUID": "{8DBC6A34-B924-403F-9D78-3CA39456114D}",
     "Language": "SFX",
-    "Hash": "{3D54239D-6A60-3389-63E8-0B0D32F0EDB7}",
+    "Hash": "{816C2018-03C4-2D41-FE71-C38D546D0BAC}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
+    "Media": [
+     {
+      "Id": "686493923",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "car-blinker-99033.wav",
+      "CachePath": "A0/{A059065C-52CA-1206-C8CB-DE7FF0117A41}.wem"
+     },
+     {
+      "Id": "926365725",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "car-blinker-99033.wav",
+      "CachePath": "83/{8392A4E9-EB81-848A-8116-5BD46FC472EC}.wem"
+     }
+    ],
     "Plugins": {
      "Custom": [
       {
@@ -100,6 +118,34 @@
     },
     "Events": [
      {
+      "Id": "410377967",
+      "Name": "BlinkerOff",
+      "ObjectPath": "\\Events\\Default Work Unit\\BlinkerOff",
+      "GUID": "{E4887F3D-B049-466B-A2FB-DE59A375765D}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.22300446",
+      "DurationMax": "0.22300446",
+      "MediaRefs": [
+       {
+        "Id": "686493923"
+       }
+      ]
+     },
+     {
+      "Id": "385229051",
+      "Name": "BlinkerOn",
+      "ObjectPath": "\\Events\\Default Work Unit\\BlinkerOn",
+      "GUID": "{1876A138-9454-4045-9717-A081E89105C1}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.22903161",
+      "DurationMax": "0.22903161",
+      "MediaRefs": [
+       {
+        "Id": "926365725"
+       }
+      ]
+     },
+     {
       "Id": "3559953332",
       "Name": "PlayerCarStart",
       "ObjectPath": "\\Events\\Default Work Unit\\PlayerCarStart",
@@ -157,6 +203,6 @@
     ]
    }
   ],
-  "FileHash": "{7A701A40-6DAC-1627-1991-933874EE3F7F}"
+  "FileHash": "{36AF6A3A-2839-436F-5395-F7637CD7A4D0}"
  }
 }
