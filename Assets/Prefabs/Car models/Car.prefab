@@ -1620,6 +1620,8 @@ MonoBehaviour:
   SelectButtonB: 0
   StartButton: 0
   RSB: 0
+  rightBumper: 0
+  leftBumper: 0
   dpadValue: 0
   baseSaturation: 30
   baseCoefficient: 30
@@ -1695,11 +1697,11 @@ MonoBehaviour:
   blinkerOnSoundEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 02c7e8ab8b118804f9886a6c34a9c007, type: 2}
   blinkerOffSoundEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 6c3daeef8766ca74891922ef3e1c1c76, type: 2}
   blinkerFlashRate: 0.5
   blinkerState: 0
   wheelRotationThreshold: 100
