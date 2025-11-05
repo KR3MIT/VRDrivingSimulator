@@ -54,8 +54,14 @@ public class GameEnder : MonoBehaviour
         {
             FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
         }
+        
+         
+        var data = FindFirstObjectByType<DataLog>();
+        if (data != null)
+            data.LogAllErrors();
+        else
+            Debug.LogWarning("data not logged | DataLog instance not found.");
 
-        FindFirstObjectByType<DataLog>().LogAllErrors();
         if (gameEnded) return;
         gameEnded = true;
         gameEndCanvas.enabled = true;
