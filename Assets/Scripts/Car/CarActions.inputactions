@@ -50,6 +50,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BlinkerRight",
+                    "type": "Button",
+                    "id": "a8f0254b-ef9f-4ef7-a8cb-e507f9f203e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BlinkerLeft",
+                    "type": "Button",
+                    "id": "3dd5a11b-e366-43d1-bc63-3e1f8b0d1144",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -111,7 +129,7 @@
                 {
                     "name": "",
                     "id": "5e807caa-1af7-4358-8fee-7b975a50bea6",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -122,11 +140,33 @@
                 {
                     "name": "",
                     "id": "86429d45-91e4-41dd-a0f8-0a552c7d6cb2",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ShiftDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5c27c46-654b-4b07-b6c9-6c7b8ddc2730",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BlinkerRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53e00c8d-2124-4cea-9e83-76fc7291a5e1",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BlinkerLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

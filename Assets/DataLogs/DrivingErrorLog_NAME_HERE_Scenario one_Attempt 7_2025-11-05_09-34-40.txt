@@ -1,0 +1,17 @@
+Scenario: Scenario one - Driving Errors:
+
+User: NAME_HERE
+Attempt: 7
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Fart overskridelse            0              [MELLEM]                 Fart for høj.
+
+Vognbane overskridelse        0              [MELLEM]                 Du afveg fra din vognbane.
+
+Grønt lys                     0              [KORREKT]                Godt klaret! Du kørte først ind i krydset, når lyset var grønt.
+
+Glemte blinklys før du kørte ud i svinget.0              [MELLEM]                 Husk at bruge dit blinklys før du foretager et sving.
+

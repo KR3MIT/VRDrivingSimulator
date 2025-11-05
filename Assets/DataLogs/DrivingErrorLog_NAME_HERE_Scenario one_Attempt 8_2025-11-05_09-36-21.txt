@@ -1,0 +1,17 @@
+Scenario: Scenario one - Driving Errors:
+
+User: NAME_HERE
+Attempt: 8
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Fart overskridelse            0              [MELLEM]                 Fart for høj.
+
+Grønt lys                     0              [KORREKT]                Godt klaret! Du kørte først ind i krydset, når lyset var grønt.
+
+Korrekt brug af blinklys.     0              [KORREKT]                Godt klaret! Du huskede at bruge dit blinklys før du foretog et sving.
+
+Husk at orientere dig.        0              [MELLEM]                 Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.
+

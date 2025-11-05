@@ -1,11 +1,12 @@
 using UnityEngine;
 using AK.Wwise;
+using UnityEngine.InputSystem;
 
 public class DashboardController : MonoBehaviour
 {
-    
     private LogitechInput logitechInput;
     private CarMover carMover;
+    private PlayerInput playerInput;
 
     [Header("Speedometer")]
     [SerializeField] private float speed = 0f;
@@ -40,6 +41,7 @@ public class DashboardController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
         logitechInput = GetComponent<LogitechInput>();
         carMover = GetComponent<CarMover>();
 
@@ -81,17 +83,25 @@ public class DashboardController : MonoBehaviour
     #region Blinkers
     private void CheckBlinkerChanges ()
     {
-        
-            if (logitechInput == null) return;
+        bool curLeft = false;
+        bool curRight = false;
 
-            bool curLeft = logitechInput.leftBlinker;
-            bool curRight = logitechInput.rightBlinker;
+        if (carMover.useWheelInput)
+        {
+            curLeft = logitechInput.leftBlinker;
+            curRight = logitechInput.rightBlinker;
+        }
+        else
+        {
+            curLeft = playerInput.actions["BlinkerLeft"].ReadValue<float>() > 0.5f;
+            curRight = playerInput.actions["BlinkerRight"].ReadValue<float>() > 0.5f;
+        }
 
-            if (curLeft && !prevLeftBlinker) ToggleBlinker(ref leftBlinkerOn, ref rightBlinkerOn);
-            if (curRight && !prevRightBlinker) ToggleBlinker(ref rightBlinkerOn, ref leftBlinkerOn);
+        if (curLeft && !prevLeftBlinker) ToggleBlinker(ref leftBlinkerOn, ref rightBlinkerOn);
+        if (curRight && !prevRightBlinker) ToggleBlinker(ref rightBlinkerOn, ref leftBlinkerOn);
 
-            prevLeftBlinker = curLeft;
-            prevRightBlinker = curRight;
+        prevLeftBlinker = curLeft;
+        prevRightBlinker = curRight;
     }
 
     private  void UpdateBlinkerFlashing()

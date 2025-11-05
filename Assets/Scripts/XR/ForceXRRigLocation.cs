@@ -9,6 +9,7 @@ public class ForceXRRigLocation : MonoBehaviour
 
     private float inputDelay = 0.2f;
     private float lastInputTime;
+    private Vector3 targetRotation = new Vector3(0,0,0);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +20,6 @@ public class ForceXRRigLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetXRPosition();
         Inputs();
     }
 
@@ -35,29 +35,34 @@ public class ForceXRRigLocation : MonoBehaviour
             {
                 ZOffset += sensitivity;
                 lastInputTime = Time.deltaTime;
+                SetXRPosition();
             }
             else if (logitechInput.dpadValue == -1) // Down
             {
                 ZOffset -= sensitivity;
                 lastInputTime = Time.deltaTime;
+                SetXRPosition();
             }
             else if (logitechInput.dpadValue == 2) // Right
             {
                 XOffset += sensitivity;
                 lastInputTime = Time.deltaTime;
+                SetXRPosition();
             }
             else if (logitechInput.dpadValue == -2) // Left
             {
                 XOffset -= sensitivity;
                 lastInputTime = Time.deltaTime;
+                SetXRPosition();
             }
             positionOffset = new Vector3(XOffset, 0f, ZOffset);
         }
     }
 
-    void SetXRPosition()
+    public void SetXRPosition()
     {
         lockPosition += positionOffset;
         this.transform.localPosition = lockPosition;
+        this.transform.rotation = Quaternion.Euler(targetRotation);
     }
 }
