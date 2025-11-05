@@ -1,4 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
+	385229051	BlinkerOn			\Default Work Unit\BlinkerOn	
+	410377967	BlinkerOff			\Default Work Unit\BlinkerOff	
 	3559953332	PlayerCarStart			\Default Work Unit\PlayerCarStart	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -16,4 +18,8 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	680149278	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\SpeedNoiseHigh\Tone Generator	
 	799783569	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\Bumps\Bump\BumpSineDeep\Tone Generator	
 	937086646	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicSineDeep\Tone Generator	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	686493923	BlinkerOff	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\A0\{A059065C-52CA-1206-C8CB-DE7FF0117A41}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOff		21504
+	926365725	BlinkerOn	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\83\{8392A4E9-EB81-848A-8116-5BD46FC472EC}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOn		22080
 
