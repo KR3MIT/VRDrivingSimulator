@@ -79,13 +79,14 @@ public class ErrorDetector : MonoBehaviour
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
             instructionManager.allowContinue = true;
             FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
-            //restart game?
+            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
         else if (other.CompareTag("SplineCar"))
         {
             instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
             instructionManager.allowContinue = true;
             FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
+            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
     }
 
