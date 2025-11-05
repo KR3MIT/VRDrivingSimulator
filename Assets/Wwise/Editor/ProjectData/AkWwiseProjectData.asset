@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: db73392b9b4b1f4b91f4d3a3456beb8b
     GuidInternal: 
-    m_lastTime: -8584398776207242808
+    m_lastTime: -8584392686675802742
     List:
     - name: Main
       guid: 346abc8d24b93f409d783ca39456114d
@@ -111,8 +111,8 @@ MonoBehaviour:
         guid: 3d7f88e449b06b46a2fbde59a375765d
       Path: Events\Default Work Unit\BlinkerOff
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.22300446
+      minDuration: 0.22300446
     - name: BlinkerOn
       guid: 38a17618549445409717a081e89105c1
       id: 385229051
@@ -128,8 +128,8 @@ MonoBehaviour:
         guid: 38a17618549445409717a081e89105c1
       Path: Events\Default Work Unit\BlinkerOn
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.22903161
+      minDuration: 0.22903161
     - name: PlayerCarStart
       guid: 4525175af26ce040a246d4b5de31114e
       id: 3559953332

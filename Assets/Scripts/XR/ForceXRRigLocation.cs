@@ -38,30 +38,30 @@ public class ForceXRRigLocation : MonoBehaviour
     public void SetXRPosition()
     {
         // Recenter tracking using XRInputSubsystem(s)
-        List<XRInputSubsystem> inputSubsystems = new List<XRInputSubsystem>();
-        SubsystemManager.GetSubsystems(inputSubsystems);
+        //List<XRInputSubsystem> inputSubsystems = new List<XRInputSubsystem>();
+        //SubsystemManager.GetSubsystems(inputSubsystems);
 
-        if (inputSubsystems.Count == 0)
-        {
-            Debug.LogWarning("SetXRPosition: No XRInputSubsystem instances found. Make sure an XR loader is active.");
-        }
-        else
-        {
-            foreach (var ss in inputSubsystems)
-            {
-                if (ss != null)
-                {
-                    bool success = ss.TryRecenter();
-                    Debug.Log($"SetXRPosition: TryRecenter returned {success} for subsystem {ss.GetType().Name}");
-                }
-            }
-        }
+        //if (inputSubsystems.Count == 0)
+        //{
+        //    Debug.LogWarning("SetXRPosition: No XRInputSubsystem instances found. Make sure an XR loader is active.");
+        //}
+        //else
+        //{
+        //    foreach (var ss in inputSubsystems)
+        //    {
+        //        if (ss != null)
+        //        {
+        //            bool success = ss.TryRecenter();
+        //            Debug.Log($"SetXRPosition: TryRecenter returned {success} for subsystem {ss.GetType().Name}");
+        //        }
+        //    }
+        //}
 
         // If you want to physically move the rig after recentering, apply offsets here.
         // Uncomment the lines below if you want the GameObject with this script to be moved/rotated.
-        // lockPosition += positionOffset;
-        // this.transform.localPosition = lockPosition;
-        // this.transform.localRotation = Quaternion.Euler(targetRotation);
+        lockPosition += positionOffset;
+        this.transform.localPosition = lockPosition;
+        //this.transform.localRotation = Quaternion.Euler(targetRotation);
     }
 
     /// <summary>
