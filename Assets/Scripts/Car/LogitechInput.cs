@@ -17,9 +17,6 @@ public class LogitechInput : MonoBehaviour
     public bool StartButton;
     public bool RSB;
 
-    public bool rightBumper;
-    public bool leftBumper;
-
     public int dpadValue; // center = -1, up = 0, right = 2, down = 3, left = 4
 
     [Header("heheheha")]

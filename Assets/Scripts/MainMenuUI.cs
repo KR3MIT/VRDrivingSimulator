@@ -44,7 +44,7 @@ public class MainMenuUI : MonoBehaviour
     void Update()
     {
         HandleSteeringWheelInput();
-        Debug.Log("current index: " + selectedButtonIndex);
+        //Debug.Log("current index: " + selectedButtonIndex);
     }
 
     void HandleSteeringWheelInput()

@@ -3,127 +3,83 @@ using UnityEngine;
 //using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.XR;
+using System.ComponentModel.Design.Serialization;
+//using UnityEngine.InputSystem;
 
 public class ForceXRRigLocation : MonoBehaviour
 {
-    private Vector3 lockPosition;
     [SerializeField] private LogitechInput logitechInput;
-    private Vector3 positionOffset;
-    public float sensitivity;
-    public Transform XRCamera;
+    public Vector3 defaultPosition;
+    public Transform steeringWheelCenter, leftHand, rightHand;
+    public Vector3 posOff;
 
-    private float inputDelay = 0.2f;
-    private float lastInputTime;
-    public Vector3 targetRotation;
+    bool isCooldown = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        lockPosition = this.transform.localPosition;
+        defaultPosition = transform.localPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
-       Inputs();
-    }
+        if (isCooldown) { return; }
 
-
-
-    /// <summary>
-    /// Recenters the XR tracking origin using available XRInputSubsystem instances.
-    /// Also (optionally) applies the local transform lock position / rotation if you want the rig moved.
-    /// Use this to reset the user's view orientation/position in XR.
-    /// </summary>
-    public void SetXRPosition()
-    {
-        // Recenter tracking using XRInputSubsystem(s)
-        //List<XRInputSubsystem> inputSubsystems = new List<XRInputSubsystem>();
-        //SubsystemManager.GetSubsystems(inputSubsystems);
-
-        //if (inputSubsystems.Count == 0)
-        //{
-        //    Debug.LogWarning("SetXRPosition: No XRInputSubsystem instances found. Make sure an XR loader is active.");
-        //}
-        //else
-        //{
-        //    foreach (var ss in inputSubsystems)
-        //    {
-        //        if (ss != null)
-        //        {
-        //            bool success = ss.TryRecenter();
-        //            Debug.Log($"SetXRPosition: TryRecenter returned {success} for subsystem {ss.GetType().Name}");
-        //        }
-        //    }
-        //}
-
-        // If you want to physically move the rig after recentering, apply offsets here.
-        // Uncomment the lines below if you want the GameObject with this script to be moved/rotated.
-        lockPosition += positionOffset;
-        this.transform.localPosition = lockPosition;
-        //this.transform.localRotation = Quaternion.Euler(targetRotation);
-    }
-
-    /// <summary>
-    /// Convenience public method to explicitly reset orientation only (if needed by callers/UI).
-    /// </summary>
-    public void ResetXRViewOrientation()
-    {
-        SetXRPosition();
-    }
-
-    void Inputs()
-    {
-        var XOffset = 0f;
-        var ZOffset = 0f;
-
-        if (Time.time - lastInputTime > inputDelay)
+        if ((logitechInput.leftBlinker || logitechInput.rightBlinker) || transform.root.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions["Test"].ReadValue<float>() >= 1)
         {
-            //up = 1, down = -1, right = 2, left = -2
-            if (logitechInput.dpadValue == 1) // Up
+            List<InputDevice> devices = new List<InputDevice>();
+            InputDevices.GetDevicesAtXRNode(XRNode.Head, devices);
+            if (devices.Count > 0)
             {
-                ZOffset += sensitivity;
-                lastInputTime = Time.deltaTime;
-                SetXRPosition();
+                InputDevice headDevice = devices[0];
+                if (headDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 devicePosition))
+                {
+                    Debug.Log("Head Position: " + devicePosition);
+                }
+
+                // Calculate the forward direction based on the hands
+                Vector3 handForward = (rightHand.position - leftHand.position).normalized;
+
+                // Calculate the desired forward direction (steering wheel forward direction)
+                Vector3 steeringForward = -steeringWheelCenter.forward;
+
+                // Calculate the rotation needed to align handForward with steeringForward
+                Quaternion rotationOffset = Quaternion.FromToRotation(handForward, steeringForward);
+
+                // Extract the current rotation's Euler angles
+                Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+
+                // Apply the rotation offset and isolate the y-axis rotation
+                Quaternion newRotation = rotationOffset * transform.rotation;
+                Vector3 newEulerAngles = newRotation.eulerAngles;
+
+                // Preserve the x and z rotations, only update the y-axis
+                transform.rotation = Quaternion.Euler(currentEulerAngles.x, newEulerAngles.y, currentEulerAngles.z);
+                Debug.Log("XR Rig rotation adjusted to align hand direction with steering wheel direction (y-axis only).");
+
+
+
+                // Calculate the center of the hands
+                Vector3 handCenter = (leftHand.position + rightHand.position) / 2;
+                Debug.Log("Hand Center: " + handCenter);
+
+                // Calculate the position offset to align handCenter with steeringWheelCenter
+                Vector3 positionOffset = steeringWheelCenter.position - handCenter;
+
+                // Apply the position offset to the rig
+                transform.position += positionOffset + posOff;
+                Debug.Log("XR Rig position adjusted to align hand center with steering wheel center.");
+
+
             }
-            else if (logitechInput.dpadValue == -1) // Down
-            {
-                ZOffset -= sensitivity;
-                lastInputTime = Time.deltaTime;
-                SetXRPosition();
-            }
-            else if (logitechInput.dpadValue == 2) // Right
-            {
-                XOffset += sensitivity;
-                lastInputTime = Time.deltaTime;
-                SetXRPosition();
-            }
-            else if (logitechInput.dpadValue == -2) // Left
-            {
-                XOffset -= sensitivity;
-                lastInputTime = Time.deltaTime;
-                SetXRPosition();
-            }
-            positionOffset = new Vector3(XOffset, 0f, ZOffset);
         }
+
+        StartCooldown();
     }
 
-    //public void SetXRPosition()
-    //{
-
-
-    //    List<InputDevice> devices = new List<InputDevice>();
-    //    InputDevices.GetDevices(devices);
-    //    if(devices.Count != 0)
-    //    {
-    //        foreach (var device in devices)
-    //        {
-    //            device.subsystem.TryRecenter();
-    //        }
-    //    }
-    //    Debug.Log("shitass " + devices);
-    //    //lockPosition += positionOffset;
-    //    //this.transform.localPosition = lockPosition;
-    //    //this.transform.rotation = Quaternion.Euler(targetRotation);
-    //}
+    public async void StartCooldown()
+    {
+        isCooldown = true;
+        await System.Threading.Tasks.Task.Delay(1000);
+        isCooldown = false;
+    }
 }
