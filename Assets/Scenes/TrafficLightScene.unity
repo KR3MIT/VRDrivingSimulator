@@ -2858,6 +2858,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96171137970c5e428ccd5512786651f, type: 3}
+--- !u!1001 &5402089143298326987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4891703
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0500009
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.7304177
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296787458056295039, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840184542578003703, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
+      propertyPath: m_Name
+      value: Curved Road
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b9276273d8697134a932c56e03ae1cbc, type: 3}
 --- !u!1001 &8838076337126917166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2866,10 +2923,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3833791822948870625, guid: 2fac47d529e7c864c83712789dca4b15, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 126fff73f4a645841bd2bcb046b16115, type: 2}
     - target: {fileID: 6373999177365503102, guid: 2fac47d529e7c864c83712789dca4b15, type: 3}
       propertyPath: m_Name
       value: Postkasse
@@ -2914,10 +2967,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7510939376869788876, guid: 2fac47d529e7c864c83712789dca4b15, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 126fff73f4a645841bd2bcb046b16115, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2945,3 +2994,4 @@ SceneRoots:
   - {fileID: 4194815900333458733}
   - {fileID: 2879131461324366175}
   - {fileID: 8838076337126917166}
+  - {fileID: 5402089143298326987}
