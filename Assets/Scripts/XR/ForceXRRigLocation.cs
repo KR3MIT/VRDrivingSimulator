@@ -1,10 +1,7 @@
-using NUnit.Framework;
 using UnityEngine;
-//using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.XR;
-using System.ComponentModel.Design.Serialization;
-//using UnityEngine.InputSystem;
+
 
 public class ForceXRRigLocation : MonoBehaviour
 {
@@ -14,6 +11,16 @@ public class ForceXRRigLocation : MonoBehaviour
     public Vector3 posOff;
 
     bool isCooldown = false;
+
+    //save calibration 
+    public static Vector3 SavedPosition = Vector3.zero;
+    public static Quaternion SavedRotation = Quaternion.identity;
+    public static bool HasSavedCalibration = false;
+
+    private void Awake()
+    {
+        ApplySavedCalibration(transform);
+    }
 
     private void Start()
     {
@@ -70,6 +77,11 @@ public class ForceXRRigLocation : MonoBehaviour
                 Debug.Log("XR Rig position adjusted to align hand center with steering wheel center.");
 
 
+                //save calibration
+                SavedPosition = transform.position;//maybe local instead?!
+                SavedRotation = transform.rotation;
+                HasSavedCalibration = true;
+                Debug.Log("Calibration saved to ForceXRRigLocation static fields.");
             }
         }
 
@@ -81,5 +93,12 @@ public class ForceXRRigLocation : MonoBehaviour
         isCooldown = true;
         await System.Threading.Tasks.Task.Delay(1000);
         isCooldown = false;
+    }
+
+    public static void ApplySavedCalibration(Transform rigTransform)
+    {
+        if (!HasSavedCalibration) return;
+        rigTransform.position = SavedPosition;
+        rigTransform.rotation = SavedRotation;
     }
 }
