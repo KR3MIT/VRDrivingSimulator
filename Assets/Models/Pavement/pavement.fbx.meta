@@ -9,6 +9,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Kantsten
     second: {fileID: 2100000, guid: efc414b333daf334199cf818cb3d4230, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PavementRock
+    second: {fileID: 2100000, guid: 7c37dc99131e659459fffac91beaafd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PavementTile
+    second: {fileID: 2100000, guid: a302af763994dcc48b293d9142a0e514, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
