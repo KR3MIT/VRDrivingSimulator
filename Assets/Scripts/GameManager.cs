@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent onGamePaused;
     [SerializeField] private UnityEvent onGameEnd;
 
+    private float realTime = 1f;
+    private float resumeDuration = 2f;
+    private bool allowContinue = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -123,12 +127,42 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
-        if(gameState != State.playing)
+        if (gameState != State.playing)
             return;
 
         if (carInput.StartButton && carInput.RSB)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+    
+    public IEnumerator SmoothResume()
+    {
+
+        Debug.Log("Resuming game");
+
+        while (Time.timeScale < realTime && allowContinue)
+        {
+            Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
+            yield return null;
+        }
+
+        Time.timeScale = realTime;
+        allowContinue = false;
+
+    }
+    public IEnumerator SmoothStop()
+    {
+
+        Debug.Log("Freezing game");
+
+        while (Time.timeScale > 0.1f && !allowContinue)
+        {
+            Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
+            yield return null;
+        }
+
+        Time.timeScale = 0;
+       // allowContinue = true;
     }
 }
