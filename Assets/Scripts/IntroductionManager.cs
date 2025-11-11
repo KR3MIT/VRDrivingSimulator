@@ -10,18 +10,22 @@ public class IntroductionManager : MonoBehaviour
     public enum State
     {
         start,
+        calibration,
         wheelCheck,
         pedalCheck,
         blinkerCheck,
         end
     }
     public float StartTime = 2f;
-    
+
+    public LayerMask defaultCullingMask;
+
     [SerializeField] private PlayerInput input;
     [SerializeField] private LogitechInput carInput;
     [SerializeField] private CarMover car;
 
     [SerializeField] private UnityEvent onStart;
+    [SerializeField] private UnityEvent onCali;
     [SerializeField] private UnityEvent onWheelCheck;
     [SerializeField] private UnityEvent onPedalCheck;
     [SerializeField] private UnityEvent onBlinkerCheck;
@@ -36,10 +40,12 @@ public class IntroductionManager : MonoBehaviour
     private bool rightBlinkerTurned = false;
     private bool leftBlinkerTurned = false;
 
+    private bool calibrated = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SetState(State.start);
     }
 
     // Update is called once per frame
@@ -55,8 +61,13 @@ public class IntroductionManager : MonoBehaviour
         switch (state)
         {
             case State.start:
-                StartDelay();
+                StartCoroutine(StartDelay());
                 onStart.Invoke();
+                break;
+
+            case State.calibration:
+                StartCoroutine(Calibration());
+                onCali.Invoke();
                 break;
 
             case State.wheelCheck:
@@ -80,27 +91,48 @@ public class IntroductionManager : MonoBehaviour
 
             case State.end:
                 onEnd.Invoke();
+                Invoke("GoToScene", 3f);
                 break;
         }
+    }
+
+    void GoToScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     #region Start Delays
     private IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(StartTime);
-        SetState(State.wheelCheck);
+        SetState(State.calibration);
     }
     #endregion
+
+    private IEnumerator Calibration()
+    {
+        ForceXRRigLocation.OnCalibrationDone += () => calibrated = true;
+
+        while (true)
+        {
+            if (ForceXRRigLocation.HasSavedCalibration && calibrated)
+            {
+                SetState(State.wheelCheck);
+                yield break;
+            }
+            yield return null;
+        }
+    }
 
     #region Wheel Checks
     private IEnumerator RightWheelCheck()
     {
         while (true)
         {
-            if (carInput.steeringWheelValue > 20000 || input.actions["Steering"].ReadValue<float>() > 0.1f)
+            if (carInput.steeringWheelValue > 20000 || input.actions["Steer"].ReadValue<float>() > 0.1f)
             {
+                CheckWheelTurned();
                 rightWheelTurned = true;
-
             }
             yield return null;
         }
@@ -110,10 +142,10 @@ public class IntroductionManager : MonoBehaviour
     {
         while (true)
         {
-            if (carInput.steeringWheelValue < -20000 || input.actions["Steering"].ReadValue<float>() < -0.1f)
+            if (carInput.steeringWheelValue < -20000 || input.actions["Steer"].ReadValue<float>() < -0.1f)
             {
+                CheckWheelTurned();
                 leftWheelTurned = true;
-
             }
             yield return null;
         }
@@ -201,4 +233,12 @@ public class IntroductionManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region Helpers
+    public void CameraCullingMask()
+    {
+        Camera.main.cullingMask = defaultCullingMask;
+    }
+    #endregion
+
 }

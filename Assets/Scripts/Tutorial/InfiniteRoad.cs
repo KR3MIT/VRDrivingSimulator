@@ -14,7 +14,7 @@ public class InfiniteRoad : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = GameObject.Find("Player").transform;
+        playerTransform = GameObject.Find("Car").transform;
         defaultZ = transform.position.z;
 
         for (int i = 1; i <= extraSegments; i++)

@@ -381,4 +381,9 @@ public class CarMover : MonoBehaviour
         steeringWheel.transform.localRotation = Quaternion.Euler(-wheelRotation, -90, 0);
         //Debug.Log("wheelrot" + wheelRotation);
     }
+
+    public void SetTransmissionState(int transmissionIndex)
+    {
+        transmissionState = (TransmissionType)transmissionIndex;
+    }
 }

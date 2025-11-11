@@ -17,6 +17,9 @@ public class ForceXRRigLocation : MonoBehaviour
     public static Quaternion SavedRotation = Quaternion.identity;
     public static bool HasSavedCalibration = false;
 
+    public static event System.Action OnCalibrationDone;
+    private bool calibrated = false;
+
     private void Awake()
     {
         ApplySavedCalibration(transform);
@@ -30,8 +33,15 @@ public class ForceXRRigLocation : MonoBehaviour
     void Update()
     {
         if (isCooldown) { return; }
+        if (calibrated) { return; }
 
-        if ((logitechInput.leftBlinker || logitechInput.rightBlinker) || transform.root.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions["Test"].ReadValue<float>() >= 1)
+        if (logitechInput.rightBlinker)
+        {
+            OnCalibrationDone?.Invoke();
+            calibrated = true;
+        }
+
+        if ((logitechInput.leftBlinker) || transform.root.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions["Test"].ReadValue<float>() >= 1)
         {
             List<InputDevice> devices = new List<InputDevice>();
             InputDevices.GetDevicesAtXRNode(XRNode.Head, devices);
@@ -84,14 +94,12 @@ public class ForceXRRigLocation : MonoBehaviour
                 Debug.Log("Calibration saved to ForceXRRigLocation static fields.");
             }
         }
-
-        StartCooldown();
+        isCooldown = true;
+        Invoke("StartCooldown", .5f);
     }
 
-    public async void StartCooldown()
+    void StartCooldown()
     {
-        isCooldown = true;
-        await System.Threading.Tasks.Task.Delay(1000);
         isCooldown = false;
     }
 
