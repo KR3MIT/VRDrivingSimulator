@@ -5546,6 +5546,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashboardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5397106951001806614, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397106951001806614, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397106951001806614, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456450674131563324, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_fontSize
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456450674131563324, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_margin.x
+      value: -0.4217546
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456450674131563324, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_margin.z
+      value: -0.18806201
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456450674131563324, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994419252212869285, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994419252212869285, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994419252212869285, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9163184460438564748, guid: 418e1e46683d9024ba4236d10351d00b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.75
