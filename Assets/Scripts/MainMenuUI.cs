@@ -18,7 +18,7 @@ public class MainMenuUI : MonoBehaviour
 
     private Button[] currentButtons;
     private int selectedButtonIndex = 0;
-    private LogitechInput logitechInput;
+    public LogitechInput logitechInput;
     private float inputDelay = 0.2f; // Delay between input reads
     private float lastInputTime;
 
@@ -27,7 +27,6 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        logitechInput = GetComponent<LogitechInput>();
         currentButtons = menuButtons;
         selectedButtonIndex = 0;
         SelectButton(selectedButtonIndex);
@@ -49,7 +48,6 @@ public class MainMenuUI : MonoBehaviour
 
     void HandleSteeringWheelInput()
     {
-       
         if (Time.time - lastInputTime > inputDelay)
         {
             if (logitechInput.dpadValue == 1) // Up
@@ -79,13 +77,11 @@ public class MainMenuUI : MonoBehaviour
             }
             previousBButton = logitechInput.SelectButtonB;
         }
-
-       
     }
-
 
     void SelectButton(int index)
     {
+        Debug.Log("Selecting button: " + currentButtons[index].name);
         EventSystem.current.SetSelectedGameObject(currentButtons[index].gameObject);
     }
 
@@ -127,7 +123,7 @@ public class MainMenuUI : MonoBehaviour
     public void QuitButton()
     {
         //FeedbackSystem.Instance.RegisterDrivingError("Ran a red light", "Player ran red at intersection 3", DrivingError.ErrorSeverity.High);
-       FindFirstObjectByType<DataLog>().EnsureInitialized();
+        FindFirstObjectByType<DataLog>().EnsureInitialized();
         Application.Quit();
     }
 
