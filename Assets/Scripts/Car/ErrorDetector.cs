@@ -45,48 +45,51 @@ public class ErrorDetector : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
+        if (lightManager != null)
         {
-            FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk først at køre ind i et kryds, når lyset bliver grønt", DrivingError.ErrorSeverity.Høj);
-        }
-        else if(other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
-        {
-            enteringCross = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Grønt lys", "Godt klaret! Du kørte først ind i krydset, når lyset var grønt.", DrivingError.ErrorSeverity.Korrekt);
-        }
-      
-        if(other.CompareTag("StopLine"))
-        {
-           if(backMirrorCheck == false || sideMirrorCheck == false || shoulderCheck == false)
-           {
-                if(onlyStopOnce==false)
-                {
-                    onlyStopOnce = true;
-                    FeedbackSystem.Instance.RegisterDrivingError("Husk at orientere dig.", "Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
-                }
-           }
-           else
-           {
-                if (onlyStopOnce == false)
-                {
-                    FeedbackSystem.Instance.RegisterDrivingError("Godt orienteret.", "Du huskede at bruge dine spejle og orientere dig før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
-                }
-           }
-        }
+            if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
+            {
+                FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk først at køre ind i et kryds, når lyset bliver grønt", DrivingError.ErrorSeverity.Høj);
+            }
+            else if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
+            {
+                enteringCross = true;
+                FeedbackSystem.Instance.RegisterDrivingError("Grønt lys", "Godt klaret! Du kørte først ind i krydset, når lyset var grønt.", DrivingError.ErrorSeverity.Korrekt);
+            }
 
-        if (other.CompareTag("Pedestrian"))
-        {
-            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
-            instructionManager.allowContinue = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
-            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
-        }
-        else if (other.CompareTag("SplineCar"))
-        {
-            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
-            instructionManager.allowContinue = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
-            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
+            if (other.CompareTag("StopLine"))
+            {
+                if (backMirrorCheck == false || sideMirrorCheck == false || shoulderCheck == false)
+                {
+                    if (onlyStopOnce == false)
+                    {
+                        onlyStopOnce = true;
+                        FeedbackSystem.Instance.RegisterDrivingError("Husk at orientere dig.", "Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
+                    }
+                }
+                else
+                {
+                    if (onlyStopOnce == false)
+                    {
+                        FeedbackSystem.Instance.RegisterDrivingError("Godt orienteret.", "Du huskede at bruge dine spejle og orientere dig før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
+                    }
+                }
+            }
+
+            if (other.CompareTag("Pedestrian"))
+            {
+                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
+                instructionManager.allowContinue = true;
+                FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
+                GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
+            }
+            else if (other.CompareTag("SplineCar"))
+            {
+                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
+                instructionManager.allowContinue = true;
+                FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
+                GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
+            }
         }
     }
 

@@ -20046,6 +20046,8 @@ MonoBehaviour:
   - {fileID: 1389554426}
   carPrefabs:
   - {fileID: 576814869372171207, guid: 1d3370874620b2a4b81e8ee10f4cf792, type: 3}
+  scenarioIndex: 0
+  routeIndex: 0
   spawnIntervalMin: 5
   spawnIntervalMax: 7
 --- !u!1001 &401500658
@@ -53643,8 +53645,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.9592147}
+  m_Center: {x: 0, y: 0, z: 0.4796076}
 --- !u!114 &1097179433
 MonoBehaviour:
   m_ObjectHideFlags: 0
