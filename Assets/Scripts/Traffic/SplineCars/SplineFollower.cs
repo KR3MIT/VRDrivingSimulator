@@ -34,7 +34,13 @@ public class SplineFollower : MonoBehaviour
     [Header("Spline Following")]
     [Tooltip("Splines for the car to follow (this is most likely set in code from spawner)")]
     public List<SplineContainer> splines;
-    
+
+    [Header("Blinker")]
+    public Material frontBlinkingMaterial; 
+    public Material rearBlinkingMaterial;
+    public Material frontNormalMaterial, RearNormalMaterial;
+    public Renderer rearLeftBlinker, rearRightBlinker, frontLeftBlinker, frontRightBlinker;
+
     private SplineRoute splineRoute;
 
     int currentSpline = -1;
@@ -92,6 +98,7 @@ public class SplineFollower : MonoBehaviour
         
         AdjustCarSpeed();
         CheckIfCarInFront();
+        BlinkerLights();
         if (currentSplineIsATurn)
         {
             CheckIfPedestrianInFront();
@@ -102,6 +109,21 @@ public class SplineFollower : MonoBehaviour
             distanceToPedestrian = Mathf.Infinity;
         }
 
+    }
+
+    void BlinkerLights()
+    {
+        return; //fix jay
+        if(nextSplineInfo.IsATurn && Vector3.Distance(transform.position, nextSplineStartPoint) < 10f)
+        {
+            frontRightBlinker.material = frontBlinkingMaterial;
+            rearRightBlinker.material = rearBlinkingMaterial;
+        }
+        else
+        {
+            frontRightBlinker.material = frontNormalMaterial;
+            rearRightBlinker.material = RearNormalMaterial;
+        }
     }
 
     void SwitchSpline()

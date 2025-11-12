@@ -85,6 +85,14 @@ MonoBehaviour:
   meshResolution: 24
   viewColor: {r: 0, g: 1, b: 0, a: 0.25}
   splines: []
+  frontBlinkingMaterial: {fileID: 2100000, guid: 53a166b5a5d970644bb6660b190247e9, type: 2}
+  rearBlinkingMaterial: {fileID: 2100000, guid: 103c4b768ae2bf54d9c140053c4a8f20, type: 2}
+  frontNormalMaterial: {fileID: 2100000, guid: 58d998fed9b951448bb05182ed8137ce, type: 2}
+  RearNormalMaterial: {fileID: 2100000, guid: 00c0bba04af392b4380f1b206d7fa13d, type: 2}
+  rearLeftBlinker: {fileID: 0}
+  rearRightBlinker: {fileID: 0}
+  frontLeftBlinker: {fileID: 0}
+  frontRightBlinker: {fileID: 0}
 --- !u!65 &6566197276819035097
 BoxCollider:
   m_ObjectHideFlags: 0
