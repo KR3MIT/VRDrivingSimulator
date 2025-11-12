@@ -165,4 +165,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
        // allowContinue = true;
     }
+
 }

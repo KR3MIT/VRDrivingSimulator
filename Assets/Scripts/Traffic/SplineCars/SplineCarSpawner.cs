@@ -9,7 +9,7 @@ public class SplineCarSpawner : MonoBehaviour
     public List<SplineRoute> splineRoutes;
     public List<GameObject> carPrefabs;
     [SerializeField] private int scenarioIndex;
-    [SerializeField] private int routeIndex;
+    [SerializeField] public int routeIndex;
     [SerializeField] private float spawnIntervalMin = 2f;
     [SerializeField] private float spawnIntervalMax = 5f;
 
@@ -22,6 +22,7 @@ public class SplineCarSpawner : MonoBehaviour
         }
 
         //CarSpawnTrigger(0);
+        routeIndex = 0;
     }
 
     IEnumerator SpawnCarRoutine()
