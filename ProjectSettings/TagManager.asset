@@ -16,6 +16,7 @@ TagManager:
   - StartLine
   - StopLine
   - SlowZone
+  - Pavement
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,9 @@ public class ErrorDetector : MonoBehaviour
     private bool speedErrorDelay = false;
     private bool slowZoneDelay = false;
     private bool onlyStopOnce = false;
-    public float slowSpeedLimit = 20f;
+    public float slowSpeedLimit = 25f;
+    private bool pavementDelay = false;
+    
 
     private void Start()
     {
@@ -77,21 +79,44 @@ public class ErrorDetector : MonoBehaviour
                 }
             }
 
-            if (other.CompareTag("Pedestrian"))
-            {
-                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
-                instructionManager.allowContinue = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Uagtsomt manddrab", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
-                GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
-            }
-            else if (other.CompareTag("SplineCar"))
-            {
-                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
-                instructionManager.allowContinue = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
-                GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
-            }
+           
         }
+        if (other.CompareTag("Pedestrian"))
+        {
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
+            instructionManager.allowContinue = true;
+            FeedbackSystem.Instance.RegisterDrivingError("Ramte en fodgænger", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
+            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
+        }
+        else if (other.CompareTag("SplineCar"))
+        {
+            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
+            instructionManager.allowContinue = true;
+            FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
+            GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
+        }
+        //else if (other.CompareTag("Pavement") && !pavementDelay)
+        //{
+        //   StartCoroutine(PavementCollision());
+        //}
+    }
+
+    // no workie rn
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Pavement") && !pavementDelay)
+        {
+            Debug.Log("Pavement collision detected in OnCollisionEnter");
+            StartCoroutine(PavementCollision());
+        }
+    }
+    IEnumerator PavementCollision()
+    {
+        pavementDelay = true;
+        Debug.Log("Pavement collision detected");
+        FeedbackSystem.Instance.RegisterDrivingError("Kørte på fortovet.", "Husk at holde dig på vejen og undgå fortovet.", DrivingError.ErrorSeverity.Høj);
+        yield return new WaitForSeconds(1f);
+        pavementDelay = false;
     }
     private void OnTriggerStay(Collider other)
     {
