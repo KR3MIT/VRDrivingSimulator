@@ -25749,7 +25749,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 103c4b768ae2bf54d9c140053c4a8f20, type: 2}
     - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: useWheelInput
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6618464703385329889, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -75959,18 +75959,6 @@ PrefabInstance:
       value: Boxwood_wfypfa3ha_Low_wfypfa3ha_VarF_LOD2
       objectReference: {fileID: 0}
     - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.341
       objectReference: {fileID: 0}
@@ -76008,10 +75996,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713026556388457969, guid: eddd464fda27ba94d87639cf54e23177, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
