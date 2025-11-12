@@ -130,12 +130,12 @@ public class GameManager : MonoBehaviour
         if (gameState != State.playing)
             return;
 
-        if (carInput.StartButton && carInput.RSB)
+        if (carInput.XboxButton)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-    
+
     public IEnumerator SmoothResume()
     {
 

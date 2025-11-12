@@ -18,7 +18,7 @@ public class ForceXRRigLocation : MonoBehaviour
     public static bool HasSavedCalibration = false;
 
     public static event System.Action OnCalibrationDone;
-    private bool calibrated = false;
+    private static bool calibrated = false;
 
     private void Awake()
     {
@@ -88,10 +88,10 @@ public class ForceXRRigLocation : MonoBehaviour
 
 
                 //save calibration
-                SavedPosition = transform.position;//maybe local instead?!
-                SavedRotation = transform.rotation;
+                SavedPosition = transform.localPosition;//maybe local instead?!
+                SavedRotation = transform.localRotation;
                 HasSavedCalibration = true;
-                Debug.Log("Calibration saved to ForceXRRigLocation static fields.");
+                Debug.Log($"saved values= :) pos={SavedPosition} AND rot={SavedRotation.eulerAngles}");
             }
         }
         isCooldown = true;
@@ -106,7 +106,8 @@ public class ForceXRRigLocation : MonoBehaviour
     public static void ApplySavedCalibration(Transform rigTransform)
     {
         if (!HasSavedCalibration) return;
-        rigTransform.position = SavedPosition;
-        rigTransform.rotation = SavedRotation;
+        Debug.Log($"applying saved values= :) pos={SavedPosition} AND rot={SavedRotation.eulerAngles}");
+        rigTransform.localPosition = SavedPosition;
+        rigTransform.localRotation = SavedRotation;
     }
 }

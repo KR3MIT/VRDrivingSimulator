@@ -14,6 +14,7 @@ public class IntroductionManager : MonoBehaviour
         wheelCheck,
         pedalCheck,
         blinkerCheck,
+        restartCheck,
         end
     }
     public float StartTime = 2f;
@@ -23,12 +24,14 @@ public class IntroductionManager : MonoBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private LogitechInput carInput;
     [SerializeField] private CarMover car;
+    public RectTransform introUI;
 
     [SerializeField] private UnityEvent onStart;
     [SerializeField] private UnityEvent onCali;
     [SerializeField] private UnityEvent onWheelCheck;
     [SerializeField] private UnityEvent onPedalCheck;
     [SerializeField] private UnityEvent onBlinkerCheck;
+    [SerializeField] private UnityEvent onRestartCheck;
     [SerializeField] private UnityEvent onEnd;
 
     private bool rightWheelTurned = false;
@@ -37,8 +40,8 @@ public class IntroductionManager : MonoBehaviour
     private bool gasPedalPressed = false;
     private bool brakePedalPressed = false;
 
-    private bool rightBlinkerTurned = false;
-    private bool leftBlinkerTurned = false;
+    public bool rightBlinkerTurned = false;
+    public bool leftBlinkerTurned = false;
 
     private bool calibrated = false;
 
@@ -89,9 +92,14 @@ public class IntroductionManager : MonoBehaviour
                 StartCoroutine(LeftBlinkerCheck());
                 break;
 
+            case State.restartCheck:
+                StartCoroutine(RestartCheck());
+                onRestartCheck.Invoke();
+                break;
+
             case State.end:
                 onEnd.Invoke();
-                Invoke("GoToScene", 3f);
+                Invoke("GoToScene", 5f);
                 break;
         }
     }
@@ -165,7 +173,7 @@ public class IntroductionManager : MonoBehaviour
     {
         while (true)
         {
-            if (carInput.rightBlinker || input.actions["RightBlinker"].ReadValue<float>() > 0.1f)
+            if (carInput.rightBlinker || input.actions["BlinkerRight"].ReadValue<float>() > 0.1f)
             {
                 rightBlinkerTurned = true;
                 CheckBlinkerTurned();
@@ -178,7 +186,7 @@ public class IntroductionManager : MonoBehaviour
     {
         while (true)
         {
-            if (carInput.leftBlinker || input.actions["LeftBlinker"].ReadValue<float>() > 0.1f)
+            if (carInput.leftBlinker || input.actions["BlinkerLeft"].ReadValue<float>() > 0.1f)
             {
                 leftBlinkerTurned = true;
                 CheckBlinkerTurned();
@@ -191,7 +199,7 @@ public class IntroductionManager : MonoBehaviour
     {
         if (rightBlinkerTurned && leftBlinkerTurned)
         {
-            SetState(State.end);
+            SetState(State.restartCheck);
         }
     }
     #endregion
@@ -239,6 +247,22 @@ public class IntroductionManager : MonoBehaviour
     {
         Camera.main.cullingMask = defaultCullingMask;
     }
+    #endregion
+
+    #region Restart Check
+
+    IEnumerator RestartCheck()
+    {
+        while (gameState != State.end)
+        {
+            if (carInput.XboxButton)
+            {
+                SetState(State.end);
+            }
+            yield return null;
+        }
+    }
+
     #endregion
 
 }

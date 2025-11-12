@@ -3313,6 +3313,7 @@ MonoBehaviour:
   SelectButtonB: 0
   StartButton: 0
   RSB: 0
+  XboxButton: 0
   dpadValue: 0
   baseSaturation: 30
   baseCoefficient: 30
@@ -3339,10 +3340,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   waypointContainer: {fileID: 0}
-  laneDelay: 0
   laneThreshold: 2.5
-  laneDelayHz: 2
-  speedErrorDelay: 0
+  slowSpeedLimit: 20
 --- !u!114 &2320627808006824114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5778,6 +5777,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1848419568968580480, guid: 2efab454686aebd499111fd03243e476, type: 3}
+      propertyPath: m_GazeInteractor
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1851970630377126372, guid: 2efab454686aebd499111fd03243e476, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -5822,9 +5825,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2404642929755119011, guid: 2efab454686aebd499111fd03243e476, type: 3}
+      propertyPath: m_GazeTransform
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2405709284725708609, guid: 2efab454686aebd499111fd03243e476, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424134895602314552, guid: 2efab454686aebd499111fd03243e476, type: 3}
+      propertyPath: m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2635178074304302022, guid: 2efab454686aebd499111fd03243e476, type: 3}
       propertyPath: m_Layer
@@ -6522,6 +6533,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8354453996872311495, guid: 2efab454686aebd499111fd03243e476, type: 3}
+      propertyPath: m_GazeTransform
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8435118536835975750, guid: 2efab454686aebd499111fd03243e476, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -6587,7 +6602,8 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1008960427601700581, guid: 2efab454686aebd499111fd03243e476, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6664553717561181362, guid: 2efab454686aebd499111fd03243e476, type: 3}
       insertIndex: 0
