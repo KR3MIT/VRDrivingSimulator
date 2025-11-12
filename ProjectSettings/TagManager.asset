@@ -15,6 +15,7 @@ TagManager:
   - Shoulder
   - StartLine
   - StopLine
+  - SlowZone
   layers:
   - Default
   - TransparentFX

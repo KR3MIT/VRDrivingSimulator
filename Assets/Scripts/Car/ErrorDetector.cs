@@ -23,12 +23,13 @@ public class ErrorDetector : MonoBehaviour
     [Header("Lane")]
     public GameObject waypointContainer;
     private List<Vector3> waypoints = new List<Vector3>();
-    public bool laneDelay;
+    private bool laneDelay;
     public float laneThreshold = 2.5f;
-    public float laneDelayHz = 2f;
-    public bool speedErrorDelay = false;
-
+    private float laneDelayHz = 2f;
+    private bool speedErrorDelay = false;
+    private bool slowZoneDelay = false;
     private bool onlyStopOnce = false;
+    public float slowSpeedLimit = 20f;
 
     private void Start()
     {
@@ -90,6 +91,22 @@ public class ErrorDetector : MonoBehaviour
                 FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil.", DrivingError.ErrorSeverity.Ekstrem);
                 GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
             }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
+        {
+                slowZoneDelay = true;
+                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);   
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SlowZone"))
+        {
+            slowZoneDelay = false;
         }
     }
 
