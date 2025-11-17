@@ -84,6 +84,9 @@ public class SplineFollower : MonoBehaviour
     {
         splineAnimate = GetComponent<SplineAnimate>();
 
+        frontLeftBlinker.material = frontNormalMaterial;
+        rearLeftBlinker.material = RearNormalMaterial;
+
         //splines = splineRoute.splines; // Assign the splines from the SplineRoute (This is now done in the spawner)
     }
 
@@ -113,8 +116,7 @@ public class SplineFollower : MonoBehaviour
 
     void BlinkerLights()
     {
-        return; //fix jay
-        if(nextSplineInfo.IsATurn && Vector3.Distance(transform.position, nextSplineStartPoint) < 10f)
+        if(currentSplineInfo.IsATurn || (nextSplineInfo.IsATurn && Vector3.Distance(transform.position, nextSplineStartPoint) < 10f))
         {
             frontRightBlinker.material = frontBlinkingMaterial;
             rearRightBlinker.material = rearBlinkingMaterial;

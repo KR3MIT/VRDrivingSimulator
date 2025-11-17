@@ -1,0 +1,9 @@
+Scenario: Scenario one - Driving Errors:
+
+User: NAME_HERE
+Attempt: 2
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
