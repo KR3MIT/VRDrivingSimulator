@@ -40,22 +40,31 @@ public class GameEnder : MonoBehaviour
     public void EndGame(GameEndCondition condition)
     {
         bool foundSpeedError = false;
+        bool foundROWError = false;
 
         foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
         {
             if (error.errorName == "Fart overskridelse")
             {
                 foundSpeedError = true;
-                break;
+                continue;
+            }
+            if (error.errorName == "Vigepligt overtrædelse")
+            {
+                foundROWError = true;
+                continue;
             }
         }
 
-        if(!foundSpeedError)
+        if (!foundSpeedError)
         {
             FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
         }
-        
-         
+        if( !foundROWError)
+        {
+            FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overholdt", "Du har overholdt din højrevigepligt.", DrivingError.ErrorSeverity.Korrekt);
+        }
+
         var data = FindFirstObjectByType<DataLog>();
         if (data != null)
             data.LogAllErrors();

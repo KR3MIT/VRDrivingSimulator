@@ -31,7 +31,8 @@ public class ErrorDetector : MonoBehaviour
     private bool onlyStopOnce = false;
     public float slowSpeedLimit = 25f;
     private bool pavementDelay = false;
-    
+    public bool correctROW = true;
+
 
     private void Start()
     {
@@ -131,13 +132,23 @@ public class ErrorDetector : MonoBehaviour
         {
             StartCoroutine(PavementCollision());
         }
+        //if(other.CompareTag("Finishline"))
+        //{
+           
+        //    if (correctROW)
+        //    {
+
+        //        FeedbackSystem.Instance.RegisterDrivingError("Korrekt højrevigepligt", "Godt klaret! Du overholdte din højrevigepligt korrekt.", DrivingError.ErrorSeverity.Korrekt);
+        //    }
+          
+        //}
     }
    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
         {
                 slowZoneDelay = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);   
+                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);        
         }
 
     }
@@ -148,7 +159,7 @@ public class ErrorDetector : MonoBehaviour
             slowZoneDelay = false;
         }
     }
-    // no workie rn
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Pavement") && !pavementDelay)
@@ -166,7 +177,7 @@ public class ErrorDetector : MonoBehaviour
         pavementDelay = false;
     }
    
-    // højrevigepligt speed limit check
+    
  
 
     public void CheckBlinker()
