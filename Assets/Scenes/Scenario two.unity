@@ -24568,6 +24568,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 53a166b5a5d970644bb6660b190247e9, type: 2}
+    - target: {fileID: 8656923218372371209, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_text
+      value: "Forts\xE6t ligeud igennem hele villakvarteret"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656923218372371209, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
