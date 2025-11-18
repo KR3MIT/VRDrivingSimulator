@@ -52,7 +52,7 @@ public class ErrorDetector : MonoBehaviour
         {
             if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
             {
-                FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk først at køre ind i et kryds, når lyset bliver grønt", DrivingError.ErrorSeverity.Høj);
+                FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk at stoppe før stoplinjen hvis der er rødt lys og kør først ind i krydset ved grønt lys", DrivingError.ErrorSeverity.Høj);
             }
             else if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
             {
@@ -83,15 +83,21 @@ public class ErrorDetector : MonoBehaviour
         }
         if (other.CompareTag("Pedestrian"))
         {
-            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
-            instructionManager.allowContinue = true;
+            if (instructionManager != null)
+            {
+                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
+                instructionManager.allowContinue = true;
+            }
             FeedbackSystem.Instance.RegisterDrivingError("Ramte en fodgænger", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
         else if (other.CompareTag("SplineCar"))
         {
-            instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
-            instructionManager.allowContinue = true;
+            if(instructionManager != null)
+            {
+                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
+                instructionManager.allowContinue = true;
+            }
             FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
@@ -192,9 +198,9 @@ public class ErrorDetector : MonoBehaviour
 
     void Update()
     {
-
+       
         //Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
-        if(laneDelay==false)
+        if (laneDelay==false)
         {
             if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
             {

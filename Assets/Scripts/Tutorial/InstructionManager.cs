@@ -35,21 +35,21 @@ public class InstructionManager : MonoBehaviour
         {
             isFrozen = false;
             StartCoroutine(SmoothResume());
-            HideHints();
+            //HideHints();
         }
     }
-    public void ShowHint(int index, bool show, string text)
-    {
-        if (index >= 0 && index < hintTexts.Length)
-        {
-            hintTexts[index].gameObject.SetActive(show);
-            hintTexts[index].text = text;
-        }
-        else
-        {
-            Debug.Log("The textobject doesnt exist mate");
-        }
-    }
+    //public void ShowHint(int index, bool show, string text)
+    //{
+    //    if (index >= 0 && index < hintTexts.Length)
+    //    {
+    //        hintTexts[index].gameObject.SetActive(show);
+    //        hintTexts[index].text = text;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("The textobject doesnt exist mate");
+    //    }
+    //}
     public void ShowFreezeHint(int index, bool show, string text)
     {
         isFrozen = true;
@@ -64,13 +64,13 @@ public class InstructionManager : MonoBehaviour
         }
         StartCoroutine(SmoothStop());
     }
-    public void HideHints()
-    {
-        foreach (var textobj in hintTexts)
-        {
-            textobj.gameObject.SetActive(false);
-        }
-    }
+    //public void HideHints()
+    //{
+    //    foreach (var textobj in hintTexts)
+    //    {
+    //        textobj.gameObject.SetActive(false);
+    //    }
+    //}
     public IEnumerator SmoothResume()
     {
 

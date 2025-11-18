@@ -99041,6 +99041,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: lightManager
       value: 
       objectReference: {fileID: 690044864}
@@ -99074,7 +99078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3366798782456942826, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3790512212587118740, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -99090,7 +99094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: useWheelInput
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248745215726705565, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_LocalPosition.x

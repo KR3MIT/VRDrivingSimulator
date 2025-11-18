@@ -24,10 +24,10 @@ public class TutorialTrigger : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         //Left Turn Task
-        if (collision.gameObject == TutorialColliders[0])
-        {
-            InstructionManager.ShowHint(0, true, tutorialText.LeftTurnTask);
-        }
+        //if (collision.gameObject == TutorialColliders[0])
+        //{
+        //    InstructionManager.ShowHint(0, true, tutorialText.LeftTurnTask);
+        //}
 
         //Left Blinker Task
         if (collision.gameObject == TutorialColliders[1])
@@ -46,7 +46,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         bool OpsDirection = true;
         bool PedDirection = true;
-        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep1);
+        //InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep1);
         Arrow = Instantiate(Arrow, spawnPoints[0].position, spawnPoints[0].rotation);
         Arrow.SetActive(true);
 
@@ -70,7 +70,7 @@ public class TutorialTrigger : MonoBehaviour
                 yield return new WaitForSeconds(CheckDelay);
         }
 
-        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep2);
+        //InstructionManager.ShowHint(1, true, tutorialText.LeftTurnStep2);
         Arrow.transform.position = spawnPoints[1].position;
         Arrow.transform.rotation = spawnPoints[1].rotation;
         while (PedDirection)
@@ -91,7 +91,7 @@ public class TutorialTrigger : MonoBehaviour
             }
             yield return new WaitForSeconds(CheckDelay);
         }
-        InstructionManager.ShowHint(1, true, tutorialText.LeftTurnDone);
+        //InstructionManager.ShowHint(1, true, tutorialText.LeftTurnDone);
         InstructionManager.allowContinue = true;
     }
 
