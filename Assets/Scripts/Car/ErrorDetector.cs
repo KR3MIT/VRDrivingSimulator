@@ -45,6 +45,30 @@ public class ErrorDetector : MonoBehaviour
             waypoints.Add(child.position);
         }
     }
+    void Update()
+    {
+       
+        //Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
+        if (laneDelay==false)
+        {
+            if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
+            {
+                FeedbackSystem.Instance.RegisterDrivingError("Vognbane overskridelse", "Du afveg fra din vognbane.", DrivingError.ErrorSeverity.Mellem);
+                StartCoroutine(LaneError());
+            }
+        }
+        if (enteringCross)
+        {
+            enteringCross = false;
+            StartCoroutine(CheckOrientation());
+            CheckBlinker();
+        }
+        if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
+        {
+            speedErrorDelay = true;
+            FeedbackSystem.Instance.RegisterDrivingError("Fart overskridelse", "Fart for høj.", DrivingError.ErrorSeverity.Mellem);
+        }
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -78,6 +102,7 @@ public class ErrorDetector : MonoBehaviour
                     }
                 }
             }
+            
 
            
         }
@@ -101,12 +126,28 @@ public class ErrorDetector : MonoBehaviour
             FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
-        //else if (other.CompareTag("Pavement") && !pavementDelay)
-        //{
-        //   StartCoroutine(PavementCollision());
-        //}
-    }
 
+        else if (other.CompareTag("Pavement") && !pavementDelay)
+        {
+            StartCoroutine(PavementCollision());
+        }
+    }
+   private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
+        {
+                slowZoneDelay = true;
+                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);   
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SlowZone"))
+        {
+            slowZoneDelay = false;
+        }
+    }
     // no workie rn
     private void OnCollisionEnter(Collision collision)
     {
@@ -124,22 +165,9 @@ public class ErrorDetector : MonoBehaviour
         yield return new WaitForSeconds(1f);
         pavementDelay = false;
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
-        {
-                slowZoneDelay = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);   
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("SlowZone"))
-        {
-            slowZoneDelay = false;
-        }
-    }
+   
+    // højrevigepligt speed limit check
+ 
 
     public void CheckBlinker()
     {
@@ -196,30 +224,6 @@ public class ErrorDetector : MonoBehaviour
         //all checks done, set next check methods bool true
     }
 
-    void Update()
-    {
-       
-        //Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
-        if (laneDelay==false)
-        {
-            if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
-            {
-                FeedbackSystem.Instance.RegisterDrivingError("Vognbane overskridelse", "Du afveg fra din vognbane.", DrivingError.ErrorSeverity.Mellem);
-                StartCoroutine(LaneError());
-            }
-        }
-        if (enteringCross)
-        {
-            enteringCross = false;
-            StartCoroutine(CheckOrientation());
-            CheckBlinker();
-        }
-        if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
-        {
-            speedErrorDelay = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Fart overskridelse", "Fart for høj.", DrivingError.ErrorSeverity.Mellem);
-        }
-    }
 
     IEnumerator LaneError()
     {

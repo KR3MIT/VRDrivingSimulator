@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457643696642584018}
   - component: {fileID: 6903107373196063244}
+  - component: {fileID: 4402702131607117596}
   m_Layer: 0
   m_Name: Wheel FR
   m_TagString: Untagged
@@ -208,6 +209,27 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!65 &4402702131607117596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672254673853082458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25168878, y: 0.6534958, z: 0.6196289}
+  m_Center: {x: 0.053634718, y: -0.049595118, z: 0.009966552}
 --- !u!1 &682335232420280088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,6 +2442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4726591510816936255}
   - component: {fileID: 2822177155665317443}
+  - component: {fileID: 7758040334257238428}
   m_Layer: 0
   m_Name: Wheel FL
   m_TagString: Untagged
@@ -2482,6 +2505,27 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!65 &7758040334257238428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564951165667838774}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2404716, y: 0.61762255, z: 0.50857013}
+  m_Center: {x: -0.05, y: -0.06966388, z: -0.01}
 --- !u!1 &2630914470198461751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,7 +3480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &178587268827157230
 Transform:
   m_ObjectHideFlags: 0
