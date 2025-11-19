@@ -38,6 +38,7 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
+        GameManager.Instance.SetState(GameManager.State.end);
         bool foundSpeedError = false;
         bool foundROWError = false;
 

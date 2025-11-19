@@ -3249,13 +3249,13 @@ MonoBehaviour:
     upshiftSpeed: 120
     downshiftSpeed: 100
   currentGear: 0
-  maxAcceleration: 75
+  maxAcceleration: 50
   reverseAcceleration: 50
   brakeAcceleration: 500
   creepTorque: 3
   maxCreepSpeed: 3
   minCreepSpeed: 0.5
-  brakeShiftThreshold: 0.3
+  brakeShiftThreshold: 0.2
   turnSensitivity: 1
   maxSteerAngle: 22.5
   _centerOfMass: {x: 0, y: -0.5, z: 0}

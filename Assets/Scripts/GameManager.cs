@@ -132,7 +132,10 @@ public class GameManager : MonoBehaviour
 
         if (carInput.XboxButton)
         {
+            if (gameState != State.end)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            else
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
