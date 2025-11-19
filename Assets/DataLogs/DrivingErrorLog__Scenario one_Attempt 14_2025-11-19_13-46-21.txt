@@ -1,0 +1,19 @@
+Scenario: Scenario one - Driving Errors:
+
+User: 
+Attempt: 14
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Grønt lys                     0              [KORREKT]                Godt klaret! Du kørte først ind i krydset, når lyset var grønt.
+
+Korrekt brug af blinklys.     0              [KORREKT]                Godt klaret! Du huskede at bruge dit blinklys før du foretog et sving.
+
+Godt orienteret.              0              [KORREKT]                Du huskede at bruge dine spejle og orientere dig før du foretog et sving.
+
+Fartgrænse overholdt          0              [KORREKT]                Du har overholdt fartgrænsen.
+
+Vigepligt overholdt           0              [KORREKT]                Du har overholdt din højrevigepligt.
+

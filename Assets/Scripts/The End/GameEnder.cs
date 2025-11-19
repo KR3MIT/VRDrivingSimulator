@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameEnder : MonoBehaviour
 {
+    public CarMover car;
     public static GameEnder Instance;
     private Canvas gameEndCanvas;
     public enum GameEndCondition
@@ -38,7 +39,6 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
-        GameManager.Instance.SetState(GameManager.State.end);
         bool foundSpeedError = false;
         bool foundROWError = false;
 
@@ -97,7 +97,8 @@ public class GameEnder : MonoBehaviour
                 endCondition = GameEndCondition.ManualEnd;
                 break;
         }
-        StartCoroutine(GameManager.Instance.ins.SmoothStop());
+
+        car.transmissionState = CarMover.TransmissionType.Park;
     }
 
     public void CreateErrorCard(DrivingError error)

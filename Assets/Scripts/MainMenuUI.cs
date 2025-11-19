@@ -30,7 +30,6 @@ public class MainMenuUI : MonoBehaviour
         currentButtons = menuButtons;
         selectedButtonIndex = 0;
         SelectButton(selectedButtonIndex);
-
         // Load previously saved player name into the input field (if any)
         if (playerNameInput != null)
         {

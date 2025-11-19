@@ -87,10 +87,8 @@ public class GameManager : MonoBehaviour
     void StartState()
     {
         car.transmissionState = CarMover.TransmissionType.Park;
-        Debug.Log("Game " + car.transmissionState);
         onGameStart?.Invoke();
         StartCoroutine(SpeederCheck());
-        ins.StartCoroutine(ins.SmoothResume());
     }
 
     private IEnumerator SpeederCheck()
@@ -115,13 +113,11 @@ public class GameManager : MonoBehaviour
 
     void PausedState()
     {
-        ins.StartCoroutine(ins.SmoothStop());
         onGamePaused?.Invoke();
     }
 
     void EndState()
     {
-        ins.StartCoroutine(ins.SmoothStop());
         onGameEnd?.Invoke();
     }
 
@@ -131,43 +127,42 @@ public class GameManager : MonoBehaviour
         {
             if (gameState == State.playing)
             {
+                Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else if (gameState == State.end)
             {
+                Time.timeScale = 1;
             SceneManager.LoadScene("MainMenu");
             }
         }
     }
 
-    public IEnumerator SmoothResume()
-    {
+    //public IEnumerator SmoothResume()
+    //{
 
-        Debug.Log("Resuming game");
+    //    Debug.Log("Resuming game");
 
-        while (Time.timeScale < realTime && allowContinue)
-        {
-            Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
-            yield return null;
-        }
+    //    while (Time.timeScale < realTime && allowContinue)
+    //    {
+    //        Time.timeScale += Time.unscaledDeltaTime / resumeDuration * realTime;
+    //        yield return null;
+    //    }
 
-        Time.timeScale = realTime;
-        allowContinue = false;
+    //    Time.timeScale = realTime;
+    //    allowContinue = false;
 
-    }
-    public IEnumerator SmoothStop()
-    {
+    //}
+    //public IEnumerator SmoothStop()
+    //{
+    //    Debug.Log("Freezing game");
 
-        Debug.Log("Freezing game");
-
-        while (Time.timeScale > 0.1f && !allowContinue)
-        {
-            Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
-            yield return null;
-        }
-
-        Time.timeScale = 0;
-       // allowContinue = true;
-    }
+    //    while (Time.timeScale > 0.1f && !allowContinue)
+    //    {
+    //        Time.timeScale -= Time.unscaledDeltaTime / resumeDuration * realTime;
+    //        yield return null;
+    //    }
+    //    Time.timeScale = 0;
+    //}
 
 }
