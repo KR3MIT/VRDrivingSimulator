@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID BLINKEROFF = 410377967U;
         static const AkUniqueID BLINKERON = 385229051U;
         static const AkUniqueID PLAYERCARSTART = 3559953332U;
+        static const AkUniqueID PLAYERCARSTOPSOUND = 865811789U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

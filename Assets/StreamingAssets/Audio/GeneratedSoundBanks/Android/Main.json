@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{8DBC6A34-B924-403F-9D78-3CA39456114D}",
     "Language": "SFX",
-    "Hash": "{DAE55473-2FCE-EDB3-30AC-36663F97587D}",
+    "Hash": "{168885C9-2C22-9BF6-CB5E-4F19B1CB1217}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -185,6 +185,16 @@
         }
        ]
       }
+     },
+     {
+      "Id": "865811789",
+      "Name": "PlayerCarStopSound",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerCarStopSound",
+      "GUID": "{3B065F99-4B0F-48F0-A1F8-20BF90161387}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      }
     ],
     "GameParameters": [
@@ -203,6 +213,6 @@
     ]
    }
   ],
-  "FileHash": "{747C79BD-EDD9-65E9-5249-6EEA90899018}"
+  "FileHash": "{F93AC145-7CA8-61D8-55E8-08761273B7D6}"
  }
 }

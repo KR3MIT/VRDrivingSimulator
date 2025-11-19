@@ -92,6 +92,16 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayerCarStopSound" ID="{3B065F99-4B0F-48F0-A1F8-20BF90161387}">
+					<ChildrenList>
+						<Action Name="" ID="{BEEA678E-8191-4402-B1E4-7223D2B73D63}" ShortID="328915389">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+							</PropertyList>
+							<ReferenceList/>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

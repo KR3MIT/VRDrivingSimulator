@@ -3336,6 +3336,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9aad6a469bd611045acb522111c2a708, type: 2}
+  stopCarSounds:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3f7b7f85fcfdca448ae2183a00734e27, type: 2}
 --- !u!114 &5161168440370940348
 MonoBehaviour:
   m_ObjectHideFlags: 0

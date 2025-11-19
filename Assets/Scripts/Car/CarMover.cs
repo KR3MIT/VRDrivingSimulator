@@ -94,6 +94,7 @@ public class CarMover : MonoBehaviour
     public AK.Wwise.Event carStartEvent;
     public AK.Wwise.RTPC speederRTPC;
     public AK.Wwise.RTPC speedRTPC;
+    public AK.Wwise.Event stopCarSounds;
 
     private bool isCreeping = false;
 
@@ -385,5 +386,10 @@ public class CarMover : MonoBehaviour
     public void SetTransmissionState(int transmissionIndex)
     {
         transmissionState = (TransmissionType)transmissionIndex;
+    }
+
+    private void OnDestroy()
+    {
+        stopCarSounds.Post(gameObject);
     }
 }
