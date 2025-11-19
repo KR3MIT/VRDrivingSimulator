@@ -1,0 +1,17 @@
+Scenario: Scenario one - Driving Errors:
+
+User: 
+Attempt: 3
+
+Time Taken: 0
+
+ERROR_NAME                    ERROR_TIME     SEVERITY_LEVEL           ERROR_DESCRIPTION
+
+Fart overskridelse            0              [MELLEM]                 Fart for høj.
+
+Vognbane overskridelse        0              [MELLEM]                 Du afveg fra din vognbane.
+
+Bil kollision                 0              [EKSTREM]                Du ramte en bil, husk altid at orienter dig.
+
+Vigepligt overholdt           0              [KORREKT]                Du har overholdt din højrevigepligt.
+
