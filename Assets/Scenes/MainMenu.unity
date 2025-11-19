@@ -286,6 +286,42 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1758018816}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToScenario
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802517657938079387, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238664547005543098, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 375.47
+      objectReference: {fileID: 0}
     - target: {fileID: 2564648976342878291, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -304,23 +340,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1758018815}
+      objectReference: {fileID: 1758018816}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: GoToScenario
       objectReference: {fileID: 0}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TutorialToggler, Assembly-CSharp
+      value: MainMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3295294121857344827, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -412,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3954596335961222172, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6105189974866110318, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_SizeDelta.x
@@ -548,7 +588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8198470007824526834, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507299079834823102, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
+      propertyPath: m_text
+      value: "3. Tilk\xF8rsel til motorvej (WIP)"
       objectReference: {fileID: 0}
     - target: {fileID: 8540719705689065072, guid: 87f4a9a1404ec2d45bb4f8149a264fd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -982,6 +1026,10 @@ PrefabInstance:
     - target: {fileID: 3346315548363364692, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366798782456942826, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4345169288591034353, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_GazeTransform

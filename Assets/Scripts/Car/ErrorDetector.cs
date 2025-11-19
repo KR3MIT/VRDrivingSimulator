@@ -148,7 +148,7 @@ public class ErrorDetector : MonoBehaviour
         if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
         {
                 slowZoneDelay = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Sænk farten når du har højrevigepligt og orienter dig ordenligt.", DrivingError.ErrorSeverity.Mellem);        
+                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Husk at sænke hastigheden og orientere dig ved kryds med højre vigepligt.", DrivingError.ErrorSeverity.Mellem);
         }
 
     }

@@ -127,8 +127,13 @@ public class MainMenuUI : MonoBehaviour
         Application.Quit();
     }
 
+    public void GoToScenario(int sceneIndex)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
+    }
+
     //StartMenu Scenario Buttons
-    
+
 
 
 
