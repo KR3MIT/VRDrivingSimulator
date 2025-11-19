@@ -127,15 +127,16 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
-        if (gameState != State.playing)
-            return;
-
         if (carInput.XboxButton)
         {
-            if (gameState != State.end)
+            if (gameState == State.playing)
+            {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            else
+            }
+            else if (gameState == State.end)
+            {
             SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
