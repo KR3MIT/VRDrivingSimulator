@@ -21,6 +21,6 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	937086646	Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCar\MotorTicSineDeep\Tone Generator	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	686493923	BlinkerOff	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\A0\{A059065C-52CA-1206-C8CB-DE7FF0117A41}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOff		21504
-	926365725	BlinkerOn	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\83\{8392A4E9-EB81-848A-8116-5BD46FC472EC}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOn		22080
+	686493923	BlinkerOff	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\07\{07346DF3-BA21-2239-7602-59BC4937CBEE}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOff		21504
+	926365725	BlinkerOn	C:\Github\VRDrivingSimulator\VRDrivingSimulator_WwiseProject\.cache\72\{72D92191-16FC-2022-6B8F-96C495B19210}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Blinker\BlinkerOn		22080
 
