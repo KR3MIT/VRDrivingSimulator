@@ -46,16 +46,16 @@ public class FeedbackSystem : MonoBehaviour
 
     public void FailAndLockObjectiveCard(ObjectiveType type)
     {
-        for (int i = 0; i < objectiveLinks.Count; i++)
-        {
-            if (objectiveLinks[i].objectiveCard.objectiveType == type && !objectiveLinks[i].isLocked)
-            {
-                var link = objectiveLinks[i];
-                link.isFailed = true;
-                link.isLocked = true;
-                objectiveLinks[i] = link;
-            }
-        }
+        int index = objectiveLinks.FindIndex(l => l.objectiveCard.objectiveType == type && !l.isLocked);
+        if (index < 0)
+            return;
+
+        var link = objectiveLinks[index];
+        link.isFailed = true;
+        link.isLocked = true;
+
+        objectiveLinks.RemoveAt(index);
+        objectiveLinks.Insert(0, link);
     }
 
     public List<ObjectiveLink> GetObjectiveLinks()

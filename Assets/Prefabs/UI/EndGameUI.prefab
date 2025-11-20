@@ -1268,7 +1268,9 @@ MonoBehaviour:
   endCondition: 0
   gameEnded: 0
   errorUIPrefab: {fileID: 3903898321226407547, guid: 263369ddaeb1033499353d315c6809a6, type: 3}
-  errorContainer: {fileID: 0}
+  errorContainer: {fileID: 7839965694533046317}
+  goodCard: {fileID: 3903898321226407547, guid: 73347a8cda11ea84d89f901f3c79391d, type: 3}
+  badCard: {fileID: 3903898321226407547, guid: dc0a7e015c022d24fa3bf0afd1b7095b, type: 3}
 --- !u!1 &9180959502972751303
 GameObject:
   m_ObjectHideFlags: 0
