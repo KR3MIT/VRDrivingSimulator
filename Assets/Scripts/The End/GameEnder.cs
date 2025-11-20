@@ -6,7 +6,7 @@ public class GameEnder : MonoBehaviour
 
     public CarMover car;
     public static GameEnder Instance;
-    private Canvas gameEndCanvas;
+    public GameObject gameEndCanvas;
     public enum GameEndCondition
     {
         None,
@@ -28,7 +28,7 @@ public class GameEnder : MonoBehaviour
 
     private void Start()
     {
-        gameEndCanvas = GetComponent<Canvas>();
+
         if(Instance == null)
         {
             Instance = this;
@@ -78,9 +78,9 @@ public class GameEnder : MonoBehaviour
             Debug.LogWarning("data not logged | DataLog instance not found.");
 
 
-        OnGameEnd?.Invoke();
+        
         gameEnded = true;
-        gameEndCanvas.enabled = true;
+        gameEndCanvas.SetActive(true);
 
         foreach (var obj in FeedbackSystem.Instance.GetObjectiveLinks())
         {
@@ -106,7 +106,9 @@ public class GameEnder : MonoBehaviour
                 break;
         }
 
-        if(car != null)
+        OnGameEnd?.Invoke();
+
+        if (car != null)
             car.transmissionState = CarMover.TransmissionType.Park;
     }
 
