@@ -12,6 +12,7 @@ public class EndMenuNavigation : MonoBehaviour
     private int objectiveCount;
     public Scrollbar scrollbar;
     private float scrollbarSensitivity = 0f;
+    private GameEnder gameEnder;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +27,9 @@ public class EndMenuNavigation : MonoBehaviour
         if (input == null)
             Debug.LogWarning("PlayerInput reference is missing in EndMenuNavigation.");
 
-
+        gameEnder = GetComponent<GameEnder>();
+        gameEnder.OnGameEnd += OnEnd;
+        
     }
 
     // Update is called once per frame
@@ -45,7 +48,6 @@ public class EndMenuNavigation : MonoBehaviour
                 {
                     scrollbar.value += scrollbarSensitivity;
                 }
-
             }
             else if (logitechInput.dpadValue == -1 || input.actions["BrakePedal"].ReadValue<float>() > 0.1f) // Down
             {
@@ -67,5 +69,14 @@ public class EndMenuNavigation : MonoBehaviour
     {
         if (objectiveCount <= 1) return;
         scrollbarSensitivity = 1f / (objectiveCount - 1);
+    }
+
+    void OnEnd()
+    {
+        Invoke("OnEnd2", 0.1f);
+    }
+    void OnEnd2()
+    {
+        scrollbar.value = 1f;
     }
 }

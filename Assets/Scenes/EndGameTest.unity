@@ -289,6 +289,97 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1 &546181500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 546181503}
+  - component: {fileID: 546181502}
+  - component: {fileID: 546181501}
+  m_Layer: 0
+  m_Name: dog dependencies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &546181501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546181500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: ffc4707b5f32fde4bb1b0e49140bdbdf, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Car
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &546181502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546181500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f40d7a15e91d6a49b85c3e97685ab0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogitechInput
+  steeringWheelValue: 0
+  speederValue: 0
+  brakeValue: 0
+  leftBlinker: 0
+  rightBlinker: 0
+  SelectButtonA: 0
+  SelectButtonB: 0
+  StartButton: 0
+  RSB: 0
+  XboxButton: 0
+  dpadValue: 0
+  baseSaturation: 40
+  baseCoefficient: 40
+  maxSaturation: 100
+  maxCoefficient: 100
+  speedCoefficient: 1
+--- !u!4 &546181503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546181500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.169, y: 0, z: 18.03026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547248934
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 547248934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.43, y: 0, z: -0.61}
+  m_LocalPosition: {x: 14.7, y: 0, z: -1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -814,6 +905,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1785816736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6596432112306195226, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+  m_PrefabInstance: {fileID: 5152174140589384276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103691935
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1045,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 939702104671208788, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 546181501}
+    - target: {fileID: 939702104671208788, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+      propertyPath: logitechInput
+      value: 
+      objectReference: {fileID: 546181502}
     - target: {fileID: 5519592859649267217, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -957,14 +1061,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5519592859649267217, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6766732341723179350, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 5792988403513099009, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+      propertyPath: gameEndCanvas
+      value: 
+      objectReference: {fileID: 1785816736}
     - target: {fileID: 6959407630168427545, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1070,3 +1170,4 @@ SceneRoots:
   - {fileID: 547248938}
   - {fileID: 5152174140589384276}
   - {fileID: 995044187}
+  - {fileID: 546181503}
