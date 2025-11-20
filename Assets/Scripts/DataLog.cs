@@ -86,16 +86,16 @@ public class DataLog : MonoBehaviour
             return;
         }
 
-        var errors = FeedbackSystem.Instance.GetDrivingErrors();
+        var errors = FeedbackSystem.Instance.GetObjectiveLinks();
         foreach (var error in errors)
         {
-            string nameCol = (error.errorName ?? string.Empty).PadRight(30);
-            string timeCol = error.timestamp.ToString("0.##").PadRight(15);
-            string sevText = error.severity.ToString().ToUpperInvariant();
-            string sevCol = $"[{sevText}]".PadRight(25);
-            string descCol = error.description ?? string.Empty;
+            string nameCol = (error.objectiveCard.titleText ?? string.Empty).PadRight(30);
+            //string timeCol = error.timestamp.ToString("0.##").PadRight(15);
+            //string sevText = error.severity.ToString().ToUpperInvariant();
+            //string sevCol = $"[{sevText}]".PadRight(25);
+            string descCol = error.objectiveCard.descriptionGoodText ?? string.Empty;
 
-            _sb.AppendLine($"{nameCol}{timeCol}{sevCol}{descCol}");
+            //_sb.AppendLine($"{nameCol}{timeCol}{sevCol}{descCol}");
             _sb.AppendLine(); // blank line after each entry to match previous layout
         }
 

@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 using static TrafficLightManager;
+using static ObjectiveCard;
 
 public class ErrorDetector : MonoBehaviour
 {
@@ -48,13 +49,12 @@ public class ErrorDetector : MonoBehaviour
     }
     void Update()
     {
-       
-        //Debug.Log("Distance to: " + GetDistanceToPath(this.transform.position, waypoints));
         if (laneDelay==false)
         {
             if (GetDistanceToPath(this.transform.position, waypoints) > laneThreshold)
             {
-                FeedbackSystem.Instance.RegisterDrivingError("Vognbane overskridelse", "Du afveg fra din vognbane.", DrivingError.ErrorSeverity.Mellem);
+                FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.LaneViolation);
+                //FeedbackSystem.Instance.RegisterDrivingError("Vognbane overskridelse", "Du afveg fra din vognbane.", DrivingError.ErrorSeverity.Mellem);
                 StartCoroutine(LaneError());
             }
         }
@@ -67,7 +67,8 @@ public class ErrorDetector : MonoBehaviour
         if (car.magnitude *3.6f > 55f && speedErrorDelay == false)
         {
             speedErrorDelay = true;
-            FeedbackSystem.Instance.RegisterDrivingError("Fart overskridelse", "Fart for høj.", DrivingError.ErrorSeverity.Mellem);
+            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.SpeedLimit);
+            //FeedbackSystem.Instance.RegisterDrivingError("Fart overskridelse", "Fart for høj.", DrivingError.ErrorSeverity.Mellem);
         }
     }
 
@@ -77,12 +78,13 @@ public class ErrorDetector : MonoBehaviour
         {
             if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Red || lightManager.currentState1 == TrafficLightState.Yellow))
             {
-                FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk at stoppe før stoplinjen hvis der er rødt lys og kør først ind i krydset ved grønt lys", DrivingError.ErrorSeverity.Høj);
+                FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.TrafficLight);
+                //FeedbackSystem.Instance.RegisterDrivingError("Kørte over for rødt.", "Husk at stoppe før stoplinjen hvis der er rødt lys og kør først ind i krydset ved grønt lys", DrivingError.ErrorSeverity.Høj);
             }
             else if (other.CompareTag("StartLine") && (lightManager.currentState1 == TrafficLightState.Green || lightManager.currentState1 == TrafficLightState.RedYellow))
             {
                 enteringCross = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Grønt lys", "Godt klaret! Du kørte først ind i krydset, når lyset var grønt.", DrivingError.ErrorSeverity.Korrekt);
+                //FeedbackSystem.Instance.RegisterDrivingError("Grønt lys", "Godt klaret! Du kørte først ind i krydset, når lyset var grønt.", DrivingError.ErrorSeverity.Korrekt);
             }
 
             if (other.CompareTag("StopLine"))
@@ -92,14 +94,15 @@ public class ErrorDetector : MonoBehaviour
                     if (onlyStopOnce == false)
                     {
                         onlyStopOnce = true;
-                        FeedbackSystem.Instance.RegisterDrivingError("Husk at orientere dig.", "Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
+                        FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.Orientation);
+                        //FeedbackSystem.Instance.RegisterDrivingError("Husk at orientere dig.", "Husk spejl, spejl, skulder for at orientere dig før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
                     }
                 }
                 else
                 {
                     if (onlyStopOnce == false)
                     {
-                        FeedbackSystem.Instance.RegisterDrivingError("Godt orienteret.", "Du huskede at bruge dine spejle og orientere dig før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
+                        //FeedbackSystem.Instance.RegisterDrivingError("Godt orienteret.", "Du huskede at bruge dine spejle og orientere dig før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
                     }
                 }
             }
@@ -114,7 +117,8 @@ public class ErrorDetector : MonoBehaviour
                 instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
                 instructionManager.allowContinue = true;
             }
-            FeedbackSystem.Instance.RegisterDrivingError("Ramte en fodgænger", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
+            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.PedestrianHit);
+            //FeedbackSystem.Instance.RegisterDrivingError("Ramte en fodgænger", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
         else if (other.CompareTag("SplineCar"))
@@ -124,7 +128,8 @@ public class ErrorDetector : MonoBehaviour
                 instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
                 instructionManager.allowContinue = true;
             }
-            FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
+            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.CarHit);
+            //FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
 
@@ -132,23 +137,14 @@ public class ErrorDetector : MonoBehaviour
         {
             StartCoroutine(PavementCollision());
         }
-        //if(other.CompareTag("Finishline"))
-        //{
-           
-        //    if (correctROW)
-        //    {
-
-        //        FeedbackSystem.Instance.RegisterDrivingError("Korrekt højrevigepligt", "Godt klaret! Du overholdte din højrevigepligt korrekt.", DrivingError.ErrorSeverity.Korrekt);
-        //    }
-          
-        //}
     }
    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
         {
-                slowZoneDelay = true;
-                FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Husk at sænke hastigheden og orientere dig ved kryds med højre vigepligt.", DrivingError.ErrorSeverity.Mellem);
+            slowZoneDelay = true;
+            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.RightOfWay);
+            //FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Husk at sænke hastigheden og orientere dig ved kryds med højre vigepligt.", DrivingError.ErrorSeverity.Mellem);
         }
 
     }
@@ -172,7 +168,8 @@ public class ErrorDetector : MonoBehaviour
     {
         pavementDelay = true;
         Debug.Log("Pavement collision detected");
-        FeedbackSystem.Instance.RegisterDrivingError("Kørte på fortovet.", "Husk at holde dig på vejen og undgå fortovet.", DrivingError.ErrorSeverity.Høj);
+        FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.PavementHit);
+        // FeedbackSystem.Instance.RegisterDrivingError("Kørte på fortovet.", "Husk at holde dig på vejen og undgå fortovet.", DrivingError.ErrorSeverity.Høj);
         yield return new WaitForSeconds(1f);
         pavementDelay = false;
     }
@@ -184,13 +181,14 @@ public class ErrorDetector : MonoBehaviour
     {
        if(dashboard.CheckLeftBlinkerOn())
        {
-            FeedbackSystem.Instance.RegisterDrivingError("Korrekt brug af blinklys.", "Godt klaret! Du huskede at bruge dit blinklys før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
+            //FeedbackSystem.Instance.RegisterDrivingError("Korrekt brug af blinklys.", "Godt klaret! Du huskede at bruge dit blinklys før du foretog et sving.", DrivingError.ErrorSeverity.Korrekt);
             return;
        }
        else
        {
-            FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
-       }
+            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.Blinkers);
+            //FeedbackSystem.Instance.RegisterDrivingError("Glemte blinklys før du kørte ud i svinget.", "Husk at bruge dit blinklys før du foretager et sving.", DrivingError.ErrorSeverity.Mellem);
+        }
     }
 
     public IEnumerator CheckOrientation()

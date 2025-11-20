@@ -949,6 +949,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6766732341723179350, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6959407630168427545, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1040,8 +1044,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8965824972132601626, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5152174140589384278}
   m_SourcePrefab: {fileID: 100100000, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+--- !u!1 &5152174140589384277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8965824972132601626, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
+  m_PrefabInstance: {fileID: 5152174140589384276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5152174140589384278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5152174140589384277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02e4f3834ee4914cb49150fd63bdecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeedbackSystem
+  objectiveCards:
+  - {fileID: 11400000, guid: 7dee421932d22034da365e4bc94c9057, type: 2}
+  - {fileID: 11400000, guid: 3152318d9953e8a479385eb71b378b91, type: 2}
+  - {fileID: 11400000, guid: 9fc08b3e3811d78459b57f55bcfc8cac, type: 2}
+  - {fileID: 11400000, guid: 8593b9a1e7539b14f82dd23592fe2d8a, type: 2}
+  - {fileID: 11400000, guid: 4ebebfb6b0f78074aa88a11a5be77a91, type: 2}
+  - {fileID: 11400000, guid: 290523c2654f5f84f8727f37a4b8735e, type: 2}
+  - {fileID: 11400000, guid: 1f9d46a0a3ecede42975bb7ca023e3da, type: 2}
+  - {fileID: 11400000, guid: 31825543e04a4424a94b4dc4e56445b3, type: 2}
+  - {fileID: 11400000, guid: d55a206d8a4716b429bfd164830ef5d0, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

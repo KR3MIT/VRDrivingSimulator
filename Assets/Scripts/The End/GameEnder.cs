@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameEnder : MonoBehaviour
 {
+    public event System.Action OnGameEnd;
+
     public CarMover car;
     public static GameEnder Instance;
     private Canvas gameEndCanvas;
@@ -39,31 +41,32 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
-        bool foundSpeedError = false;
-        bool foundROWError = false;
+        //bool foundSpeedError = false;
+        //bool foundROWError = false;
 
-        foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
-        {
-            if (error.errorName == "Fart overskridelse")
-            {
-                foundSpeedError = true;
-                continue;
-            }
-            if (error.errorName == "Vigepligt overtrædelse")
-            {
-                foundROWError = true;
-                continue;
-            }
-        }
+        //foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
+        //{
+        //    if (error.errorName == "Fart overskridelse")
+        //    {
+        //        foundSpeedError = true;
+        //        continue;
+        //    }
+        //    if (error.errorName == "Vigepligt overtrædelse")
+        //    {
+        //        foundROWError = true;
+        //        continue;
+        //    }
+        //}
 
-        if (!foundSpeedError)
-        {
-            FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
-        }
-        if( !foundROWError)
-        {
-            FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overholdt", "Du har overholdt din højrevigepligt.", DrivingError.ErrorSeverity.Korrekt);
-        }
+        //if (!foundSpeedError)
+        //{
+        //    FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
+        //}
+        //if( !foundROWError)
+        //{
+        //    FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overholdt", "Du har overholdt din højrevigepligt.", DrivingError.ErrorSeverity.Korrekt);
+        //}
+        if (gameEnded) return;
 
         var data = FindFirstObjectByType<DataLog>();
         if (data != null)
@@ -71,12 +74,13 @@ public class GameEnder : MonoBehaviour
         else
             Debug.LogWarning("data not logged | DataLog instance not found.");
 
-        if (gameEnded) return;
+
+        OnGameEnd?.Invoke();
         gameEnded = true;
         gameEndCanvas.enabled = true;
-        foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
+        foreach (var obj in FeedbackSystem.Instance.GetObjectiveLinks())
         {
-            CreateErrorCard(error);
+            CreateObjectiveCard(obj);
         }
         switch (condition)
         {
@@ -101,34 +105,11 @@ public class GameEnder : MonoBehaviour
         car.transmissionState = CarMover.TransmissionType.Park;
     }
 
-    public void CreateErrorCard(DrivingError error)
+    public void CreateObjectiveCard(ObjectiveLink obj)
     {
         var errorObject = Instantiate(errorUIPrefab, errorContainer.transform);
         var errorCard = errorObject.GetComponent<ErrorCard>();
-        Color color;
 
-        switch (error.severity)
-        {
-            case DrivingError.ErrorSeverity.Ekstrem:
-                color = Color.red;
-                break;
-            case DrivingError.ErrorSeverity.Høj:
-                color = new Color(1f, 0.5f, 0f); // Orange
-                break;
-            case DrivingError.ErrorSeverity.Mellem:
-                color = Color.yellow;
-                break;
-            case DrivingError.ErrorSeverity.Lav:
-                color = Color.white;
-                break;
-            case DrivingError.ErrorSeverity.Korrekt:
-                color = Color.green;
-                break;
-            default:
-                color = Color.gray;
-            break;
-        }
-
-        errorCard.Initialize(error.errorName, error.description, error.severity.ToString(), color);
+        errorCard.Initialize(obj.objectiveCard.titleText, obj.isFailed ? obj.objectiveCard.descriptionGoodText : obj.objectiveCard.descriptionBadText);
     }
 }
