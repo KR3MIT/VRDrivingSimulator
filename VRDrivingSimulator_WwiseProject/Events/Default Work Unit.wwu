@@ -102,6 +102,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="TutorialChime" ID="{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -470,7 +470,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2854760535322380314, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
   m_PrefabInstance: {fileID: 1876915759416557596}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1686354780}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fca9172f498f4234baeec8b71c97f985, type: 3}
@@ -1009,6 +1009,35 @@ MonoBehaviour:
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
+--- !u!1 &1686354780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7890951739828710374, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
+  m_PrefabInstance: {fileID: 1876915759416557596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1686354781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686354780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7a8e647f0bba746bdff9ab3f6a65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkGameObj
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &1712624533
 GameObject:
   m_ObjectHideFlags: 0
@@ -7107,6 +7136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5161168438826739172}
     - target: {fileID: 2854760535322380314, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
+      propertyPath: tutorialChime.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d5112fabdb774b4ea05b7a2c3749b68, type: 2}
+    - target: {fileID: 2854760535322380314, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
       propertyPath: onEnd.m_PersistentCalls.m_Calls.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -7645,7 +7678,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7890951739828710374, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686354781}
   m_SourcePrefab: {fileID: 100100000, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
 --- !u!224 &1877410654928450202
 RectTransform:
