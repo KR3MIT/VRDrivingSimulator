@@ -20,8 +20,11 @@ public class GameEnder : MonoBehaviour
     public bool gameEnded = false;
     public GameObject errorUIPrefab;
     public GameObject errorContainer;
+    public GameObject goodCard;
+    public GameObject badCard;
 
-    
+    private bool hasPlacedGoodCard = false;
+    private bool hasPlacedBadCard = false;
 
     private void Start()
     {
@@ -78,6 +81,7 @@ public class GameEnder : MonoBehaviour
         OnGameEnd?.Invoke();
         gameEnded = true;
         gameEndCanvas.enabled = true;
+
         foreach (var obj in FeedbackSystem.Instance.GetObjectiveLinks())
         {
             CreateObjectiveCard(obj);
@@ -102,14 +106,26 @@ public class GameEnder : MonoBehaviour
                 break;
         }
 
-        car.transmissionState = CarMover.TransmissionType.Park;
+        if(car != null)
+            car.transmissionState = CarMover.TransmissionType.Park;
     }
 
     public void CreateObjectiveCard(ObjectiveLink obj)
     {
-        var errorObject = Instantiate(errorUIPrefab, errorContainer.transform);
+        if (!obj.isFailed && !hasPlacedGoodCard)
+        {
+            hasPlacedGoodCard = true;
+            Instantiate(goodCard, errorContainer.transform);
+        }
+        else if (obj.isFailed && !hasPlacedBadCard)
+        {
+            hasPlacedBadCard = true;
+            Instantiate(badCard, errorContainer.transform);
+        }
+
+            var errorObject = Instantiate(errorUIPrefab, errorContainer.transform);
         var errorCard = errorObject.GetComponent<ErrorCard>();
 
-        errorCard.Initialize(obj.objectiveCard.titleText, obj.isFailed ? obj.objectiveCard.descriptionGoodText : obj.objectiveCard.descriptionBadText);
+        errorCard.Initialize(obj.objectiveCard.titleText, obj.isFailed ? obj.objectiveCard.descriptionBadText : obj.objectiveCard.descriptionGoodText, obj.isFailed);
     }
 }

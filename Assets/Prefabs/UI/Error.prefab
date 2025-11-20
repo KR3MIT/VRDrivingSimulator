@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7852848402972261277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -638,7 +638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ErrorCard
   titleText: {fileID: 8518970731037558693}
   descriptionText: {fileID: 5673133850416801463}
-  severityText: {fileID: 0}
+  checkmark: {fileID: 6077260572644049630}
+  crossmark: {fileID: 7122865353615553753}
 --- !u!1 &7108368113077580798
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6319378095071143544
 RectTransform:
   m_ObjectHideFlags: 0
