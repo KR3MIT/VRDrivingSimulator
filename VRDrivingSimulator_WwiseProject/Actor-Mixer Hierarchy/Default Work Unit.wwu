@@ -557,7 +557,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1217,6 +1217,7 @@
 							<ChildrenList>
 								<AudioFileSource Name="car-blinker-99033" ID="{B5A55916-D8B4-4890-90A4-78FC5C499A8A}">
 									<PropertyList>
+										<Property Name="ChannelConfigOverride" Type="int64" Value="49410"/>
 										<Property Name="FadeOutDuration" Type="Real64" Value="0.0301357469947088"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="TrimBegin" Type="Real64" Value="2.63386428733757"/>
@@ -1252,6 +1253,7 @@
 							<ChildrenList>
 								<AudioFileSource Name="car-blinker-99033" ID="{3E141F03-1E2C-44B5-BFB9-052280E65E73}">
 									<PropertyList>
+										<Property Name="ChannelConfigOverride" Type="int64" Value="49410"/>
 										<Property Name="FadeOutDuration" Type="Real64" Value="0.0301357469947088"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="TrimBegin" Type="Real64" Value="3.0135746994709"/>
