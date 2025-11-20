@@ -1162,6 +1162,8 @@ GameObject:
   - component: {fileID: 6766732341723179350}
   - component: {fileID: 1233162659789721446}
   - component: {fileID: 5792988403513099009}
+  - component: {fileID: 1446149980111031808}
+  - component: {fileID: 2769875634277129016}
   m_Layer: 5
   m_Name: EndGameUI
   m_TagString: Untagged
@@ -1269,6 +1271,43 @@ MonoBehaviour:
   gameEnded: 0
   errorUIPrefab: {fileID: 3903898321226407547, guid: 263369ddaeb1033499353d315c6809a6, type: 3}
   errorContainer: {fileID: 0}
+--- !u!114 &1446149980111031808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965824972132601626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02e4f3834ee4914cb49150fd63bdecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeedbackSystem
+  objectiveCards:
+  - {fileID: 11400000, guid: 7dee421932d22034da365e4bc94c9057, type: 2}
+  - {fileID: 11400000, guid: 3152318d9953e8a479385eb71b378b91, type: 2}
+  - {fileID: 11400000, guid: 9fc08b3e3811d78459b57f55bcfc8cac, type: 2}
+  - {fileID: 11400000, guid: 8593b9a1e7539b14f82dd23592fe2d8a, type: 2}
+  - {fileID: 11400000, guid: 4ebebfb6b0f78074aa88a11a5be77a91, type: 2}
+  - {fileID: 11400000, guid: 290523c2654f5f84f8727f37a4b8735e, type: 2}
+  - {fileID: 11400000, guid: 1f9d46a0a3ecede42975bb7ca023e3da, type: 2}
+  - {fileID: 11400000, guid: 31825543e04a4424a94b4dc4e56445b3, type: 2}
+  - {fileID: 11400000, guid: d55a206d8a4716b429bfd164830ef5d0, type: 2}
+--- !u!114 &2769875634277129016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965824972132601626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895e26395defe104f982d77d6df31892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndMenuNavigation
+  logitechInput: {fileID: 0}
+  input: {fileID: 0}
+  scrollbar: {fileID: 4660001715301927892}
 --- !u!1 &9180959502972751303
 GameObject:
   m_ObjectHideFlags: 0
