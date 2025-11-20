@@ -20,6 +20,8 @@ public class ForceXRRigLocation : MonoBehaviour
     public static event System.Action OnCalibrationDone;
     private static bool calibrated = false;
 
+    private bool hasCalibratedOnce = false;
+
     private void Awake()
     {
         ApplySavedCalibration(transform);
@@ -35,7 +37,7 @@ public class ForceXRRigLocation : MonoBehaviour
         if (isCooldown) { return; }
         if (calibrated) { return; }
 
-        if (logitechInput.rightBlinker)
+        if (logitechInput.rightBlinker && hasCalibratedOnce)
         {
             OnCalibrationDone?.Invoke();
             calibrated = true;
@@ -43,6 +45,8 @@ public class ForceXRRigLocation : MonoBehaviour
 
         if ((logitechInput.leftBlinker) || transform.root.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions["Test"].ReadValue<float>() >= 1)
         {
+            hasCalibratedOnce = true;
+
             List<InputDevice> devices = new List<InputDevice>();
             InputDevices.GetDevicesAtXRNode(XRNode.Head, devices);
             if (devices.Count > 0)
