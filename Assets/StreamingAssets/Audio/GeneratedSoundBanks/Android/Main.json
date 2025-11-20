@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{8DBC6A34-B924-403F-9D78-3CA39456114D}",
     "Language": "SFX",
-    "Hash": "{D89C32C5-F132-777F-75FF-D9B5A2962127}",
+    "Hash": "{865DBAC5-EA9B-F748-EFC0-A317CC523553}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -195,6 +195,16 @@
       "DurationType": "OneShot",
       "DurationMin": "0",
       "DurationMax": "0"
+     },
+     {
+      "Id": "2735611201",
+      "Name": "TutorialChime",
+      "ObjectPath": "\\Events\\Default Work Unit\\TutorialChime",
+      "GUID": "{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      }
     ],
     "GameParameters": [
@@ -213,6 +223,6 @@
     ]
    }
   ],
-  "FileHash": "{269B94BD-1EF9-17DC-2BF2-876D54DD380C}"
+  "FileHash": "{A41690BA-612E-4CAC-5C3B-BF6F92BFBCF6}"
  }
 }

@@ -7,8 +7,10 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="BlinkerOn" ID="{1876A138-9454-4045-9717-A081E89105C1}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PlayerCarStart" ID="{5A172545-6CF2-40E0-A246-D4B5DE31114E}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Default Work Unit" ID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="BlinkerOff" ID="{E4887F3D-B049-466B-A2FB-DE59A375765D}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PlayerCarStopSound" ID="{3B065F99-4B0F-48F0-A1F8-20BF90161387}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="TutorialChime" ID="{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}" WorkUnitID="{CC4C51DC-04B9-43F1-BB24-1EBEA09B7FF3}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

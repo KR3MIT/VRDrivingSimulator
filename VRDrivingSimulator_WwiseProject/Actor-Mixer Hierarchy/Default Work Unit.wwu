@@ -1272,6 +1272,35 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="TutorialChime" ID="{BB73A566-9AD9-45A8-BFF6-996B8DF00F60}" ShortID="442886455">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-5</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73F46E75-FD09-431D-B298-6B4539DDA538}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="correct-choice-43861" ID="{D7C32409-D6A5-4FE5-A245-BC4B3EB24D50}">
+							<Language>SFX</Language>
+							<AudioFile>correct-choice-43861.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="90957055"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="correct-choice-43861" ID="{D7C32409-D6A5-4FE5-A245-BC4B3EB24D50}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -34,6 +34,8 @@ public class IntroductionManager : MonoBehaviour
     [SerializeField] private UnityEvent onRestartCheck;
     [SerializeField] private UnityEvent onEnd;
 
+    public AK.Wwise.Event tutorialChime;
+
     private bool rightWheelTurned = false;
     private bool leftWheelTurned = false;
 
@@ -71,34 +73,39 @@ public class IntroductionManager : MonoBehaviour
             case State.calibration:
                 StartCoroutine(Calibration());
                 onCali.Invoke();
+                tutorialChime.Post(gameObject);
                 break;
 
             case State.wheelCheck:
                 onWheelCheck.Invoke();
                 StartCoroutine(RightWheelCheck());
                 StartCoroutine(LeftWheelCheck());
+                tutorialChime.Post(gameObject);
                 break;
 
             case State.pedalCheck:
                 onPedalCheck.Invoke();
                 StartCoroutine(SpeederCheck());
                 StartCoroutine(BrakeCheck());
-
+                tutorialChime.Post(gameObject);
                 break;
 
             case State.blinkerCheck:
                 onBlinkerCheck.Invoke();
                 StartCoroutine(RightBlinkerCheck());
                 StartCoroutine(LeftBlinkerCheck());
+                tutorialChime.Post(gameObject);
                 break;
 
             case State.restartCheck:
                 StartCoroutine(RestartCheck());
                 onRestartCheck.Invoke();
+                tutorialChime.Post(gameObject);
                 break;
 
             case State.end:
                 onEnd.Invoke();
+                tutorialChime.Post(gameObject);
                 Invoke("GoToScene", 5f);
                 break;
         }

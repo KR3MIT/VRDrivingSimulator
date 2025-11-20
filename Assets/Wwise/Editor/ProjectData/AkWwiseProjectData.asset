@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: db73392b9b4b1f4b91f4d3a3456beb8b
     GuidInternal: 
-    m_lastTime: -8584380526412802268
+    m_lastTime: -8584379676485986079
     List:
     - name: Main
       guid: 346abc8d24b93f409d783ca39456114d
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584380526412893496
+    m_lastTime: -8584379676486107869
     List:
     - name: BlinkerOff
       guid: 3d7f88e449b06b46a2fbde59a375765d
@@ -161,6 +161,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: 995f063b0f4bf048a1f820bf90161387
       Path: Events\Default Work Unit\PlayerCarStopSound
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: TutorialChime
+      guid: c83805ea5b14994ba6b5e3efcdb3ca22
+      id: 2735611201
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dc514cccb904f143bb241ebea09b7ff3
+      - ElementName: TutorialChime
+        ObjectType: 3
+        guid: c83805ea5b14994ba6b5e3efcdb3ca22
+      Path: Events\Default Work Unit\TutorialChime
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -263,7 +280,7 @@ MonoBehaviour:
     m_lastTime: -8584387565833983777
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 06000000070000000a0000000b0000000c0000000d0000001400000015000000
+  ExpandedWaapiItemIds: 0500000006000000070000000a0000000b0000000c0000000d0000001400000015000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

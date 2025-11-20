@@ -2,6 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	385229051	BlinkerOn			\Default Work Unit\BlinkerOn	
 	410377967	BlinkerOff			\Default Work Unit\BlinkerOff	
 	865811789	PlayerCarStopSound			\Default Work Unit\PlayerCarStopSound	
+	2735611201	TutorialChime			\Default Work Unit\TutorialChime	
 	3559953332	PlayerCarStart			\Default Work Unit\PlayerCarStart	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
