@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RightOfWay
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
   titleText: "H\xF8jrevigepligt"
-  descriptionGoodText: "Du holdte din h\xF8jrevigepligt korrekt"
+  descriptionGoodText: "Du overholdte din h\xF8jrevigepligt."
   descriptionBadText: "Husk at holde for bilister fra h\xF8jre n\xE5r du har h\xF8jrevigepligt."
   objectiveType: 1
