@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR;
+using UnityEngine.Events;
 
 
 public class ForceXRRigLocation : MonoBehaviour
@@ -21,6 +22,7 @@ public class ForceXRRigLocation : MonoBehaviour
     private static bool calibrated = false;
 
     private bool hasCalibratedOnce = false;
+    public UnityEvent OnCalibration;
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class ForceXRRigLocation : MonoBehaviour
 
         if ((logitechInput.leftBlinker) || transform.root.GetComponent<UnityEngine.InputSystem.PlayerInput>().actions["Test"].ReadValue<float>() >= 1)
         {
+            OnCalibration?.Invoke();
             hasCalibratedOnce = true;
 
             List<InputDevice> devices = new List<InputDevice>();

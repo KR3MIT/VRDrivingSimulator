@@ -12,7 +12,7 @@ public class WheelButtonMaterials : MonoBehaviour
         {
             case 0:
                 leftBumper.material = activeMaterial;
-                rightBumper.material = activeMaterial;
+                rightBumper.material = inactiveMaterial;
                 xboxButton.material = inactiveMaterial;
                 break;
 
@@ -20,6 +20,12 @@ public class WheelButtonMaterials : MonoBehaviour
                 xboxButton.material = activeMaterial;
                 leftBumper.material = inactiveMaterial;
                 rightBumper.material = inactiveMaterial;
+                break;
+
+            case 2:
+                rightBumper.material = activeMaterial;
+                leftBumper.material = inactiveMaterial;
+                xboxButton.material = inactiveMaterial;
                 break;
 
             default:
