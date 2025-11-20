@@ -144,7 +144,7 @@ public class IntroductionManager : MonoBehaviour
     {
         while (true)
         {
-            if (carInput.steeringWheelValue > 20000 || input.actions["Steer"].ReadValue<float>() > 0.1f)
+            if (carInput.steeringWheelValue > 10000 || input.actions["Steer"].ReadValue<float>() > 0.1f)
             {
                 CheckWheelTurned();
                 rightWheelTurned = true;
@@ -157,7 +157,7 @@ public class IntroductionManager : MonoBehaviour
     {
         while (true)
         {
-            if (carInput.steeringWheelValue < -20000 || input.actions["Steer"].ReadValue<float>() < -0.1f)
+            if (carInput.steeringWheelValue < -10000 || input.actions["Steer"].ReadValue<float>() < -0.1f)
             {
                 CheckWheelTurned();
                 leftWheelTurned = true;

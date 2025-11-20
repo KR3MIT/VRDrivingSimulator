@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpeederCheck()
     {
+        yield return new WaitForSeconds(2f);
+
         while (true)
         {
             if (carInput.speederValue < 0 || input.actions["GasPedal"].ReadValue<float>() > 0.1f)
