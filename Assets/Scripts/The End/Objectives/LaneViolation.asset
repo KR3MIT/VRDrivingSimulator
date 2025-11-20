@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: LaneViolation
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: lane violation
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: Vognbane overskridelse
+  descriptionGoodText: Du holdte din vognbane korrekt og placerede dig rigtig i krydset.
+  descriptionBadText: Du afveg fra din vognbane.
   objectiveType: 3

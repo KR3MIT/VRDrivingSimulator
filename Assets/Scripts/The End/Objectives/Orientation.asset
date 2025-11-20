@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: Orientation
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: orienterrra
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: "Orientation f\xF8r et sving"
+  descriptionGoodText: "Du udf\xF8rte korrekt orientation f\xF8r du udf\xF8rte svinget."
+  descriptionBadText: "Husk spejl, spejl, skulder f\xF8r et sving for at orientere
+    dig."
   objectiveType: 10

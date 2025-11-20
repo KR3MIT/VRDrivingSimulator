@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: TrafficLight
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: traffic
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: Lyskryds
+  descriptionGoodText: "Du k\xF8rte f\xF8rst ud i lyskrydset, da der blev gr\xF8nt
+    lys."
+  descriptionBadText: "Du k\xF8rte ud i lyskrydset da lyset var r\xF8dt."
   objectiveType: 2

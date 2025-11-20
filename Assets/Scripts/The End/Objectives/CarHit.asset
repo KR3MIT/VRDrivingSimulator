@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: CarHit
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: car hit
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: "F\xE6rdselsuheld"
+  descriptionGoodText: Du klarede svinget uden at ramme en anden bilist.
+  descriptionBadText: Du ramte en bilist, husk altid at orienter dig efter andre
+    bilister
   objectiveType: 6

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: RightOfWay
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: row
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: "H\xF8jrevigepligt"
+  descriptionGoodText: "Du holdte din h\xF8jrevigepligt korrekt"
+  descriptionBadText: "Husk at holde for bilister fra h\xF8jre n\xE5r du har h\xF8jrevigepligt."
   objectiveType: 1

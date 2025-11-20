@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: Blinkers
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: blinkers
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: Blinklys
+  descriptionGoodText: "Du huskede at bruge dit blinklys f\xF8r du foretog et sving."
+  descriptionBadText: "Husk at bruge dit blinklys f\xF8r du foretager et sving."
   objectiveType: 8

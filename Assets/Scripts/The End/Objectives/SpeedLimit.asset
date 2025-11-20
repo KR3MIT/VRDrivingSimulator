@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: SpeedLimit
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: SpeedlimiT
-  descriptionGoodText: You go right speed
-  descriptionBadText: you too fast!!
+  titleText: "Hastighedsbegr\xE6nsning"
+  descriptionGoodText: "Du holdte bilen inden for hastighedsbegr\xE6nsning."
+  descriptionBadText: "Du k\xF8rte hurtigere end hastighedsbegr\xE6nsning tillod."
   objectiveType: 0

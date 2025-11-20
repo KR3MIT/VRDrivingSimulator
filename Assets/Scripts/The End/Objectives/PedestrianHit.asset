@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: PedestrianHit
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: pedestrian hit
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: "P\xE5k\xF8rsel af fodg\xE6nere"
+  descriptionGoodText: "Du man\xF8vrerede bilen uden at p\xE5k\xF8re fodg\xE6ngere."
+  descriptionBadText: "Du skal have kontrol over din bil og undg\xE5 at ramme fodg\xE6ngere."
   objectiveType: 5

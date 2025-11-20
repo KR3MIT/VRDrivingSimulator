@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb066cb480d785d42a2b6bcdd28b34c9, type: 3}
   m_Name: PavementHit
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
-  titleText: hit paver
-  descriptionGoodText: Good job heheheha
-  descriptionBadText: BAD job heheha
+  titleText: "K\xF8rsel p\xE5 fortorv"
+  descriptionGoodText: "Du holdte dig fra at k\xF8re op p\xE5 fortovet."
+  descriptionBadText: "Husk at holde dig p\xE5 vejen og undg\xE5 fortovet."
   objectiveType: 7
