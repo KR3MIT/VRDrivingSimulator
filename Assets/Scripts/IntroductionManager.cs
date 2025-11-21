@@ -148,6 +148,7 @@ public class IntroductionManager : MonoBehaviour
             {
                 CheckWheelTurned();
                 rightWheelTurned = true;
+                yield break;
             }
             yield return null;
         }
@@ -161,6 +162,7 @@ public class IntroductionManager : MonoBehaviour
             {
                 CheckWheelTurned();
                 leftWheelTurned = true;
+                yield break;
             }
             yield return null;
         }
