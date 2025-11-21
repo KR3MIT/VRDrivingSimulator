@@ -186,6 +186,7 @@ public class IntroductionManager : MonoBehaviour
             {
                 rightBlinkerTurned = true;
                 CheckBlinkerTurned();
+                yield break;
             }
             yield return null;
         }
@@ -199,6 +200,7 @@ public class IntroductionManager : MonoBehaviour
             {
                 leftBlinkerTurned = true;
                 CheckBlinkerTurned();
+                yield break;
             }
             yield return null;
         }
