@@ -13,7 +13,7 @@ public class SplineFollower : MonoBehaviour
     // 2. Introduce some randomness to speed and acceleration - maybe not actually
     // 3. Implement system for handling other cars on the road (e.g., slowing down if a car in front is too close) - THIS IS DONE NOW!!! (i think)
     // 4. Implement system for instantiating and despawning cars (might not be in this script)
-    // 5. Implement system for handling traffic lights being turned off too late to stop at the light - WIP 
+    // 5. Implement system for handling traffic lights being turned off too late to stop at the light - DONE
 
 
     [Header("Pedestrian Spotting")]
@@ -62,6 +62,7 @@ public class SplineFollower : MonoBehaviour
     float speedBlendDisOffTurn = 50f; // Distance over which to blend speed when on a straight spline going to a turn spline
 
     Collider otherCarCol;
+    Collider thisCarCol;
     bool isTooCloseToCarInFront = false;
     RaycastHit hit;
     float raycastDistance = 0f;
@@ -86,6 +87,8 @@ public class SplineFollower : MonoBehaviour
 
         frontLeftBlinker.material = frontNormalMaterial;
         rearLeftBlinker.material = RearNormalMaterial;
+
+        thisCarCol = GetComponent<Collider>();
 
         //splines = splineRoute.splines; // Assign the splines from the SplineRoute (This is now done in the spawner)
     }
@@ -295,9 +298,9 @@ public class SplineFollower : MonoBehaviour
         raycastDistance = Mathf.Max(raycastDistance, 5f); // Ensure a minimum raycast distance of 5 meters
 
         // Perform a box cast forward from the car's position to detect other cars
-        if (Physics.BoxCast(transform.position, transform.localScale, transform.forward, out hit, transform.rotation, raycastDistance))
+        if (Physics.BoxCast(transform.position, thisCarCol.bounds.size, transform.forward, out hit, transform.rotation, raycastDistance))
         {
-            if (hit.collider.CompareTag("SplineCar") || hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("SplineCar") || (hit.collider.CompareTag("Player") && Mathf.Abs(Vector3.Angle(hit.collider.transform.forward, transform.forward)) < 30f))
             {
                 otherCarCol = hit.collider;
                 isTooCloseToCarInFront = true;
