@@ -24821,6 +24821,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8244425672268175824, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: car
+      value: 
+      objectReference: {fileID: 693355164}
     - target: {fileID: 8576340106549920742, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 23.442501
