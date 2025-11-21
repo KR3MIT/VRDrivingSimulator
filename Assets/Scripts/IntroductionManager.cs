@@ -128,7 +128,7 @@ public class IntroductionManager : MonoBehaviour
     {
         ForceXRRigLocation.OnCalibrationDone += () => calibrated = true;
 
-        while (true)
+        while (gameState == State.calibration)
         {
             if (ForceXRRigLocation.HasSavedCalibration && calibrated)
             {
