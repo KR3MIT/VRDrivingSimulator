@@ -23524,6 +23524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1011837277}
     m_Modifications:
+    - target: {fileID: 2970936317533789067, guid: 78eb13ab32ec8fd48a89f91ec386825a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f6a7ad271ea6b3544bea7bba22623d59, type: 2}
     - target: {fileID: 3619238953796188766, guid: 78eb13ab32ec8fd48a89f91ec386825a, type: 3}
       propertyPath: m_Name
       value: fence 2 (9)
