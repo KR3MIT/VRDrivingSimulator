@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CarHit
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveCard
   titleText: "F\xE6rdselsuheld"
-  descriptionGoodText: Du klarede svinget uden at ramme en anden bilist.
+  descriptionGoodText: "Du klarede man\xF8vren uden at ramme en anden bilist."
   descriptionBadText: Du ramte en bilist, husk altid at orienter dig efter andre
     bilister
   objectiveType: 6

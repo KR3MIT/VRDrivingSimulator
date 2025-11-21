@@ -30,8 +30,9 @@ public class ErrorDetector : MonoBehaviour
     private bool speedErrorDelay = false;
     private bool slowZoneDelay = false;
     private bool onlyStopOnce = false;
-    public float slowSpeedLimit = 25f;
+    public float slowSpeedLimit = 10f;
     private bool pavementDelay = false;
+    private bool slowedDownForROW = false;
     public bool correctROW = true;
 
 
@@ -140,10 +141,17 @@ public class ErrorDetector : MonoBehaviour
     }
    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false || other.CompareTag("Scenario2CarTrigger"))
+        if (other.CompareTag("SlowZone") && slowZoneDelay == false || other.CompareTag("Scenario2CarTrigger"))
         {
+            if (car.magnitude * 3.6f <= slowSpeedLimit)
+            {
+                if (!slowedDownForROW)
+                {
+                    slowedDownForROW = true;
+                }
+                return;
+            }
             slowZoneDelay = true;
-            FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.RightOfWay);
             //FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Husk at sænke hastigheden og orientere dig ved kryds med højre vigepligt.", DrivingError.ErrorSeverity.Mellem);
         }
 
@@ -153,6 +161,11 @@ public class ErrorDetector : MonoBehaviour
     {
         if (other.CompareTag("SlowZone"))
         {
+            if (!slowedDownForROW)
+            {
+                FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.RightOfWay);
+            }
+            slowedDownForROW = false;
             slowZoneDelay = false;
         }
     }
