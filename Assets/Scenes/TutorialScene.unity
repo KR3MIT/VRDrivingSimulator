@@ -7727,7 +7727,6 @@ MonoBehaviour:
   waypointContainer: {fileID: 0}
   laneThreshold: 2.5
   slowSpeedLimit: 20
-  correctROW: 1
 --- !u!114 &1892877510170155277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26579,10 +26578,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9aad6a469bd611045acb522111c2a708, type: 2}
-  stopCarSounds:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
 --- !u!4 &6167355893334128141
 Transform:
   m_ObjectHideFlags: 0
@@ -27800,7 +27795,7 @@ MonoBehaviour:
   leftBumper: {fileID: 8219814595652513104}
   rightBumper: {fileID: 8490603294604461146}
   xboxButton: {fileID: 7560908208818039572}
-  activeMaterial: {fileID: 2100000, guid: 85e96b54f132bbb4ba80f0ead34d4fe9, type: 2}
+  activeMaterial: {fileID: 2100000, guid: 6fbbc2c4e2afadb46a4113038065d83f, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 61e8bf3c2ed250c4fa58481e6ba5c23d, type: 2}
 --- !u!1 &6557002958574243744
 GameObject:
@@ -35456,14 +35451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b173252f2ae0ba5418894b50dd8dfb7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEnder
-  car: {fileID: 0}
-  gameEndCanvas: {fileID: 0}
   endCondition: 0
   gameEnded: 0
   errorUIPrefab: {fileID: 3903898321226407547, guid: 263369ddaeb1033499353d315c6809a6, type: 3}
   errorContainer: {fileID: 5675633358393386660}
-  goodCard: {fileID: 0}
-  badCard: {fileID: 0}
 --- !u!1 &8245384864117331252
 GameObject:
   m_ObjectHideFlags: 0
@@ -39852,21 +39843,6 @@ MonoBehaviour:
   leftHand: {fileID: 5865268032670906412}
   rightHand: {fileID: 5844656288288635610}
   posOff: {x: 0, y: -0.01, z: -0.02}
-  OnCalibration:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6556234998420522596}
-        m_TargetAssemblyTypeName: WheelButtonMaterials, Assembly-CSharp
-        m_MethodName: SetActiveButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &8907562145000909441
 GameObject:
   m_ObjectHideFlags: 0
