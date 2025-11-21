@@ -26502,7 +26502,7 @@ MonoBehaviour:
   currentGear: 0
   maxAcceleration: 75
   reverseAcceleration: 50
-  brakeAcceleration: 500
+  brakeAcceleration: 300
   creepTorque: 3
   maxCreepSpeed: 3
   minCreepSpeed: 0.5
