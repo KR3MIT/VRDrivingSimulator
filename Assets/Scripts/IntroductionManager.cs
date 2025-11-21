@@ -73,7 +73,7 @@ public class IntroductionManager : MonoBehaviour
             case State.calibration:
                 StartCoroutine(Calibration());
                 onCali.Invoke();
-                tutorialChime.Post(gameObject);
+                //tutorialChime.Post(gameObject);
                 break;
 
             case State.wheelCheck:
