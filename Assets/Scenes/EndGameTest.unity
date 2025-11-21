@@ -905,11 +905,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1785816736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6596432112306195226, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
-  m_PrefabInstance: {fileID: 5152174140589384276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103691935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,10 +1056,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5792988403513099009, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
-      propertyPath: gameEndCanvas
-      value: 
-      objectReference: {fileID: 1785816736}
     - target: {fileID: 6959407630168427545, guid: f5500da3c9422c648a490b82727d6e94, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
