@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEnder
   car: {fileID: 0}
-  gameEndCanvas: {fileID: 6596432112306195226}
+  gameEndCanvas: {fileID: 8965824972132601626}
   endCondition: 0
   gameEnded: 0
   errorUIPrefab: {fileID: 3903898321226407547, guid: 263369ddaeb1033499353d315c6809a6, type: 3}

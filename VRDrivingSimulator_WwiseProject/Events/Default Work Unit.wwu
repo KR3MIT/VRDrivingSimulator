@@ -102,7 +102,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="TutorialChime" ID="{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}"/>
+				<Event Name="TutorialChime" ID="{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}">
+					<ChildrenList>
+						<Action Name="" ID="{C2E41989-2D05-4574-8325-1F53E69B6582}" ShortID="1029350769">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TutorialChime" ID="{BB73A566-9AD9-45A8-BFF6-996B8DF00F60}" WorkUnitID="{0E64A504-3C47-4982-A6DE-345F41F44907}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

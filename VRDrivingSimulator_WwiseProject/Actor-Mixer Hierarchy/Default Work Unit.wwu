@@ -1273,13 +1273,6 @@
 					</ChildrenList>
 				</Folder>
 				<Sound Name="TutorialChime" ID="{BB73A566-9AD9-45A8-BFF6-996B8DF00F60}" ShortID="442886455">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-5</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C9AC0DA4-5D31-44BD-BA00-4722CC54CD28}"/>

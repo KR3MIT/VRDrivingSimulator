@@ -112,22 +112,22 @@ public class ErrorDetector : MonoBehaviour
         }
         if (other.CompareTag("Pedestrian"))
         {
-            if (instructionManager != null)
-            {
-                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
-                instructionManager.allowContinue = true;
-            }
+            //if (instructionManager != null)
+            //{
+            //    instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorPedestrian);
+            //    instructionManager.allowContinue = true;
+            //}
             FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.PedestrianHit);
             //FeedbackSystem.Instance.RegisterDrivingError("Ramte en fodgænger", "Husk altid at orientere dig grundigt efter fodgængere.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);
         }
         else if (other.CompareTag("SplineCar"))
         {
-            if(instructionManager != null)
-            {
-                instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
-                instructionManager.allowContinue = true;
-            }
+            //if(instructionManager != null)
+            //{
+            //    instructionManager.ShowFreezeHint(0, true, TutorialText.ErrorCarCollision);
+            //    instructionManager.allowContinue = true;
+            //}
             FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.CarHit);
             //FeedbackSystem.Instance.RegisterDrivingError("Bil kollision", "Du ramte en bil, husk altid at orienter dig.", DrivingError.ErrorSeverity.Ekstrem);
             GameEnder.Instance.EndGame(GameEnder.GameEndCondition.ExtremeError);

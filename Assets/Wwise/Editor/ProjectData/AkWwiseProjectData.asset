@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: dc514cccb904f143bb241ebea09b7ff3
     GuidInternal: 
-    m_lastTime: -8584379676486107869
+    m_lastTime: -8584378901986370346
     List:
     - name: BlinkerOff
       guid: 3d7f88e449b06b46a2fbde59a375765d
@@ -179,8 +179,8 @@ MonoBehaviour:
         guid: c83805ea5b14994ba6b5e3efcdb3ca22
       Path: Events\Default Work Unit\TutorialChime
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 0.528
+      minDuration: 0.528
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:

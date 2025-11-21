@@ -10,11 +10,19 @@
     "Type": "User",
     "GUID": "{8DBC6A34-B924-403F-9D78-3CA39456114D}",
     "Language": "SFX",
-    "Hash": "{865DBAC5-EA9B-F748-EFC0-A317CC523553}",
+    "Hash": "{6ED80F07-CDB5-342B-8638-13E83D83CC8B}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
+     {
+      "Id": "90957055",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "correct-choice-43861.wav",
+      "CachePath": "A1/{A10E6193-19D3-1669-3C5E-7331DB5AC596}.wem"
+     },
      {
       "Id": "686493923",
       "Language": "SFX",
@@ -201,10 +209,14 @@
       "Name": "TutorialChime",
       "ObjectPath": "\\Events\\Default Work Unit\\TutorialChime",
       "GUID": "{EA0538C8-145B-4B99-A6B5-E3EFCDB3CA22}",
-      "MaxAttenuation": "0",
       "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0"
+      "DurationMin": "0.528",
+      "DurationMax": "0.528",
+      "MediaRefs": [
+       {
+        "Id": "90957055"
+       }
+      ]
      }
     ],
     "GameParameters": [
@@ -223,6 +235,6 @@
     ]
    }
   ],
-  "FileHash": "{A41690BA-612E-4CAC-5C3B-BF6F92BFBCF6}"
+  "FileHash": "{C437DCAD-D55B-56E0-29F6-4796FE0B3AB7}"
  }
 }
