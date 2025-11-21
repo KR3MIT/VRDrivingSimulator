@@ -7136,6 +7136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5161168438826739172}
     - target: {fileID: 2854760535322380314, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
+      propertyPath: wheelButtonMaterials
+      value: 
+      objectReference: {fileID: 6556234998420522596}
+    - target: {fileID: 2854760535322380314, guid: 487c97d3823680c4688ccaeeae48d8ef, type: 3}
       propertyPath: tutorialChime.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 0d5112fabdb774b4ea05b7a2c3749b68, type: 2}

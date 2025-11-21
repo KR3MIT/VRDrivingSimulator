@@ -18,6 +18,7 @@ TagManager:
   - SlowZone
   - Pavement
   - Finishline
+  - Scenario2CarTrigger
   layers:
   - Default
   - TransparentFX

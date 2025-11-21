@@ -140,12 +140,13 @@ public class ErrorDetector : MonoBehaviour
     }
    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false)
+        if (other.CompareTag("SlowZone") && car.magnitude * 3.6f > slowSpeedLimit && slowZoneDelay == false || other.CompareTag("Scenario2CarTrigger"))
         {
             slowZoneDelay = true;
             FeedbackSystem.Instance.FailAndLockObjectiveCard(ObjectiveType.RightOfWay);
             //FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overtrædelse", "Husk at sænke hastigheden og orientere dig ved kryds med højre vigepligt.", DrivingError.ErrorSeverity.Mellem);
         }
+
 
     }
     private void OnTriggerExit(Collider other)
