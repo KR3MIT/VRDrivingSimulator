@@ -146,8 +146,8 @@ public class IntroductionManager : MonoBehaviour
         {
             if (carInput.steeringWheelValue > 10000 || input.actions["Steer"].ReadValue<float>() > 0.1f)
             {
-                CheckWheelTurned();
                 rightWheelTurned = true;
+                CheckWheelTurned();
                 yield break;
             }
             yield return null;
@@ -160,8 +160,8 @@ public class IntroductionManager : MonoBehaviour
         {
             if (carInput.steeringWheelValue < -10000 || input.actions["Steer"].ReadValue<float>() < -0.1f)
             {
-                CheckWheelTurned();
                 leftWheelTurned = true;
+                CheckWheelTurned();
                 yield break;
             }
             yield return null;
