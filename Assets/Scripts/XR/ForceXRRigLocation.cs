@@ -100,9 +100,9 @@ public class ForceXRRigLocation : MonoBehaviour
                 HasSavedCalibration = true;
                 Debug.Log($"saved values= :) pos={SavedPosition} AND rot={SavedRotation.eulerAngles}");
             }
+            isCooldown = true;
+            Invoke("StartCooldown", .5f);
         }
-        isCooldown = true;
-        Invoke("StartCooldown", .5f);
     }
 
     void StartCooldown()
