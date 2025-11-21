@@ -103,6 +103,8 @@ public class GameEnder : MonoBehaviour
                 break;
         }
 
+        GameManager.Instance.SetState(GameManager.State.end);
+
         OnGameEnd?.Invoke();
 
         if (car != null)

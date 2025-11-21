@@ -1860,7 +1860,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEnder
   car: {fileID: 0}
-  gameEndCanvas: {fileID: 8015868879277958692}
+  gameEndGameObject: {fileID: 0}
+  extremeErrorObject: {fileID: 7012138433330236249}
+  pedestrianIcon: {fileID: 5559981306340533688}
+  carIcon: {fileID: 7845676944021295331}
   endCondition: 0
   gameEnded: 0
   errorUIPrefab: {fileID: 3903898321226407547, guid: 263369ddaeb1033499353d315c6809a6, type: 3}

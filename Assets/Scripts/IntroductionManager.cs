@@ -21,6 +21,8 @@ public class IntroductionManager : MonoBehaviour
 
     public LayerMask defaultCullingMask;
 
+    public WheelButtonMaterials wheelButtonMaterials;
+
     [SerializeField] private PlayerInput input;
     [SerializeField] private LogitechInput carInput;
     [SerializeField] private CarMover car;
@@ -73,7 +75,7 @@ public class IntroductionManager : MonoBehaviour
             case State.calibration:
                 StartCoroutine(Calibration());
                 onCali.Invoke();
-                tutorialChime.Post(gameObject);
+                //tutorialChime.Post(gameObject);
                 break;
 
             case State.wheelCheck:
@@ -185,6 +187,7 @@ public class IntroductionManager : MonoBehaviour
             if (carInput.rightBlinker || input.actions["BlinkerRight"].ReadValue<float>() > 0.1f)
             {
                 rightBlinkerTurned = true;
+                wheelButtonMaterials.SetActiveButton(0);
                 CheckBlinkerTurned();
                 yield break;
             }
@@ -199,6 +202,7 @@ public class IntroductionManager : MonoBehaviour
             if (carInput.leftBlinker || input.actions["BlinkerLeft"].ReadValue<float>() > 0.1f)
             {
                 leftBlinkerTurned = true;
+                wheelButtonMaterials.SetActiveButton(2);
                 CheckBlinkerTurned();
                 yield break;
             }

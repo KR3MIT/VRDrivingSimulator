@@ -27,6 +27,11 @@ public class WheelButtonMaterials : MonoBehaviour
                 leftBumper.material = inactiveMaterial;
                 xboxButton.material = inactiveMaterial;
                 break;
+            case 3:
+                leftBumper.material = activeMaterial;
+                rightBumper.material = activeMaterial;
+                xboxButton.material = inactiveMaterial;
+                break;
 
             default:
                 leftBumper.material = inactiveMaterial;
