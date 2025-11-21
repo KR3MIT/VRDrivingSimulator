@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameEnder : MonoBehaviour
@@ -6,7 +7,10 @@ public class GameEnder : MonoBehaviour
 
     public CarMover car;
     public static GameEnder Instance;
-    public Canvas gameEndCanvas;
+    public GameObject gameEndGameObject;
+    public GameObject extremeErrorObject;
+
+    public GameObject pedestrianIcon, carIcon;
     public enum GameEndCondition
     {
         None,
@@ -44,48 +48,41 @@ public class GameEnder : MonoBehaviour
     }
     public void EndGame(GameEndCondition condition)
     {
-        //bool foundSpeedError = false;
-        //bool foundROWError = false;
-
-        //foreach (var error in FeedbackSystem.Instance.GetDrivingErrors())
-        //{
-        //    if (error.errorName == "Fart overskridelse")
-        //    {
-        //        foundSpeedError = true;
-        //        continue;
-        //    }
-        //    if (error.errorName == "Vigepligt overtrædelse")
-        //    {
-        //        foundROWError = true;
-        //        continue;
-        //    }
-        //}
-
-        //if (!foundSpeedError)
-        //{
-        //    FeedbackSystem.Instance.RegisterDrivingError("Fartgrænse overholdt", "Du har overholdt fartgrænsen.", DrivingError.ErrorSeverity.Korrekt);
-        //}
-        //if( !foundROWError)
-        //{
-        //    FeedbackSystem.Instance.RegisterDrivingError("Vigepligt overholdt", "Du har overholdt din højrevigepligt.", DrivingError.ErrorSeverity.Korrekt);
-        //}
         if (gameEnded) return;
-
-        //var data = FindFirstObjectByType<DataLog>();
-        //if (data != null)
-        //    data.LogAllErrors();
-        //else
-        //    Debug.LogWarning("data not logged | DataLog instance not found.");
-
 
         
         gameEnded = true;
-        gameEndCanvas.enabled = true;
 
-        foreach (var obj in FeedbackSystem.Instance.GetObjectiveLinks())
+        if(condition == GameEndCondition.ExtremeError)//if error end
         {
-            CreateObjectiveCard(obj);
+            foreach(var obj in FeedbackSystem.Instance.GetObjectiveLinks())
+            {
+                if(obj.objectiveCard.objectiveType == ObjectiveCard.ObjectiveType.PedestrianHit && obj.isFailed)
+                {
+                    extremeErrorObject.SetActive(true);
+                    pedestrianIcon.SetActive(true);
+                    extremeErrorObject.GetComponentInChildren<TMP_Text>().text = "Du ramte en fodgænger, klik på xbox knappen for at genstarte";
+                    break;
+                }
+                else if(obj.objectiveCard.objectiveType == ObjectiveCard.ObjectiveType.CarHit && obj.isFailed)
+                {
+                    extremeErrorObject.SetActive(true);
+                    carIcon.SetActive(true);
+                    extremeErrorObject.GetComponentInChildren<TMP_Text>().text = "Du ramte en anden bil, klik på xbox knappen for at genstarte";
+                    break;
+                }
+            }
         }
+        else//if no error end
+        {
+            gameEndGameObject.SetActive(true);
+
+            foreach (var obj in FeedbackSystem.Instance.GetObjectiveLinks())
+            {
+                CreateObjectiveCard(obj);
+            }
+        }
+
         switch (condition)
         {
             case GameEndCondition.FinishZone:
