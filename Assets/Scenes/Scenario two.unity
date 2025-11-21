@@ -24713,6 +24713,10 @@ PrefabInstance:
       propertyPath: 'objectiveCards.Array.data[7]'
       value: 
       objectReference: {fileID: 11400000, guid: d55a206d8a4716b429bfd164830ef5d0, type: 2}
+    - target: {fileID: 1694669213690171728, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_Enabled
       value: 1
