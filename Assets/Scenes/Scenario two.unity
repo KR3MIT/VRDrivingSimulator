@@ -24677,6 +24677,42 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: objectiveCards.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3152318d9953e8a479385eb71b378b91, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fc08b3e3811d78459b57f55bcfc8cac, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ebebfb6b0f78074aa88a11a5be77a91, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f9d46a0a3ecede42975bb7ca023e3da, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 31825543e04a4424a94b4dc4e56445b3, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 31825543e04a4424a94b4dc4e56445b3, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d55a206d8a4716b429bfd164830ef5d0, type: 2}
+    - target: {fileID: 970366150234199797, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: 'objectiveCards.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d55a206d8a4716b429bfd164830ef5d0, type: 2}
     - target: {fileID: 1885900804486271902, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -24768,6 +24804,10 @@ PrefabInstance:
     - target: {fileID: 7313995181795280918, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607361888826376344, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7968918618971933888, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: m_AnchorMax.x
