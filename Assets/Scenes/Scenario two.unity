@@ -24683,7 +24683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142009511242585392, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: useWheelInput
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6618464703385329889, guid: 77c6a45dfa93b9c44b233c89c785eb2c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
