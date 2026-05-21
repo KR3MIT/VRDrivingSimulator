@@ -1,5 +1,26 @@
 # VRDrivingSimulator
+Medialogy 5th. semester project
 
-you drive or you die
+Department of Architecture, Design & Media Technology 
+[Aalborg University](http://www.aau.dk)
 
-Hello we are a small groupe of dickheads trying to make it to the end of the month by doing as little work as posible aha fuck you
+[AV](https://youtu.be/3_pSKavL5pE "Video showcase")
+
+Made in Unity for virtual reality
+
+Hardware reqired:
+- Meta Quest 2 or 3 with handtracking enabled
+- Logitech G920 Steering wheel and pedal
+- PC with Meta link software
+
+(repo does not include executable, must build self)
+
+## Developers;
+|                                   |                           |                                 |
+|-----------------------------------|---------------------------|---------------------------------|
+|Jason Malik Catanjal Hassan        | <jhassa23@student.aau.dk> | <jason.cm.hassan@gmail.com>     |
+|William Alexander Abildtrup        | <wabild23@student.aau.dk> | <william@abildtrup.eu>          |
+|Oskar Bodholdt Kaare               | <okaare23@student.aau.dk> | <oskar.kaare@gmail.com>         |
+|Victor Alexander Stuestøl Andersen | <vander23@student.aau.dk> | <victorstuestol5@gmail.com>     |
+|Mathias Kofoed Hansen              | <mkha23@student.aau.dk>   | <mathiaskofoedhansen@gmail.com> |
+|Mattias Frej Lindstrøm Ehlert      | <mehler23@student.aau.dk> | <mattiasehlert@gmail.com>       |
