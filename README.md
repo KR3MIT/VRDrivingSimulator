@@ -8,7 +8,7 @@ Department of Architecture, Design & Media Technology
 
 Made in Unity for virtual reality
 
-Hardware reqired:
+Hardware required:
 - Meta Quest 2 or 3 with handtracking enabled
 - Logitech G920 Steering wheel and pedal
 - PC with Meta link software
