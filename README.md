@@ -4,9 +4,9 @@ Medialogy 5th. semester project
 Department of Architecture, Design & Media Technology 
 [Aalborg University](http://www.aau.dk)
 
-[AV](https://youtu.be/3_pSKavL5pE "Video showcase")
+Video showcase [AV](https://youtu.be/3_pSKavL5pE "Video showcase")
 
-Paper accepted for publishing by [ICVR](https://www.icvr.org/ "International Conference on Virtual Reality")
+Paper accepted for publishing by [ICVR.org](https://www.icvr.org/ "International Conference on Virtual Reality")
 
 Made in Unity for virtual reality
 
