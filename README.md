@@ -1,6 +1,8 @@
 # VRDrivingSimulator
 Medialogy 5th. semester project
 
+Virtual Reality (VR) driving simulator aim at teaching and training driving for student drivers in Denmark, based on Danish road rules, scenarios and gameplay design in collaberation with a Danish driving teacher to ensure accuracy and relevance in teaching material, approach and implementation.
+
 Department of Architecture, Design & Media Technology 
 [Aalborg University](http://www.aau.dk)
 
